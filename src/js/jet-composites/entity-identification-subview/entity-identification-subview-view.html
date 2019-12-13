@@ -1,0 +1,254 @@
+<!--
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+<!-- <p data-bind="text:messageText"></p> -->
+
+<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Please select the entity columns you want to map, change the display name (if needed) and click save for saving the identified columns.</p>
+<!-- <div class="oj-panel" > -->
+
+  <!-- <oj-table id="table"
+  aria-label="Employee Table"  data='[[dataprovider]]' 
+  edit-mode='rowEdit' 
+  edit-row='{{editRow}}' 
+  scroll-policy='loadMoreOnScroll'
+  scroll-policy-options='{"fetchSize": 10}'
+  columns='[
+  
+  {"field":"IDENTIFICATION_STATUS",
+  "headerText": "Select Columns To Map",
+  "headerStyle": "min-width: 20em; max-width: 20em; width: 20em; text-align: center;",
+          "style": "min-width: 10em; max-width: 10em; width: 10em; text-align: center;",
+  "template": "ActiveTemplate"},
+  
+  {"field": "COLUMN_NAME",
+  "headerText": "ENTITY_COLUMN_NAME",
+  "headerStyle": "min-width: 20em; max-width: 5em; width: 20em;text-align: center;",
+  "style": "min-width: 8em; max-width: 8em; width: 8em ; text-align: center;",
+  "className": "oj-helper-text-align-center oj-read-only"},
+  
+  {"field": "DISPLAY_NAME",
+  "headerText": "ENTITY DISPLAY_NAME",
+  "headerStyle": "min-width: 20em; max-width: 20em; width: 20em;text-align: center;",
+  "style": "min-width: 8em; max-width: 8em; width: 8em ;text-align: center;",
+  
+  "template": "CrewBillingTemplate"} ]'
+  style='width: 100%; height:100%;'
+  
+  >
+  
+  
+  
+  <template slot="ActiveTemplate" data-oj-as="cell">
+  <oj-bind-if test='[[cell.mode=="navigation"]]'>
+    <div oj-sm-justify-content-center>
+        <oj-checkboxset id="cs1" value="{{cell.data}}" class="oj-choice-direction-row">
+            <oj-option value="checked"></oj-option>
+        </oj-checkboxset>
+    </div>
+  </oj-bind-if>
+  
+  <oj-bind-if test='[[cell.mode=="edit"]]'>
+    <div oj-sm-justify-content-center>
+        <oj-checkboxset id="cs1" value="{{cell.row.IDENTIFICATION_STATUS}}" class="oj-choice-direction-row" >
+            <oj-option value="checked"></oj-option>
+        </oj-checkboxset>
+    </div>
+  </oj-bind-if>
+  </template>
+  
+  
+  <template slot="CrewBillingTemplate" data-oj-as="cell">
+  <oj-bind-if test='[[cell.mode=="navigation"]]'>
+    <oj-bind-text value="[[cell.data]]"></oj-bind-text>
+  </oj-bind-if>
+  
+  <oj-bind-if test='[[cell.mode=="edit"]]'>
+    <oj-input-text id="it2" value="{{cell.row.DISPLAY_NAME}}" ></oj-input-text>
+  
+  </oj-bind-if>
+  </template>
+  
+  </oj-table> -->
+
+
+
+  <div class="oj-flex" style= "margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
+    <div class ="oj-flex-item"></div>
+      
+  
+      <div class="oj-flex-item"> </div>
+  
+      <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
+        
+          <div class="oj-panel" on-click='[[selectAll]]' style="
+          border-radius: 5px;
+          background-color: #0f758e;
+          color:white;
+          border:none; cursor:pointer; width:100px; text-align:center;
+      ">Select all</div>
+      
+    </div>
+    <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
+        
+        <div class="oj-panel" on-click='[[deSelectAll]]' style="
+        border-radius: 5px;
+        background-color: #0f758e;
+        color:white;
+        border:none; cursor:pointer; width:100px; text-align:center;
+    ">Deselect all</div>
+    
+  </div>
+      <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;">
+  
+        <div class="oj-panel" on-click='[[saveSelections]]' style="
+        border-radius: 5px;
+        background-color: #0f758e;
+        color:white;
+        border:none; cursor:pointer; width:100px; text-align:center;
+    ">Save</div>
+        
+      </div>
+    
+   
+  
+    </div>
+
+  <oj-table id="table" aria-label="Tasks Table"
+              data="[[datasource]]"
+              edit-mode="rowEdit"
+              scroll-policy='loadMoreOnScroll'
+                      scroll-policy-options='{"fetchSize": 10}'
+              row-renderer="[[rowRenderer]]"
+              on-oj-before-row-edit-end="[[beforeRowEditEndListener]]"
+              columns='[
+              
+              {"headerText": "SELECT",
+              "sortProperty": "IDENTIFICATION_STATUS",
+            
+              "headerStyle": "min-width: 15em; max-width: 15em; width: 15em; text-align:center;",
+              "style": "min-width: 15em; max-width: 15em; width: 15em ; text-align:center;"},
+
+                                       {"headerText": "ENTITY COLUMN NAME",
+                          "sortProperty": "COLUMN_NAME",
+                          "className": "oj-read-only",
+                          "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
+                          "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"},
+
+                          {"headerText": "ENTITY DISPLAY NAME",
+                          "sortProperty": "DISPLAY_NAME",
+                          "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
+                          "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"}]' 
+                          style="height:650px; width:97%;overflow:auto;margin:10px;">                
+                        
+       </oj-table>
+
+  <!-- <textarea id="rowDataDump" style="height: 200px; width: 300px; box-sizing: border-box;"></textarea> -->
+          <script type="text/html" id="row_template">
+              <tr>
+
+                  <!-- <td data-bind="text: IDENTIFICATION_STATUS"> -->
+                      <td >
+
+                      <div oj-sm-justify-content-center >
+                          <oj-checkboxset id="cs1" value="{{IDENTIFICATION_STATUS}}"
+                         
+                          class="oj-choice-direction-row">
+                              <oj-option value="CHECKED"></oj-option>
+                          </oj-checkboxset>
+                      </div>
+                    </td>
+                
+                  <td>
+                  <oj-row-expander context="[[$context.rowContext]]"></oj-row-expander>
+                  <span data-bind="text: COLUMN_NAME"></span>
+                  </td>
+
+                  <td data-bind="text: DISPLAY_NAME">
+                    </td>
+               
+              </tr>
+          </script>
+          <script type="text/html" id="row_template_editable">
+              <tr>
+
+                  <td>
+                      <!-- <oj-input-text id="it4" value="{{IDENTIFICATION_STATUS}}"></oj-input-text> -->
+
+
+                      <div oj-sm-justify-content-center>
+                          <oj-checkboxset id="cs1" value="{{IDENTIFICATION_STATUS}}" class="oj-choice-direction-row" >
+                              <oj-option value="CHECKED"></oj-option>
+                          </oj-checkboxset>
+                      </div>
+                  </td>
+                 
+                  <td>
+                      <oj-row-expander context="[[$context.rowContext]]"></oj-row-expander>
+                      <span data-bind="text: COLUMN_NAME"></span>
+                  </td>
+                  <td>
+                      <oj-input-text id="it2" value="{{DISPLAY_NAME}}"></oj-input-text>
+                  </td>
+                 
+                
+              </tr>
+          </script>
+  
+          <!-- <div class="oj-flex" style= "margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
+              <div class="oj-flex-item"></div>
+          
+              <div class="oj-flex-item"> </div>
+          
+              <div class="oj-sm-flex-initial oj-flex-item">
+          
+                <div class="oj-panel" on-click='[[saveSelections]]' style="
+                border-radius: 5px;
+                background-color: #0f758e;
+                color:white;
+                border:none; cursor:pointer;
+            ">Save</div>
+                
+              </div>
+          
+            </div> -->
+
+<!-- </div> -->
+
+
+<!-- <div class="oj-flex" style= "margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
+    <div class="oj-flex-item"></div>
+
+    <div class="oj-flex-item"> </div>
+
+    <div class="oj-sm-flex-initial oj-flex-item">
+
+      <div class="oj-panel" on-click='[[saveSelections]]' style="
+      border-radius: 5px;
+      background-color: #0f758e;
+      color:white;
+      border:none; cursor:pointer;
+  ">save</div>
+      
+    </div>
+
+  </div> -->
+
+<!-- <div class="oj-flex">
+    <div class="oj-flex-item"></div>
+    <div class="oj-flex-item"> 
+        <oj-button on-oj-action = "[[saveSelections]]" style = "background-color:aqua;">Save</oj-button>
+    </div>
+    <div class="oj-flex-item"></div>
+
+</div> -->
+
+
+
+<!-- 
+<textarea id="rowDataDump" style="height: 200px; width: 300px; box-sizing: border-box;"></textarea> -->
+
+
+
+<oj-messages messages="[[messagesDataprovider]]" position="{}" display="notification">
+</oj-messages>

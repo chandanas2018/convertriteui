@@ -1,0 +1,80 @@
+<!--
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+<!-- <p data-bind="text:messageText"></p> -->
+<div class="oj-flex oj-sm-flex-items-initial" style="margin-left:2rem;">
+  <oj-bind-for-each data="[[dataProvider]]">
+
+    <template>
+      <div class="oj-flex-item">
+
+          <div class="oj-flex-item" style="margin:20px;">
+              <div class="oj-panel" style="width:250px; height:50px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;">
+              <div class = "oj-flex">
+                <div class ="oj-flex-item">  <p><oj-bind-text value="[[$current.data.ENTITY_NAME]]"></oj-bind-text></p></div>
+                <div class ="oj-flex-item"> <oj-bind-if test ="[[$current.data.UPLOAD_STATUS == 'UPLOADED']]"> <img src="../../../css/images/conversion_success_icon@2x.png" width="16" height="16"></oj-bind-if></div>
+              </div>
+                        
+               </div>
+            
+              <div class="oj-panel" style="width:250px; height:100px;border-top:none;border-bottom:none;text-align:center;">
+                 <img src="../../../css/images/upload_bg_icon@2x.png" width="48" height="60">
+                </div>
+            
+              <!-- <div class="oj-panel" style="width:200px; height:50px;background-color: #0f758e; text-align:center;color:white;border-radius:0px 0px 10px 10px">
+              
+                <oj-file-picker on-oj-select='[[selectListener]]'>
+                  <div tabindex='0' slot='trigger'
+                        class='oj-filepicker-dropzone'>
+                     <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+                  </div>
+                </oj-file-picker>
+              </div> -->
+            
+              <oj-file-picker on-oj-select='[[selectListener]]'>
+                <div tabindex='0' slot='trigger'
+                      class='oj-filepicker-dropzone'>
+                   <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+                </div>
+              </oj-file-picker>
+            </div>
+
+      </div>
+    </template>
+  </oj-bind-for-each>
+</div>
+
+
+<oj-messages messages="[[messagesDataprovider]]" position="{}" display="notification">
+</oj-messages>
+
+
+
+<!-- 
+<div class="oj-flex-item" style="margin:20px;">
+  <div class="oj-panel" style="width:200px; height:50px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;">
+   <p>Table1</p>
+   </div>
+
+  <div class="oj-panel" style="width:200px; height:100px;border-top:none;border-bottom:none;text-align:center;">
+     <img src="../../../css/images/upload_bg_icon@2x.png" width="48" height="60">
+    </div>
+
+  <div class="oj-panel" style="width:200px; height:50px;background-color: #0f758e; text-align:center;color:white;border-radius:0px 0px 10px 10px">
+  
+    <oj-file-picker on-oj-select='[[selectListener]]'>
+      <div tabindex='0' slot='trigger'
+            class='oj-filepicker-dropzone'>
+         <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+      </div>
+    </oj-file-picker>
+  </div>
+
+  <oj-file-picker on-oj-select='[[selectListener]]'>
+    <div tabindex='0' slot='trigger'
+          class='oj-filepicker-dropzone'>
+       <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+    </div>
+  </oj-file-picker>
+</div> -->

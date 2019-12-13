@@ -1,0 +1,8 @@
+project-list:not(.oj-complete){
+  visibility: hidden;
+}
+
+project-list{
+	min-height: 50px;
+	width: 50px;
+}

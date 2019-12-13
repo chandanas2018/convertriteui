@@ -1,0 +1,8 @@
+entity-identification-subview:not(.oj-complete){
+  visibility: hidden;
+}
+
+entity-identification-subview{
+	min-height: 50px;
+	width: 50px;
+}

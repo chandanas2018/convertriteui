@@ -1,0 +1,212 @@
+<!--
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+<!-- <p data-bind="text:messageText"></p> -->
+
+<div class="oj-panel">
+  <div class = "oj-flex demo-edge-start">
+  <oj-navigation-list class="oj-contrast-background oj-contrast-marker" selection="{{selectedItem}}" style="
+  height: 750px;">
+      <ul>
+        <oj-bind-for-each data="[[dataProvider]]">
+            <template>
+                <li :id="[[$current.data.id]]" >
+                    <a href="#">
+                        <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+                    </a>
+                </li>
+            </template>
+        </oj-bind-for-each>
+      </ul>
+    </oj-navigation-list>
+    <!-- <p class="bold">Last selected list item:
+        <span>
+          <oj-bind-text value="[[selectedItem]]"></oj-bind-text>
+        </span>
+      </p>
+   -->
+
+  <oj-bind-if test="[[selectedItem() == 'PERSON']]" style="width: 75%;">
+      <entity-identification-subview entity-id="1" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_NAME']]" style="width: 75%;">
+      <entity-identification-subview entity-id="2" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_NID']]" style="width: 75%;">
+      <entity-identification-subview entity-id="3" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'DOCUMENTS_OF_RECORD_VO']]" style="width: 75%;">
+      <entity-identification-subview entity-id="4" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'CITIZENSHIP_VO']]" style="width: 75%;">
+      <entity-identification-subview entity-id="5" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_LEGISLATIVE_INFO']]" style="width: 75%;">
+      <entity-identification-subview entity-id="6" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_ADDRESS']]" style="width: 75%;">
+      <entity-identification-subview entity-id="7" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_PHONE']]" style="width: 75%;">
+      <entity-identification-subview entity-id="8" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_EMAIL']]" style="width: 75%;">
+      <entity-identification-subview entity-id="9" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'ASSIGNMENT']]" style="width: 75%;">
+      <entity-identification-subview entity-id="10" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'ASSIGNMENT_EFF']]" style="width: 75%;">
+      <entity-identification-subview entity-id="11" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'PERSON_SALARY']]" style="width: 75%;">
+      <entity-identification-subview entity-id="12" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'SUPERVISOR']]" style="width: 75%;">
+      <entity-identification-subview entity-id="13" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'CONTACT_RELATIONSHIP']]" style="width: 75%;">
+      <entity-identification-subview entity-id="14" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'ELEMENT_ENTRIES']]" style="width: 75%;">
+      <entity-identification-subview entity-id="15" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'ELEMENT_ENTRIES_VALUES']]" style="width: 75%;">
+      <entity-identification-subview entity-id="16" style="width: 75%;"></entity-identification-subview>
+  </oj-bind-if>
+ 
+
+  
+      <!-- <oj-switcher value="[[selectedItem]]" style="width: 75%;">
+        <div slot="PERSON"
+             id="home-tab-panel"
+             role="tabpanel" 
+             aria-labelledby="home-tab">
+         
+              <entity-identification-subview entity-id="1"></entity-identification-subview>
+ 
+        </div>
+        <div slot="PERSON_NAME"
+             id="blogs-tab-panel"
+             role="tabpanel" 
+             aria-labelledby="blogs-tab">
+          
+          <entity-identification-subview entity-id="2"></entity-identification-subview>
+        </div>
+        <div slot="PERSON_NID"
+             id="settings-tab-panel"
+             role="tabpanel" 
+             aria-labelledby="settings-tab">
+       
+          <entity-identification-subview entity-id="3"></entity-identification-subview>
+        </div>
+        <div slot="DOCUMENTS_OF_RECORD_VO"
+             id="about-tab-panel"
+             role="tabpanel" 
+             aria-labelledby="about-tab">
+        
+          <entity-identification-subview entity-id="4"></entity-identification-subview>
+        </div>
+        <div slot="CITIZENSHIP_VO"
+             id="contact-tab-panel"
+             role="tabpanel" 
+             aria-labelledby="contact-tab">
+       
+          <entity-identification-subview entity-id="5"></entity-identification-subview>
+        </div>
+
+
+
+
+
+        <div slot="PERSON_LEGISLATIVE_INFO"
+        id="home-tab-panel"
+        role="tabpanel" 
+        aria-labelledby="home-tab">
+    
+         <entity-identification-subview entity-id="6"></entity-identification-subview>
+
+   </div>
+   <div slot="PERSON_ADDRESS"
+        id="blogs-tab-panel"
+        role="tabpanel" 
+        aria-labelledby="blogs-tab">
+    
+     <entity-identification-subview entity-id="7"></entity-identification-subview>
+   </div>
+   <div slot="PERSON_PHONE"
+        id="settings-tab-panel"
+        role="tabpanel" 
+        aria-labelledby="settings-tab">
+  
+     <entity-identification-subview entity-id="8"></entity-identification-subview>
+   </div>
+   <div slot="PERSON_EMAIL"
+        id="about-tab-panel"
+        role="tabpanel" 
+        aria-labelledby="about-tab">
+     
+     <entity-identification-subview entity-id="9"></entity-identification-subview>
+   </div>
+   <div slot="ASSIGNMENT"
+        id="contact-tab-panel"
+        role="tabpanel" 
+        aria-labelledby="contact-tab">
+   
+     <entity-identification-subview entity-id="10"></entity-identification-subview>
+   </div>
+
+
+
+
+
+   <div slot="ASSIGNMENT_EFF"
+   id="home-tab-panel"
+   role="tabpanel" 
+   aria-labelledby="home-tab">
+
+    <entity-identification-subview entity-id="11"></entity-identification-subview>
+
+</div>
+<div slot="PERSON_SALARY"
+   id="blogs-tab-panel"
+   role="tabpanel" 
+   aria-labelledby="blogs-tab">
+
+<entity-identification-subview entity-id="12"></entity-identification-subview>
+</div>
+<div slot="SUPERVISOR"
+   id="settings-tab-panel"
+   role="tabpanel" 
+   aria-labelledby="settings-tab">
+
+<entity-identification-subview entity-id="13"></entity-identification-subview>
+</div>
+<div slot="CONTACT_RELATIONSHIP"
+   id="settings-tab-panel"
+   role="tabpanel" 
+   aria-labelledby="settings-tab">
+
+<entity-identification-subview entity-id="14"></entity-identification-subview>
+</div>
+<div slot="ELEMENT_ENTRIES"
+   id="about-tab-panel"
+   role="tabpanel" 
+   aria-labelledby="about-tab">
+
+<entity-identification-subview entity-id="15"></entity-identification-subview>
+</div>
+<div slot="ELEMENT_ENTRIES_VALUES"
+   id="contact-tab-panel"
+   role="tabpanel" 
+   aria-labelledby="contact-tab">
+
+<entity-identification-subview entity-id="16"> </entity-identification-subview>
+</div>
+
+      </oj-switcher>
+   -->
+  
+    </div>
+  </div>

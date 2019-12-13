@@ -1,0 +1,8 @@
+project-management:not(.oj-complete){
+  visibility: hidden;
+}
+
+project-management{
+	min-height: 50px;
+	width: 50px;
+}

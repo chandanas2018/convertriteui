@@ -1,0 +1,8 @@
+entity-identification:not(.oj-complete){
+  visibility: hidden;
+}
+
+entity-identification{
+	min-height: 50px;
+	width: 50px;
+}

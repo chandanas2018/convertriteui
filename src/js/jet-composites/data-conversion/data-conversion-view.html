@@ -1,0 +1,145 @@
+<!--
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+
+
+
+
+<!-- <div class="oj-flex-item" style="margin:20px;">
+
+
+    <div class="demo-row-classes  demo-flex-display oj-flex-items-pad">
+      
+        <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center" 
+             :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+             :style.height="[[dircolumn() ? '180px' : null]]">
+       
+          <div class="oj-flex-item"> <img src="../../../css/images/conversion_success_icon@2x.png" > </div>
+    
+        </div>
+      </div>
+
+<div class="demo-row-classes  demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+      
+    <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center" 
+         :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+         :style.height="[[dircolumn() ? '180px' : null]]">
+ 
+      <div class="oj-flex-item" style="color:green; font-size:x-large;"> <b>Data Conversion Successful!</b></div>
+    
+    </div>
+  </div>
+
+
+  <p style="text-align:center;margin:30px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+    <div class="demo-row-classes  demo-flex-display oj-flex-items-pad" style="margin-top:50px;">
+      
+        <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center" 
+             :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+             :style.height="[[dircolumn() ? '180px' : null]]">
+          <div class="oj-flex-item"> 
+            
+         
+<div class="oj-flex" >
+  <div class="oj-flex-item">
+    <div class= "oj-panel" style="background-color: #0f758e; border-radius:10px 0px 0px 10px;"> 
+      <img src="../../../css/images/download_button_icon@2x.png" width="20" height="16"></div>
+    </div>
+  <div class="oj-flex-item">
+     <div class = "oj-panel" style="background-color: #0f758e;color:white;border-radius:0px 10px 10px 0px"> DOWNLOAD HCM FILES</div>
+    </div>
+</div>
+
+
+ 
+
+</div>
+          <div class="oj-flex-item">
+    
+
+<div class="oj-flex" style ="margin-left:30px;">
+    <div class="oj-flex-item"><div class= "oj-panel" style="background-color: #0f758e; border-radius:10px 0px 0px 10px" > <img src="../../../css/images/loadtohcm_button_icon@2x.png" width="24" ></div></div>
+    <div class="oj-flex-item"> <div class = "oj-panel" style="background-color: #0f758e;color:white;border-radius:0px 10px 10px 0px;">LOAD INTO HCM</div></div>
+  </div>
+</div>
+         
+        </div>
+      </div>
+
+      </div> -->
+
+
+
+      
+     <div class="oj-panel">
+        <div class = "oj-flex demo-edge-start">
+        <oj-navigation-list class="oj-contrast-background oj-contrast-marker" selection="{{selectedItem}}" style="
+        height: 750px;">
+            <ul>
+              <oj-bind-for-each data="[[dataProvider]]">
+                  <template>
+                      <li :id="[[$current.data.id]]" >
+                          <a href="#">
+                              <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+                          </a>
+                      </li>
+                  </template>
+              </oj-bind-for-each>
+            </ul>
+          </oj-navigation-list>
+      
+        <oj-bind-if test="[[selectedItem() == 'PERSON']]" style="width: 75%;">
+            <data-conversion-subview entity-id="1" entity-name = "PERSON" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_NAME']]" style="width: 75%;">
+            <data-conversion-subview entity-id="2" entity-name = "PERSON_NAME" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_NID']]" style="width: 75%;">
+            <data-conversion-subview entity-id="3"  entity-name = "PERSON_NID" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'DOCUMENTS_OF_RECORD_VO']]" style="width: 75%;">
+            <data-conversion-subview entity-id="4" entity-name = "DOCUMENTS_OF_RECORD_VO" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'CITIZENSHIP_VO']]" style="width: 75%;">
+            <data-conversion-subview entity-id="5" entity-name = "CITIZENSHIP_VO" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_LEGISLATIVE_INFO']]" style="width: 75%;">
+            <data-conversion-subview entity-id="6" entity-name = "PERSON_LEGISLATIVE_INFO" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_ADDRESS']]" style="width: 75%;">
+            <data-conversion-subview entity-id="7" entity-name = "PERSON_ADDRESS" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_PHONE']]" style="width: 75%;">
+            <data-conversion-subview entity-id="8" entity-name = "PERSON_PHONE" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_EMAIL']]" style="width: 75%;">
+            <data-conversion-subview entity-id="9" entity-name = "PERSON_EMAIL" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'ASSIGNMENT']]" style="width: 75%;">
+            <data-conversion-subview entity-id="10" entity-name = "ASSIGNMENT" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'ASSIGNMENT_EFF']]" style="width: 75%;">
+            <data-conversion-subview entity-id="11" entity-name = "ASSIGNMENT_EFF" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'PERSON_SALARY']]" style="width: 75%;">
+            <data-conversion-subview entity-id="12" entity-name = "PERSON_SALARY" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'SUPERVISOR']]" style="width: 75%;">
+            <data-conversion-subview entity-id="13" entity-name = "SUPERVISOR" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'CONTACT_RELATIONSHIP']]" style="width: 75%;">
+            <data-conversion-subview entity-id="14" entity-name = "CONTACT_RELATIONSHIP" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'ELEMENT_ENTRIES']]" style="width: 75%;">
+            <data-conversion-subview entity-id="15" entity-name = "ELEMENT_ENTRIES" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+        <oj-bind-if test="[[selectedItem() == 'ELEMENT_ENTRIES_VALUES']]" style="width: 75%;">
+            <data-conversion-subview entity-id="16" entity-name = "ELEMENT_ENTRIES_VALUES" style="width: 70%;padding: 20px;"></data-conversion-subview>
+        </oj-bind-if>
+       
+      
+          </div>
+        </div>

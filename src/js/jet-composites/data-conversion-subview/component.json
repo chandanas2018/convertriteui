@@ -1,0 +1,24 @@
+{
+  "name": "data-conversion-subview",
+  "version": "1.0.0",
+  "jetVersion": "^7.2.0",
+  "displayName": "A user friendly, translatable name of the component.",
+  "description": "A translatable high-level description for the component.",
+  "properties": {
+    "entityId":{
+      "type": "string"
+    },
+    "entityName":{
+      "type": "string"
+    }
+  },
+  "methods": {
+
+  }, 
+  "events": {
+
+  }, 
+  "slots": {
+
+  }
+}

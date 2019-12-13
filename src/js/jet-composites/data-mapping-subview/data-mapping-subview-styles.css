@@ -1,0 +1,16 @@
+data-mapping-subview:not(.oj-complete){
+  visibility: hidden;
+}
+
+data-mapping-subview{
+	min-height: 50px;
+	width: 50px;
+}
+
+.oj-filepicker-dropzone2{
+	width:250px;
+}
+
+.oj-filepicker-dropzone3{
+	width:250px;
+}

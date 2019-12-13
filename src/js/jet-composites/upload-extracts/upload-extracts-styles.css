@@ -1,0 +1,8 @@
+upload-extracts:not(.oj-complete){
+  visibility: hidden;
+}
+
+upload-extracts{
+	min-height: 50px;
+	width: 50px;
+}

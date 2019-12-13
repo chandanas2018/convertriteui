@@ -1,0 +1,235 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+
+.oj-web-applayout-body {
+    background-image: url("images/background_pattern.png");
+     background-repeat: repeat;
+  }
+
+
+  .oj-hybrid-padding-project-card {
+
+    margin: 2rem;
+    margin-bottom:0px;
+    width: 250px;
+    height: 250px;
+    background-color: white;
+   
+  }
+
+
+  .oj-hybrid-padding {
+
+    margin: 3rem;
+    max-width: 100%;
+    height: fit-content;
+    background-color: white;
+    border-radius:10px;
+ }
+
+.oj-hybrid-padding-internal {
+
+  /* margin: 2rem; */
+  max-width: 100%;
+  height: 500px;
+  background-color: #f1f3f4;
+  border-radius:10px;
+  /* padding: 1.5rem; */
+  overflow-y:scroll;
+
+}
+
+
+.oj-tabbar-item-label{
+  color:#0f758e;
+}
+
+.oj-filepicker-dropzone{
+  height:50px;
+  width:250px;
+  border-style:unset;
+  border-radius:0px 0px 10px 10px;
+background-color:#0f758e;
+cursor:pointer;
+
+}
+
+.oj-filepicker-dropzone2{
+  height:100px;
+  width:300px;
+  border-style:unset;
+  border-radius:10px 10px 0px 0px;
+background-color:#dce6ea;
+cursor:pointer;
+}
+
+.oj-filepicker-dropzone3{
+  height:50px;
+  width:300px;
+  border-style:unset;
+  border-radius:0px 0px 10px 10px;
+background-color:#0f758e;
+cursor:pointer;
+}
+.oj-filepicker-text{
+  font-size:16px;
+}
+
+.oj-hybrid-padding-internal2{
+
+  /* margin: 2rem; */
+  max-width: 100%;
+  height: fit-content;
+  background-color: #f1f3f4;
+  border-radius:10px;
+  padding:30px;
+  /* padding: 1.5rem; */
+  /* overflow-y:scroll; */
+
+}
+
+.oj-hybrid-padding-internal3{
+
+  /* margin: 2rem; */
+  max-width: 100%;
+  height: fit-content;
+ 
+  border-radius:10px;
+  padding:30px;
+  /* padding: 1.5rem; */
+  /* overflow-y:scroll; */
+
+}
+
+
+.demo-edge-start oj-navigation-list
+     {
+      max-width: 300px;
+      width:25%;
+    }
+    .oj-switcher
+    {
+      width: 75%;
+    }
+
+
+    /* .oj-contrast-marker a.oj-navigationlist-item-content .oj-navigationlist-item-label {
+      color: #0f758e;
+  } */
+
+
+  /* .oj-contrast-background .oj-contrast-marker{
+    background-color:#0f758e;
+  } */
+
+
+  .oj-contrast-marker.oj-contrast-background {
+    background-color: #0f758e;
+    
+}
+
+
+.oj-navigationlist-vertical .oj-navigationlist-item.oj-selected {
+  background-color: white;
+
+
+}
+
+.oj-contrast-marker .oj-selected > a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
+  color: #043b4c;
+}
+
+.oj-contrast-marker a.oj-navigationlist-item-content .oj-navigationlist-item-label {
+  color: white;
+}
+
+
+.oj-navigationlist-item-element.oj-navigationlist-item.oj-hover{
+ 
+background-color: #f1f3f4 !important
+
+}
+
+
+.oj-contrast-marker .oj-hover:not(.oj-selected) a.oj-navigationlist-item-content .oj-navigationlist-item-label{
+  color: black;
+}
+
+
+.my-custom-scrollbar {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  overflow: auto;
+}
+
+
+
+.nano.nano-pane {
+  background: rgba(0,0,0,.25);
+  position: absolute;
+  width: 10px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: .01;
+  
+  transition: .2s;
+  
+  border-radius: 5px;
+}
+
+.nano.nano-pane {
+  z-index: 3;
+}
+
+.nano.nano-pane.nano-slider {
+  background: #444;
+  background: rgba(0,0,0,.5);
+  position: relative;
+  margin: 0 1px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* td {
+  background-color:white;
+} */
+
+tr:nth-child(odd){
+  background-color:#ecf7eb;
+}
+
+/* tr:nth-child(even){
+  background-color:white;
+} */
+
+th{
+  background-color:#0f758e;
+  color:white;
+}
+
+/* 
+.oj-table tr:nth-child(even){
+  background-color:red;
+} */
+
+
+/* .oj-table-body-row.oj-table-hgrid-lines.oj-sm-only-hide.oj-hover{
+  background-color:red ;
+} */
+/* 
+.oj-table-data-cell.oj-hover{
+background-color:grey
+} */
+
+
+html:not([dir="rtl"]) .oj-web-applayout-footer li {
+  border-right: 1px solid blue;
+}

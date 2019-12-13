@@ -1,0 +1,8 @@
+data-mapping-topview:not(.oj-complete){
+  visibility: hidden;
+}
+
+data-mapping-topview{
+	min-height: 50px;
+	width: 50px;
+}

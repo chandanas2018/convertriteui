@@ -1,0 +1,8 @@
+entity-mapping:not(.oj-complete){
+  visibility: hidden;
+}
+
+entity-mapping{
+	min-height: 50px;
+	width: 50px;
+}

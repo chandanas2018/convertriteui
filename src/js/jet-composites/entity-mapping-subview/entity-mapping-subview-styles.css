@@ -1,0 +1,13 @@
+entity-mapping-subview:not(.oj-complete){
+  visibility: hidden;
+}
+
+entity-mapping-subview{
+	min-height: 50px;
+	width: 50px;
+}
+
+.myClass {
+	background-color: red;
+
+  }

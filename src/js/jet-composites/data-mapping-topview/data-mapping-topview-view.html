@@ -1,0 +1,211 @@
+<!--
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+<!-- <p data-bind="text:messageText"></p> -->
+
+<!-- <button onclick="saveFile()">Save XLSX file</button> -->
+<div class="oj-flex oj-sm-flex-items-initial" >
+    <div class="oj-flex-item" style="background-color:white;border-radius:10px 0px 0px 0px">
+      <div class="oj-panel" style="width:400px; height:200px;border-radius:10px 75px 75px 0px;background-color:#dce6ea;">
+
+        <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+          <div class="oj-flex oj-sm-align-items-center"
+               :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
+            <div class="oj-flex-item">  <img src="../../../css/images/datamapping_template_icon@2x.png" width="48" height="60"></div>
+            <div class="oj-flex-item">
+              <div style="max-width: 175px; margin-top:10px;color:#0f758e; font-size:20px;"> 
+                Manual Data Mapping Using Templates</div>
+            </div>
+            <!-- <div class="oj-flex-item">text</div> -->
+          </div>
+        </div>
+
+
+
+
+
+
+<!-- 
+        <div class="oj-flex">
+  <div class="oj-flex-item">
+    <img src="../../../css/images/datamapping_template_icon@2x.png" width="48" height="60">
+  </div>
+  <div class="oj-flex-item">
+    <span style="color:#0f758e; font-size:20px;">Manual Data Mapping Using Templates</span>
+  </div>
+</div> -->
+          
+       
+      </div>
+      </div>
+    <div class="oj-flex-item">
+      <div class="oj-panel" style="width:765px; height:200px;padding:8px;border-radius:0px 10px 0px 0px;border:none;">
+         
+       
+
+
+        <div class="oj-flex">
+
+          <div class="oj-flex-item" style="margin:20px 0px 20px 40px;">
+            <div class="oj-panel" style="width:300px; height:100px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;background-color:#dce6ea;">
+            
+              <div class="demo-flex-display oj-flex-items-pad">
+                <div class="oj-flex oj-sm-align-items-center"
+                     :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
+                  <div class="oj-flex-item">  <img src="../../../css/images/download_template_icon@2x.png" width="48" height="60"></div>
+                  <div class="oj-flex-item">
+                    <div style="max-width: 175px; margin-top:10px;color:#0f758e;"> 
+                      Entity Data Mapping Template</div>
+                  </div>
+                  <!-- <div class="oj-flex-item">text</div> -->
+                </div>
+              </div>
+            
+              <!-- <div class = "oj-flex">
+              <div class ="oj-flex-item">   <img src="../../../css/images/download_template_icon@2x.png" width="48" height="60"></div>
+              <div class ="oj-flex-item"> <p>Entity Data Mapping Template</p></div>
+            </div> -->
+                      
+             </div>
+  <!--         
+            <div class="oj-panel" style="width:210px; height:100px;border-top:none;border-bottom:none;text-align:center;">
+               <img src="../../../css/images/upload_bg_icon@2x.png" width="48" height="60">
+              </div> -->
+          
+            <div class="oj-panel" on-click = "[[saveFile]]" style="width:300px; height:50px;background-color: #0f758e; text-align:center;color:white;border-radius:0px 0px 10px 10px; cursor: pointer;">
+            <p> DOWNLOAD TEMPLATE</p>
+              <!-- <oj-file-picker on-oj-select='[[selectListener]]'>
+                <div tabindex='0' slot='trigger'
+                      class='oj-filepicker-dropzone'>
+                   <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+                </div>
+              </oj-file-picker> -->
+            </div>
+          
+            <!-- <oj-file-picker on-oj-select='[[selectListener]]'>
+              <div tabindex='0' slot='trigger'
+                    class='oj-filepicker-dropzone'>
+                 <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+              </div>
+            </oj-file-picker> -->
+          </div>
+  
+  
+          <div class="oj-flex-item" style="margin:20px 0px 20px 0px;">
+
+            <oj-file-picker on-oj-select='[[selectListener]]'>
+              <div tabindex='0' slot='trigger'
+                    class='oj-filepicker-dropzone2'>
+
+
+                    <div class="demo-flex-display oj-flex-items-pad" style="padding:15px;">
+                      <div class="oj-flex oj-sm-align-items-center"
+                           :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
+                        <div class="oj-flex-item">  <img src="../../../css/images/upload_bg_icon@2x.png" width="48" height="60"></div>
+                        <div class="oj-flex-item">
+                          <div style="max-width: 175px; margin-top:10px;color:#0f758e;"> 
+                           Click here to browse</div>
+                        </div>
+                       
+                      </div>
+                    </div>
+                 <!-- <p class='oj-filepicker-text'>I'm a clickable dropzone</p> -->
+              </div>
+            </oj-file-picker>
+            <oj-file-picker on-oj-select='[[selectListener]]'>
+              <div tabindex='0' slot='trigger'
+                    class='oj-filepicker-dropzone3'>
+                 <p class='oj-filepicker-text'style="color:white">UPLOAD TEMPLATE</p>
+              </div>
+            </oj-file-picker>
+
+
+
+
+            <!-- <div class="oj-panel" style="width:300px; height:100px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;background-color:#dce6ea;"> -->
+            <!-- <div class = "oj-flex">
+              <div class ="oj-flex-item">   <img src="../../../css/images/upload_bg_icon@2x.png" width="48" height="60"></div>
+              <div class ="oj-flex-item"> <p>Entity Data Mapping Template</p></div>
+            </div>
+                       -->
+
+<!-- 
+                       <oj-file-picker on-oj-select='[[selectListener]]'>
+                <div tabindex='0' slot='trigger'
+                      class='oj-filepicker-dropzone2'> -->
+
+                      
+
+
+
+
+
+                   <!-- <p class='oj-filepicker-text'style="color:white">UPLOAD</p> -->
+                <!-- </div>
+              </oj-file-picker> -->
+             <!-- </div> -->
+  <!--         
+            <div class="oj-panel" style="width:210px; height:100px;border-top:none;border-bottom:none;text-align:center;">
+               <img src="../../../css/images/upload_bg_icon@2x.png" width="48" height="60">
+              </div> -->
+          
+            <!-- <div class="oj-panel" style="width:300px; height:50px;background-color: #0f758e; text-align:center;color:white;border-radius:0px 0px 10px 10px"> -->
+            <!-- <p> UPLOAD TEMPLATE</p> -->
+              <!-- <oj-file-picker on-oj-select='[[selectListener]]'>
+                <div tabindex='0' slot='trigger'
+                      class='oj-filepicker-dropzone2'>
+                   <p class='oj-filepicker-text'style="color:white">UPLOAD TEMPLATE</p>
+                </div>
+              </oj-file-picker>
+            </div> -->
+          
+            <!-- <oj-file-picker on-oj-select='[[selectListener]]'>
+              <div tabindex='0' slot='trigger'
+                    class='oj-filepicker-dropzone'>
+                 <p class='oj-filepicker-text'style="color:white">UPLOAD</p>
+              </div>
+            </oj-file-picker> -->
+          </div>
+        </div>
+       
+
+
+    </div>
+    </div>
+ 
+  </div>
+
+
+
+
+
+  <!-- <div id="dvData">
+    <table>
+        <tr>
+            <th>Column One</th>
+            <th>Column Two</th>
+            <th>Column Three</th>
+        </tr>
+        <tr>
+            <td>row1 Col1</td>
+            <td>row1 Col2</td>
+            <td>row1 Col3</td>
+        </tr>
+        <tr>
+            <td>row2 Col1</td>
+            <td>row2 Col2</td>
+            <td>row2 Col3</td>
+        </tr>
+        <tr>
+            <td>row3 Col1</td>
+            <td>row3 Col2</td>
+            <td><a href="http://www.jquery2dotnet.com/">http://www.jquery2dotnet.com/</a>
+            </td>
+        </tr>
+    </table>
+</div> -->
+
+
+
+
