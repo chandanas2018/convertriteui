@@ -63,7 +63,6 @@ define(
               DISPLAY_NAME: data.data[i].DISPLAY_NAME,
               IDENTIFICATION_STATUS: Checkboxdata,
               IS_MANDATORY: data.data[i].IS_MANDATORY,
-
               DISABLED_STATUS: false
             }
             tempArray.push(obj);
