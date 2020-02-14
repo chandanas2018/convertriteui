@@ -211,11 +211,22 @@
     </div>
     <div class="oj-flex-item"></div>
     <div class="oj-sm-flex-initial oj-flex-item">
-      <div class="oj-panel" on-click="[[removeAllMappings]]"
+      <div class="oj-panel" on-click="[[openclearallbox]]"
         style="background-color:#0f758e; border-radius:10px;cursor:pointer;">
 
         <span style="color:white;font-size:small;">CLEAR ALL</span>
       </div>
+
+      <oj-dialog style="display:none" id="clearallbox" dialog-title="clearing confirmation">
+        <div slot="body">
+          Do you want to clear it completely?
+        </div>
+        <div slot="footer">
+          <oj-button id="okButton" on-oj-action="[[removeAllMappings]]">OK
+          </oj-button>
+        </div>
+      </oj-dialog>
+
 
     </div>
   </div>
@@ -236,15 +247,24 @@
               </div>
             </div>
             <div class="oj-flex-item">
-              <div class="oj-panel" on-click="[[removeUser]]"
+              <div class="oj-panel" on-click="[[openremoveUser]]"
                 style="background-color:#0f758e;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
                 <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[removeUser]]"> -->
                 <img src="../../../css/images/delete_white@2x.png" width="16" height="16"
                   style="padding:6px 6px 3px 3px;">
-                <!-- <span slot="startIcon" class="oj-fwk-icon oj-fwk-icon-cross"></span>
-                        Remove -->
-                <!-- </oj-button> -->
-              </div>
+                </div>
+                 <oj-dialog style="display:none" id="removeUserbox" dialog-title="Delete confirmation">
+                    <div slot="body">
+                      Do u want to delete this permanently
+                    </div>
+                     <div slot="footer">
+                      <oj-button id="okButton" on-oj-action="[[removeUser]]" >OK
+                      </oj-button>
+                      
+                    </div> 
+                  </oj-dialog>
+                
+             
             </div>
             <!-- <div class="oj-flex-item">C</div> -->
           </div>

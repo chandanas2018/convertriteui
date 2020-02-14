@@ -84,6 +84,15 @@ define(
             label: "ELEMENT_ENTRIES_VALUES",
             disabled: false
           },
+          {
+            id: "WORK_TERMS",
+            label: "WORK_TERMS",
+            disabled: false
+          }, {
+            id: "WORK_RELATIONSHIP",
+            label: "WORK_RELATIONSHIP",
+            disabled: false
+          },
         ];
         self.selectedItem = ko.observable('PERSON');
 

@@ -4,7 +4,7 @@
 */
 'use strict';
 define(
-  ['knockout', 'jquery', 'ojL10n!./resources/nls/data-mapping-subview-strings','ojs/ojarraydataprovider', 'ojs/ojdialog','ojs/ojmessages', 'libs/file-saver/FileSaver'],
+  ['knockout', 'jquery', 'ojL10n!./resources/nls/data-mapping-subview-strings', 'ojs/ojarraydataprovider', 'ojs/ojdialog', 'ojs/ojmessages', 'libs/file-saver/FileSaver'],
   function (ko, $, componentStrings, ArrayDataProvider) {
 
     function ExampleComponentModel(context) {
@@ -24,31 +24,19 @@ define(
 
       $.ajax({
         url: "http://localhost:3333/api/v1/exceldata",
-        data: { entityid: context.properties.entityId},
+        data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
 
         success: function (data, textStatus, jqXHR) {
-
           console.log(data);
-
-          // for(let i=0; i<data.data.mappings.length;i++){
-          //   var obj ={
-          //     sourceData: data.data.source[i]
-          //   }
-          // }
-
-          // var data23 = [];
-          for (let j = 0; j < data.data.length; j++) {
-
-
+         for (let j = 0; j < data.data.length; j++) {
             var obj2 = {
               sheetid: data.data[j].sourcecolumnname + "-" + data.data[j].destinationcolumnname,
               header: true
             }
-
             sheetNames.push(obj2);
-
+            
             var data1 = [];
 
             // if(data.data[j].sourcedata.length >= data.data[j].destinationdata.length){
@@ -117,36 +105,36 @@ define(
       self.selectListener = function (event, current, bindingContext) {
 
 
-        if(self.dataProvider().length == 0){
+        if (self.dataProvider().length == 0) {
 
-          var error ={   
+          var error = {
             severity: 'error',
-          summary: 'No Mappings selected',
-          detail: "There are no active mappings to upload the template",
-          autoTimeout: parseInt(self.errorMessageTimeout())
-        }
+            summary: 'No Mappings selected',
+            detail: "There are no active mappings to upload the template",
+            autoTimeout: parseInt(self.errorMessageTimeout())
+          }
           self.messagesArray.push(error);
           //Invalid file format
-        
 
-        }else{
+
+        } else {
 
 
           var files = event.detail.files; // FileList object
           // var xl2json = new ExcelToJSON();
           self.parseExcel(files[0]);
-          var success ={
+          var success = {
             severity: 'confirmation',
-              summary: 'Success',
-              detail: "Mapping Template Uploaded",
-              autoTimeout: parseInt(self.errorMessageTimeout())
+            summary: 'Success',
+            detail: "Mapping Template Uploaded",
+            autoTimeout: parseInt(self.errorMessageTimeout())
           }
           self.messagesArray.push(success);
-}
+        }
 
 
 
-   
+
 
 
         // var file = new File([event.detail.files], event.detail.files[0].name, {
@@ -178,40 +166,40 @@ define(
         // var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
         //                   [opts,[sheet_1_data ,sheet_2_data]]);
 
-        if(self.dataProvider().length == 0){
+        if (self.dataProvider().length == 0) {
 
-          var error ={   
+          var error = {
             severity: 'error',
-          summary: 'No Mappings selected',
-          detail: "There are no active mappings to download the template",
-          autoTimeout: parseInt(self.errorMessageTimeout())
-        }
+            summary: 'No Mappings selected',
+            detail: "There are no active mappings to download the template",
+            autoTimeout: parseInt(self.errorMessageTimeout())
+          }
           self.messagesArray.push(error);
           //Invalid file format
-        
 
-        }else{
+
+        } else {
           var sheetData = [];
           for (let i = 0; i < data23.length; i++) {
-  
+
             sheetData.push(data23[i]);
-  
+
           }
           var result = alasql('SELECT * INTO XLSX("Mapping_Template.xlsx",?) FROM ?',
             [sheetNames, sheetData]);
 
-            var success ={
-              severity: 'confirmation',
-                summary: 'Success',
-                detail: "Mapping Template Downloaded Successfully",
-                autoTimeout: parseInt(self.errorMessageTimeout())
-            }
-            self.messagesArray.push(success);
+          var success = {
+            severity: 'confirmation',
+            summary: 'Success',
+            detail: "Mapping Template Downloaded Successfully",
+            autoTimeout: parseInt(self.errorMessageTimeout())
+          }
+          self.messagesArray.push(success);
 
         }
 
 
-    
+
       }
 
 
@@ -252,7 +240,7 @@ define(
 
           $.ajax({
             url: "http://localhost:3333/api/v1/exceldataupload",
-            data: { entityid:context.properties.entityId, mappings: mappingsObj },
+            data: { entityid: context.properties.entityId, mappings: mappingsObj },
             type: 'POST',
             dataType: 'json',
 
@@ -465,8 +453,8 @@ define(
       self.onSourceDataSelection = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
         self.loaded2("one");
-        self.sourceDataName(current.data.SOURCE_DATA_NAME);
-        self.sourceDataId(current.data.SOURCE_DATA_ID);
+        self.sourceDataName(current.data.LOOKUPMEANING);
+        self.sourceDataId(current.data.LOOKUPCODE);
 
       };
 
@@ -504,9 +492,9 @@ define(
 
       self.messages = [
       ];
-self.errorMessageTimeout = ko.observable('0');
-self.messagesArray = ko.observableArray(self.messages);
- self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
+      self.errorMessageTimeout = ko.observable('0');
+      self.messagesArray = ko.observableArray(self.messages);
+      self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
       self.mapData = function () {
         // if (self.sourceData().length == undefined || self.sourceData().length == 0) {
         //   self.errorColumn('Invalid mapping');
@@ -536,11 +524,11 @@ self.messagesArray = ko.observableArray(self.messages);
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
-              sourcedataname: self.sourceDataName(),
+              sourcedataname: self.sourceDataId(),
               destinationdataname: self.destinationDataName(),
               remainingdata: self.mappingData(),
-
             },
+
             type: 'POST',
             dataType: 'json',
 
@@ -549,11 +537,11 @@ self.messagesArray = ko.observableArray(self.messages);
               console.log(data);
 
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-              var success ={
+              var success = {
                 severity: 'confirmation',
-                  summary: 'Success',
-                  detail: "Mapping Added Successfully",
-                  autoTimeout: parseInt(self.errorMessageTimeout())
+                summary: 'Success',
+                detail: "Mapping Added Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
               }
               self.messagesArray.push(success);
             },
@@ -590,7 +578,7 @@ self.messagesArray = ko.observableArray(self.messages);
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
-              sourcedataname: self.sourceDataName(),
+              sourcedataname: self.sourceDataId(),
               destinationdataname: self.destinationDataName(),
               remainingdata: self.mappingData(),
 
@@ -603,11 +591,11 @@ self.messagesArray = ko.observableArray(self.messages);
               console.log(data);
 
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-              var success ={
+              var success = {
                 severity: 'confirmation',
-                  summary: 'Success',
-                  detail: "Mapping Added Successfully",
-                  autoTimeout: parseInt(self.errorMessageTimeout())
+                summary: 'Success',
+                detail: "Mapping Added Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
               }
               self.messagesArray.push(success);
             },
@@ -618,6 +606,11 @@ self.messagesArray = ko.observableArray(self.messages);
           });
         }
 
+      };
+
+
+      this.openremoveUser = function (event) {
+        document.getElementById('removeUserbox').open();
       };
 
       self.removeUser = function (event, current, bindingContext) {
@@ -651,6 +644,10 @@ self.messagesArray = ko.observableArray(self.messages);
 
 
       };
+      this.openclearall = function (event) {
+        document.getElementById('clearallbox').open();
+      };
+
 
       self.removeAllMappings = function (event, current, bindingContext) {
         // self.dataProvider2.removeAll();
@@ -666,6 +663,7 @@ self.messagesArray = ko.observableArray(self.messages);
             console.log(data);
             if (data.success == true) {
               self.dataProvider2.removeAll();
+              document.getElementById('clearallbox').close();
             }
 
 
@@ -674,6 +672,8 @@ self.messagesArray = ko.observableArray(self.messages);
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
+            document.getElementById('clearallbox').close();
+
           }
         });
 

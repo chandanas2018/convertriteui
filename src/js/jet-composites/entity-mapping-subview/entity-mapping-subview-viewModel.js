@@ -657,6 +657,11 @@ self.messagesArray = ko.observableArray(self.messages);
 
       };
 
+      self.openremoveUser = function (event) {
+        document.getElementById('removeUserbox').open();
+      };
+
+
       self.removeUser = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
 
@@ -673,6 +678,8 @@ self.messagesArray = ko.observableArray(self.messages);
 
             if (data.success == true) {
               self.dataProvider.remove(current.data);
+              document.getElementById('removeuserbox').close();
+
             }
 
 
@@ -680,11 +687,18 @@ self.messagesArray = ko.observableArray(self.messages);
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
+            document.getElementById('removeuserbox').close();
+
           }
         });
 
 
       };
+
+      this.openclearallbox = function (event) {
+        document.getElementById('clearallbox').open();
+      };
+
 
       self.removeAllMappings = function (event, current, bindingContext) {
 
@@ -700,6 +714,10 @@ self.messagesArray = ko.observableArray(self.messages);
             console.log(data);
             if (data.success == true) {
               self.dataProvider.removeAll();
+             
+                document.getElementById('clearallbox').close();
+            
+    
             }
 
 
@@ -708,6 +726,8 @@ self.messagesArray = ko.observableArray(self.messages);
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
+                         document.getElementById('clearallbox').close();
+            
           }
         });
 

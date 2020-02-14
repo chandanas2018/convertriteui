@@ -14,7 +14,7 @@ define(
   ['knockout', 'jquery', 'ojL10n!./resources/nls/entity-identification-subview-strings',
     'ojs/ojarraydataprovider', 'ojs/ojarraytreedataprovider', 'ojs/ojflattenedtreedataproviderview', 'ojs/ojdatacollection-utils',
     'ojs/ojknockouttemplateutils',
-    'ojs/ojtable', 'ojs/ojrowexpander', 'ojs/ojinputtext', 'ojs/ojcheckboxset', 'ojs/ojbutton','ojs/ojmessages'
+    'ojs/ojtable', 'ojs/ojrowexpander', 'ojs/ojinputtext', 'ojs/ojcheckboxset', 'ojs/ojbutton', 'ojs/ojmessages'
   ],
 
 
@@ -32,56 +32,27 @@ define(
 
       self.nowrap = ko.observable(false);
 
-      self.data = [
-        // {
-        //   id:"t1",
-        //   COLUMN_NAME:"Task 1",
-        //   DISPLAY_NAME:"Larry",
-        //   start:"1/1/2014",
-        //   IDENTIFICATION_STATUS:['unchecked']
+      self.data = [];
 
-        // },
-        // {
-        //   id:"t2",
-        //   COLUMN_NAME:"Task 2",
-        //   DISPLAY_NAME:"Larry",
-        //   start:"4/1/2014",
-        //   IDENTIFICATION_STATUS:[]
-
-        // },
-        // {
-        //   id:"t3",
-        //   COLUMN_NAME:"Task 3",
-        //   DISPLAY_NAME:"Larry",
-        //   start:"5/1/2014",
-        //   IDENTIFICATION_STATUS:[]
-
-        // },
-        // {
-        //   id:"t4",
-        //   COLUMN_NAME:"Task 4",
-        //   DISPLAY_NAME:"Larry",
-        //   start:"11/1/2014",
-        //   IDENTIFICATION_STATUS:[]
-        // }
-      ];
-
-
+     
+      $("#progress").show();
       self.data1 = ko.observableArray(self.data);
-
 
       $.ajax({
         url: "http://localhost:3333/api/v1/identification/columns",
         data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
+       
 
         success: function (data, textStatus, jqXHR) {
+     
 
           console.log(data);
           // self.data1(self.data);
 
           var tempArray = [];
+         
           for (let i = 0; i < data.data.length; i++) {
 
             var Checkboxdata = [];
@@ -91,31 +62,40 @@ define(
               COLUMN_NAME: data.data[i].COLUMN_NAME,
               DISPLAY_NAME: data.data[i].DISPLAY_NAME,
               IDENTIFICATION_STATUS: Checkboxdata,
+              IS_MANDATORY: data.data[i].IS_MANDATORY,
+
+              DISABLED_STATUS: false
             }
-
-
-            // tempArray.push(data.data[i]);
             tempArray.push(obj);
           }
 
+          for (let i = 0; i < tempArray.length; i++) {
+            if (tempArray[i].IS_MANDATORY == 'Y') {
+              tempArray[i].IDENTIFICATION_STATUS = ['CHECKED']
+              tempArray[i].DISABLED_STATUS = true;
+            }
+          }
+          $("#progress").hide();
           self.data1(tempArray);
 
         },
         fail: function (xhr, textStatus, errorThrown) {
-
+          $("#progress").hide();
           console.log(errorThrown);
         }
+
+
       });
+
 
 
 
       self.data2 = new ArrayDataProvider(self.data1);
 
-      self.messages = [
-             ];
+      self.messages = [];
       self.errorMessageTimeout = ko.observable('0');
       self.messagesArray = ko.observableArray(self.messages);
-        self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
+      self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
 
 
 
@@ -145,10 +125,6 @@ define(
 
 
           } else {
-
-            
-
-
             var obj = {
               COLUMN_ID: data[i].COLUMN_ID,
               COLUMN_NAME: data[i].COLUMN_NAME,
@@ -172,19 +148,19 @@ define(
           type: 'POST',
           dataType: 'json',
           contentType: 'application/json',
-        
+
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);
 
 
-            if(data.success == true){
-              
-              var success ={
+            if (data.success == true) {
+
+              var success = {
                 severity: 'confirmation',
-                  summary: 'Success',
-                  detail: "Identified Columns saved successfully",
-                  autoTimeout: parseInt(self.errorMessageTimeout())
+                summary: 'Success',
+                detail: "Identified Columns saved successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
               }
               self.messagesArray.push(success);
 
@@ -243,45 +219,84 @@ define(
 
 
 
-      self.selectAll = function(){
+      self.selectAll = function () {
         var tempArray = [];
-        for(let i=0; i<self.data1().length; i++){
-
+        for (let i = 0; i < self.data1().length; i++) {
+         
           var obj = {
             COLUMN_ID: self.data1()[i].COLUMN_ID,
             COLUMN_NAME: self.data1()[i].COLUMN_NAME,
             DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
             IDENTIFICATION_STATUS: ['CHECKED'],
+            DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+            IS_MANDATORY: self.data1()[i].IS_MANDATORY
           }
+         if (self.data1()[i].DISABLED_STATUS == false){
+          self.data1()[i].IDENTIFICATION_STATUS =['CHECKED']
+         }
 
           tempArray.push(obj);
-
-
-          // self.data1()
+        
         }
+        
+
         self.data1(tempArray);
-            }
+      }
 
 
-            
-      self.deSelectAll = function(){
+
+      self.deSelectAll = function () {
         var tempArray = [];
-        for(let i=0; i<self.data1().length; i++){
-
-          var obj = {
+        var tempArray1 = [];
+        for (let i = 0; i < self.data1().length; i++) {
+          var obj= {
             COLUMN_ID: self.data1()[i].COLUMN_ID,
             COLUMN_NAME: self.data1()[i].COLUMN_NAME,
             DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
-            IDENTIFICATION_STATUS: ['UNCHECKED'],
+            IDENTIFICATION_STATUS: ['CHECKED'],
+            DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+            IS_MANDATORY: self.data1()[i].IS_MANDATORY
           }
+          
 
-          tempArray.push(obj);
+          if (self.data1()[i].DISABLED_STATUS == true && self.data1()[i].IS_MANDATORY == 'Y'){
+             self.data1()[i].IDENTIFICATION_STATUS =['CHECKED']
+            var obj1= {
+              COLUMN_ID: self.data1()[i].COLUMN_ID,
+              COLUMN_NAME: self.data1()[i].COLUMN_NAME,
+              DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
+              IDENTIFICATION_STATUS: self.data1()[i].IDENTIFICATION_STATUS,
+              DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+              IS_MANDATORY: self.data1()[i].IS_MANDATORY
+            }
+                tempArray.push(obj1);
+        
+           } else{
 
+            self.data1()[i].IDENTIFICATION_STATUS =['UNCHECKED']
+            var obj2 = {
+              COLUMN_ID: self.data1()[i].COLUMN_ID,
+              COLUMN_NAME: self.data1()[i].COLUMN_NAME,
+              DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
+              IDENTIFICATION_STATUS: self.data1()[i].IDENTIFICATION_STATUS ,
+              DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+              IS_MANDATORY: self.data1()[i].IS_MANDATORY
+            }
+            tempArray.push(obj2);
+           }
+  
 
-          // self.data1()
+          
+
+        // for(let j=0; j<tempArray.length; j++){
+        //   if(tempArray[j].IS_MANDATORY === 'Y'){}
+        // }
+
+        
+        
         }
         self.data1(tempArray);
-            }
+      }
 
 
 
@@ -301,109 +316,6 @@ define(
 
 
 
-
-
-
-      //       var EntityColumnArray = [{  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Done'},
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Donet'},
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Done'},
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Done'},
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Doneto'},
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Donede'},
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee', DISPLAY_NAME: 'Donede' },
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Donet'},
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Doneto'},
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Donede'},
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee', DISPLAY_NAME: 'Donede' },
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Donet'},
-      //       {  IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Doneto'},
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee',DISPLAY_NAME: 'Donede'},
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee', DISPLAY_NAME: 'Donede' },
-      //       { IDENTIFICATION_STATUS: [],COLUMN_NAME: 'Employee', DISPLAY_NAME: 'Donede'}];
-
-      //   self.EmpObservableArray = ko.observableArray(EntityColumnArray);
-      //   self.dataprovider = new ArrayDataProvider(self.EmpObservableArray);
-
-
-
-      //   $.ajax({
-      //     url: "http://localhost:3333/api/v1/identification/columns",
-      //     data: {entityid: context.properties.entityId},
-      //     type: 'POST',
-      //     dataType: 'json',
-
-      //     success: function (data, textStatus, jqXHR) {
-
-      //         console.log(data);
-
-      //         var tempArray = [];
-      //         for(let i=0;i<data.data.length; i++){
-      //           tempArray.push(data.data[i]);
-      //         }
-
-      //         // self.EmpObservableArray(tempArray);
-
-      //     },
-      //     fail: function(xhr, textStatus, errorThrown){
-
-      //       console.log(errorThrown);
-      //    }
-      // });
-
-      // self.editRow = ko.observable();
-
-      // self.groupValid = ko.observable();
-      // //// NUMBER AND DATE CONVERTER ////
-      // var numberConverterFactory = ValidationBase.Validation.converterFactory("number");
-      // self.numberConverter = numberConverterFactory.createConverter();
-
-      // var dateConverterFactory = ValidationBase.Validation.converterFactory("datetime");
-      // self.dateConverter = dateConverterFactory.createConverter();
-
-      // var factory = ValidationBase.Validation.validatorFactory("numberRange");
-      // var rangeValidator = factory.createValidator({min: 100, max: 500});
-      // self.validators = [rangeValidator];
-
-
-
-      // self.editRow =function(event,context){
-      //   console.log(event);
-      //   console.log(context);
-      // }
-
-
-
-      // self.handleUpdate = function (event, context)
-      // {
-      //     self.editRow({rowKey: context.key});
-      // }.bind(self);
-
-      // self.handleDone = function (event, context)
-      // {
-      //     self.editRow({rowKey: null});
-      // }.bind(self);
-
-
-      // self.beforeRowEditEndListener = function(event)
-      // {
-      //   // the DataCollectionEditUtils.basicHandleRowEditEnd is a utility method
-      //   // which will handle validation of editable components and also handle 
-      //   // canceling the edit
-      //   var detail = event.detail;
-      //   if (DataCollectionEditUtils.basicHandleRowEditEnd(event, detail) === false) {
-      //     event.preventDefault();
-      //   } else {
-      //     var updatedData = event.target.getDataForVisibleRow(detail.rowContext.status.rowIndex).data;
-      //     document.getElementById('rowDataDump').value = (JSON.stringify(updatedData));
-      //   }
-      // }
-
-
-      // var element = document.getElementById('table');
-      // ko.applyBindings(vm, element);
-      // element.addEventListener('ojBeforeRowEditEnd', vm.beforeRowEditEndListener);
-
-      // element.addEventListener('ojBeforeRowEditEnd', ExampleComponentModel.beforeRowEditEndListener);
 
 
 
@@ -420,12 +332,7 @@ define(
       self.messageText = ko.observable('Hello from Example Component');
       self.properties = context.properties;
       self.res = componentStrings['entity-identification-subview'];
-      // Example for parsing context properties
-      // if (context.properties.name) {
-      //     parse the context properties here
-      // }
 
-      //Once all startup and async activities have finished, relocate if there are any async activities
       self.busyResolve();
     };
 

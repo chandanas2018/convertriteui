@@ -9,233 +9,308 @@
 <!-- <P data-bind= "text:name"></P> -->
 
 
+<!-- <div>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div> -->
+
 <oj-bind-if test="[[loaded()=='one']]">
-  <div class ="oj-flex oj-sm-flex-items-initial">
+  <div class="oj-flex oj-sm-flex-items-initial">
     <oj-bind-for-each data="[[dataProvider]]">
-  
-        <template>
-    <!-- <div class = "oj-flex-item"> -->
+
+      <template>
+       
         <div class="oj-flex-item" style="margin:20px;">
-            <div class="oj-flex oj-sm-flex-items-initial" >
-                <div class="oj-flex-item" >
-                  <div class="oj-panel" style="width:350px; height:50px;border-radius:10px 0px 0px 0px;">
-  
-                      <span style="color:#0f758e; font-size:20px;"><oj-bind-text value="[[$current.data.name]]"></oj-bind-text></span>
-                    <!-- <oj-bind-text value="[[$current.data.sourceColumn]]"></oj-bind-text> -> <oj-bind-text value="[[$current.data.destinationColumn]]"></oj-bind-text> -->
-                  </div>
-                  </div>
-                <div class="oj-flex-item">
-                  <div class="oj-panel" on-click='[[removeProject]]' style="width:50px; height:50px;background-color:#dce6ea;padding:8px;border-radius:0px 10px 0px 0px;cursor:pointer;">
-                      <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' >
-                          <img src="../../../css/images/delete_white@2x.png" width="16" height="16" style="padding-left:3px;">
-                        
-                        </oj-button> -->
-                        <img src="../../../css/images/delete@2x.png" width="28" height="28">
-                </div>
-                </div>
-                <!-- <div class="oj-flex-item">C</div> -->
-              </div>
-            <!-- <div class="oj-panel" style="width:400px; height:50px;border-radius:10px 10px 0px 0px ">
-              <div class="oj-flex">
-                <div class="oj-flex-item">
-                    <span style="color:#0f758e; font-size:20px;"><oj-bind-text value="[[$current.data.name]]"></oj-bind-text></span>
-                </div>
-                <div class="oj-sm-flex-initial oj-flex-item">
-                  <img src="../../../css/images/delete@2x.png" width="28" height="28">
-                </div>
-              </div>
-              <hr>
-          
-              <div>
-                
-              </div>
-          
-            </div> -->
-            <div class="oj-panel" style="width:400px; height:100px;border-top:none;border-bottom:none">
-                <p ><oj-bind-text value="[[$current.data.description]]"></oj-bind-text></p>
-              </div>
-            <div class="oj-panel" style="width:400px; height:50px;border-top:none;">
-              <div class="oj-flex oj-sm-flex-items-1">
-                <div class="oj-sm-flex-initial oj-flex-item">
-          
-                </div>
-                <div class="oj-flex-item" style="background-color:#dce6ea">
-                  <img src="../../../css/images/dataloading_statusicon@2x.png" width="16" height="16"> <span style ="color:#0f758e;"><oj-bind-text value="[[$current.data.status]]" style = "text-align:center;"></oj-bind-text></span>
-                </div>
-                <div class="oj-sm-flex-initial oj-flex-item">
-          
-                </div>
-          
+          <div class="oj-flex oj-sm-flex-items-initial">
+            <div class="oj-flex-item">
+              <div class="oj-panel" style="width:350px; height:50px;border-radius:10px 0px 0px 0px;">
+
+                <span style="color:#0f758e; font-size:20px;">
+                  <oj-bind-text value="[[$current.data.name]]"></oj-bind-text>
+                </span>
+               <!-- <oj-bind-text value="[[$current.data.sourceColumn]]"></oj-bind-text> -> <oj-bind-text value="[[$current.data.destinationColumn]]"></oj-bind-text> -->
               </div>
             </div>
-            <div class="oj-panel" on-click='[[openProject]]' style="width:400px; height:50px;background-color: #0f758e; text-align:center;color:white;border-radius:0px 0px 10px 10px;cursor:pointer;">
-              <!-- <button on-click='[[openProject]]' style="
-              border: none;
-              background-color: #0f758e;
-              color: white;
-          ">OPEN PROJECT</button> -->
-<p>OPEN PROJECT</p>
-
-<!-- <a href="#" data-bind="click: $parent.open">Open Project</a> -->
+            <div class="oj-flex-item">
+              <div class="oj-panel" on-click='[[removeProject]]' style="width:50px; height:50px;background-color:#dce6ea;padding:8px;border-radius:0px 10px 0px 0px;cursor:pointer;">
+               
+                <img src="../../../css/images/delete@2x.png" width="28" height="28">
+              </div>
+            </div>
+           
+          </div>
+         
+          <div class="oj-panel" style="width:400px; height:100px;border-top:none;border-bottom:none">
+            <p>
+              <oj-bind-text value="[[$current.data.description]]"></oj-bind-text>
+            </p>
+          </div>
+          <div class="oj-panel" style="width:400px; height:50px;border-top:none;">
+            <div class="oj-flex oj-sm-flex-items-1">
+              <div class="oj-sm-flex-initial oj-flex-item">
+              </div>
+              <div class="oj-flex-item" style="background-color:#dce6ea">
+                <img src="../../../css/images/dataloading_statusicon@2x.png" width="16" height="16">
+                <span style="color:#0f758e;">
+                  <oj-bind-text value="[[$current.data.status]]" style="text-align:center;"></oj-bind-text>
+                </span>
+              </div>
+              <div class="oj-sm-flex-initial oj-flex-item">
+              </div>
             </div>
           </div>
-  
-  
-    <!-- </div> -->
-    </template>
+          <div class="oj-panel" on-click='[[openProject]]' style="width:400px; height:50px;background-color: #0f758e; text-align:center;color:white;border-radius:0px 0px 10px 10px;cursor:pointer;">
+            <p>OPEN PROJECT</p>
+            <!-- <a href="#" data-bind="click: $parent.open">Open Project</a> -->
+          </div>
+        </div>
+        <!-- </div> -->
+      </template>
     </oj-bind-for-each>
 
     <div class="oj-panel" on-click="[[open]]" style="width:400px; height:250px;border-radius:10px; padding:90px;text-align:center;margin:20px;background-color:#dce6ea;">
-     
-        <img src="../../../css/images/add_icon@2x.png" width="48" height="48">
-        <p style="color:#0f758e">Add New Project</p>
-      </div>
 
-
-
-
+      <img src="../../../css/images/add_icon@2x.png" width="48" height="48">
+      <p style="color:#0f758e">Add New Project</p>
     </div>
+  </div>
+  <oj-dialog style="display:none" id="modalDialog1" dialog-title="Create Project">
+    <div slot="body">
+      <oj-form-layout>
+        <oj-input-text id="control1" required value="{{projectName}}" label-hint="Project Name" placeholder="Enter project name"></oj-input-text>
+        <oj-text-area id="control2" required value="{{projectDescription}}" rows="6" label-hint="Project Description" placeholder="Enter project description"></oj-text-area>
 
-
-    <oj-dialog style="display:none" id="modalDialog1" dialog-title="Create Project">
-        <div slot="body">
-            <oj-form-layout >
-                <oj-input-text id="control1" required value="{{projectName}}" label-hint="Project Name" placeholder="Enter project name"></oj-input-text>
-                <oj-text-area id="control2" required value="{{projectDescription}}" rows="6" label-hint="Project Description" placeholder="Enter project description"></oj-text-area>
-           
-              </oj-form-layout>
-        </div>
-        <div slot="footer">
-          <oj-button id="okButton" on-oj-action="[[close]]">OK
-          </oj-button>
-        </div>
-      </oj-dialog>
+      </oj-form-layout>
+    </div>
+    <div slot="footer">
+      <oj-button id="okButton" on-oj-action="[[close]]">OK
+      </oj-button>
+    </div>
+  </oj-dialog>
 
 </oj-bind-if>
 
- 
-
-  <!--List of projects Ends-->
-
-<!-- <project-management></project-management> -->
-
-<oj-bind-if test="[[loaded()=='two']]">
-  <div class="oj-hybrid-padding">
 
 
-      <div style="margin-top: 20px;" class="demo-row-classes  demo-flex-display oj-flex-items-pad">
-        
-          <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-between" 
-               :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
-               :style.height="[[dircolumn() ? '180px' : null]]">
-            <div class="oj-flex-item"></div>
-           
-            <div class="oj-flex-item"> <h1 style="padding-left:100px;"><span data-bind="text:projectName"></span></h1></div>
-            <div class="oj-flex-item">  <div class="oj-panel" on-click='[[buttonClick]]' style="
+
+
+<div class="oj-hybrid-padding" id="employeeextracts" style="display: none">
+  <h2 style="margin-left: 23%; margin-top: 5px;">Employee Extracts</h2>
+
+
+  <div class="oj-panel" style=" width: 100%;height: 85%; border:1px solid white ; margin-top: 30px;">
+    <span>Entity : </span>
+    <oj-combobox-one id="combobox3" placeholder="Select Entity" value="{{val3}}" style="max-width:15em ;margin-left: 4%;margin-top: 10px;">
+     
+      <oj-option  value="Person">Person</oj-option>
+      <oj-option  value="Locations">Locations</oj-option>
+      <oj-option  value="Organizations">Organizations</oj-option>
+      <oj-option  value="Jobs">Jobs</oj-option>
+      <oj-option  value="Grades">Grades</oj-option>
+
+    </oj-combobox-one>
+
+    <!-- <div class="form-group">
+      <label for="exampleFormControlSelect1">Example select</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div> -->
+
+
+
+
+    <br>
+    <div class="loader" id="progressex" style="display: none;"></div>
+    <button class="extractbtn" on-click='[[employeeextract]]'>Extract </button>
+    <br>
+    <button class="Back" on-click='[[Back]]'>Previous</button>
+   
+<!-- <button class = "skip" on-click= '[[skip]]'>Skip to Identification</button> -->
+    <div  class="oj-flex-item" id="nxtbtn" on-click='[[skip]]'>
+      <title="" style="font-size: 14px;margin-top: 8px;" class=" demo-icon-font-24">Skip to Identification
+  </div>
+
+
+  </div>
+
+
+
+
+</div>
+
+<div class="oj-hybrid-padding" id="ebsscreen" style="display: none">
+
+  <h2 style="margin-left: 35%; margin-top: 5px;"> Set Up Data</h2>
+
+  <div class="oj-panel" style=" width: 100%;height: 85%; border:1px solid white ; margin-top: 30px;">
+    <span>Entity : </span>
+    <oj-combobox-one id="combobox1" placeholder="Select Entity" value="{{val1}}" style="max-width:15em ;margin-left: 4%;margin-top: 10px;">
+      <!-- <oj-option ></oj-option> -->
+      <oj-option  value="Locations">Locations</oj-option>
+      <oj-option  value="Organizations">Organizations</oj-option>
+      <oj-option  value="Jobs">Jobs</oj-option>
+      <oj-option  value="Grades">Grades</oj-option>
+
+      <!-- <oj-option id="4" value="PERSON EMAIL">PERSON EMAIL</oj-option>
+      <oj-option id="5" value="PERSON ADDRES">PERSON ADDRES</oj-option> -->
+    </oj-combobox-one>
+
+
+    <oj-label style="margin-top: 38px">Source : </oj-label>
+    <oj-combobox-one id="combobox2" placeholder="Select a source" value="{{val2}}" style="max-width:15em ;margin-left: 10%;margin-top: -35px;">
+      <!-- <oj-option></oj-option>  -->
+      <oj-option  value="ebs">EBS</oj-option>
+        <!-- <oj-option  value="2">Organizations</oj-option>
+        <oj-option  value="3">Jobs Data</oj-option> -->
+        <!-- <oj-option id="4" value="PERSON EMAIL">PERSON EMAIL</oj-option>
+        <oj-option id="5" value="PERSON ADDRES">PERSON ADDRES</oj-option> -->
+    </oj-combobox-one>
+
+    <!-- <div> -->
+    <!-- 
+      <br />
+      <oj-label  for="curr-value" class="oj-label" style="max-width:20em ;margin-left: 5%">Current value is: </oj-label>
+      <span id="curr-value" style="margin-left: 40%;">
+        <oj-bind-text value="[[val]]"></oj-bind-text>
+      </span> -->
+
+    <br>
+    <div class="loader" id="progressset" style="display: none;"></div>
+    <button class="extractbtn" on-click='[[extract]]'>Extract </button>
+    <br>
+    
+    <div class="HomeLogo"on-click='[[Home]]' >
+      <title=".demo-home-icon-24" role="img" style="font-size: 18px;margin-top: 8px;" class="demo-home-icon-24 demo-icon-font-24">Home
+    </div>
+
+    <div  class="oj-flex-item" id="nxtbtn" on-click='[[empextracts]]'>
+      <title="" style="font-size: 18px;margin-top: 8px;" class=" demo-icon-font-24">Next
+  </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+<div class="oj-hybrid-padding" id="mainscreen" style="display: none ">
+  <!-- style="display: none" -->
+
+  <div style="margin-top: 20px;" class="demo-row-classes  demo-flex-display oj-flex-items-pad">
+
+    <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-between" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+      :style.height="[[dircolumn() ? '180px' : null]]">
+      <div class="oj-flex-item"></div>
+
+      <div class="oj-flex-item">
+        <h1 style="padding-left:100px;">
+          <span data-bind="text:projectName"></span>
+        </h1>
+      </div>
+      <div class="oj-flex-item">
+        <div class="oj-panel" on-click='[[buttonClick]]' style="
               border-radius: 5px;
               background-color: #f1f3f4;
               color:#0f758e;
-              border:none; cursor:pointer;
-          ">
-                  <span style="font-size:20px;">&#8592;</span>&nbsp;Back to Dashboard</div></div>
-          </div>
-        </div>
-    
-
-
-    <!-- <div class="oj-flex" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
-      <div class="oj-flex-item"></div>
-  
-      <div class="oj-flex-item">
-       
-
-        <h1><span data-bind="text:projectName"></span></h1>
+              border:none; cursor:pointer;">
+          <span style="font-size:20px;">&#8592;</span>&nbsp;Back to Dashboard</div>
       </div>
-  
-      <div class="oj-sm-flex-initial oj-flex-item">
-  
-  
-       
-      
-        <div class="oj-panel" on-click='[[buttonClick]]' style="
-        border-radius: 5px;
-        background-color: #f1f3f4;
-        color:#0f758e;
-        border:none; cursor:pointer;
-    ">
-        
-    <span style="font-size:20px;">&#8592;</span>&nbsp;Back to Dashboard</div>
- 
-      </div>
-  
-    </div> -->
-  
-    <hr>
-  
-    <p style="text-align: center;padding:20px;"> Data migration projects typically require a lot of additional tools and project support
-      platforms to function
-      smoothly. We needed to convert employee compensation data from the legacy HR database. The old data was
-      stored in much detail-by paycheck and compensation type.</p>
-  
-  
-    <div id="tabbarcontainer" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]">
-      <oj-tab-bar display="[[display]]" edge="[[edge]]" selection="{{selectedItem}}">
-        <ul>
-          <li id="Upload Extracts">
-            <a href="#">
-              Upload Extracts
-            </a>
-          </li>
-          <li id="Entity Identification">
-            <a href="#">
-  
-              Entity Identification
-            </a>
-          </li>
-          <li id="Entity Mapping">
-            <a href="#">
-  
-              Entity Mapping
-            </a>
-          </li>
-          <li id="Data Mapping">
-            <a href="#">
-  
-              Data Mapping
-            </a>
-          </li>
-          <li id="Data Validation">
-            <a href="#">
-  
-              Data Validation
-            </a>
-          </li>
-          <li id="Conversion">
-            <a href="#">
-  
-              Conversion
-            </a>
-          </li>
-  
-        </ul>
-      </oj-tab-bar>
     </div>
-  
-  
-    <!-- <div class="oj-hybrid-padding-internal "> -->
-  
-  
-      <oj-bind-if test="[[selectedItem() == 'Upload Extracts']]">
-          <div class="oj-hybrid-padding-internal ">
-
-              <upload-extracts></upload-extracts>
-          </div>
+  </div>
 
 
 
-          
-          <div class="oj-flex oj-sm-flex-items-initial" style= "margin:30px;">
-              <!-- <div class="oj-flex-item">
+
+
+  <hr>
+
+  <p style="text-align: center;padding:20px;"> Data migration projects typically require a lot of additional tools and project support platforms to function smoothly.
+    We needed to convert employee compensation data from the legacy HR database. The old data was stored in much detail-by
+    paycheck and compensation type.</p>
+
+
+  <div id="tabbarcontainer" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]">
+    <oj-tab-bar id="tabbar" style="background-color:#0f758e; " display="[[display]]" edge="[[edge]]" selection="{{selectedItem}}">
+
+      <ul>
+        <li class="tabbutton" id="Upload Extracts">
+          <a href="#">
+            Upload Extracts
+          </a>
+        </li>
+        <li class="tabbutton" id="Entity Identification">
+          <a href="#">
+
+           Source Entity Identification
+          </a>
+        </li>
+        <li class="tabbutton" id="Entity Mapping">
+          <a href="#">
+
+            Entity Mapping
+          </a>
+        </li>
+        <li class="tabbutton" id="Data Mapping">
+          <a href="#">
+
+            Data Mapping
+          </a>
+        </li>
+        <li class="tabbutton" id="Data Validation">
+          <a href="#">
+
+            Data Validation
+          </a>
+        </li>
+        <li class="tabbutton" id="Conversion">
+          <a href="#">
+
+            Conversion
+          </a>
+        </li>
+
+      </ul>
+    </oj-tab-bar>
+  </div>
+
+
+  <!-- <div class="oj-hybrid-padding-internal "> -->
+
+
+  <oj-bind-if test="[[selectedItem() == 'Upload Extracts']]">
+    <div class="oj-hybrid-padding-internal ">
+
+      <upload-extracts></upload-extracts>
+    </div>
+
+
+
+
+    <div class="oj-flex oj-sm-flex-items-initial" style="margin:30px;">
+      <!-- <div class="oj-flex-item">
                 
                   <div class="oj-panel" 
                   style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
@@ -244,20 +319,24 @@
                 </div>
               
               </div> -->
-              <!-- <div class="oj-flex-item">B</div> -->
-              <div class="oj-helper-margin-start-auto oj-flex-item">
-                
-                  <div class="oj-panel" on-click ="[[next]]" 
-                  style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
-          
-                  <span style="color:white;font-size:small;">Next</span>
-                </div>
-              
-              
-              </div>
-            </div>
+      <!-- <div class="oj-flex-item">B</div> -->
+      <!-- <div class="oj-helper-margin-start-auto oj-flex-item"> -->
 
-          <!-- <div class = "oj-flex">
+        <div class="oj-panel" on-click="[[backempextracts]]" style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
+
+          <span style="color:white;font-size:small;">Previous</span>
+        </div> 
+
+        <div class="oj-panel" on-click="[[next]]" style="background-color:#0f758e; margin-left: 82% ;border-radius:10px;cursor:pointer;width:100px;text-align:center;">
+
+          <span style="color:white;font-size:small;">Next</span>
+        </div>
+
+
+      <!-- </div> -->
+    </div>
+
+    <!-- <div class = "oj-flex">
             <div class="oj-flex-item">
 
             </div>
@@ -269,182 +348,172 @@ Next
                 </div>
 
           </div> -->
-          <!-- <div class="oj-panel">
+    <!-- <div class="oj-panel">
             Save
           </div> -->
-      
-      </oj-bind-if>
-  
-      
-      <oj-bind-if test="[[selectedItem() == 'Entity Identification']]">
-          <div class="oj-hybrid-padding-internal2 ">
-  
-        <entity-identification></entity-identification>
-     
-  </div>
-      
-  <div class="oj-flex oj-sm-flex-items-initial" style= "margin:30px;">
+
+  </oj-bind-if>
+
+
+  <oj-bind-if test="[[selectedItem() == 'Entity Identification']]">
+    <div class="oj-hybrid-padding-internal2 ">
+
+      <entity-identification></entity-identification>
+
+    </div>
+
+    <div class="oj-flex oj-sm-flex-items-initial" style="margin:30px;">
       <div class="oj-flex-item">
-        
-          <div class="oj-panel" on-click ="[[back1]]" 
-          style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
-  
-          <span style="color:white;font-size:small;">Back</span>
+
+        <div class="oj-panel" on-click="[[back1]]" style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
+
+          <span style="color:white;font-size:small;">Previous</span>
         </div>
-      
+
       </div>
       <!-- <div class="oj-flex-item">B</div> -->
       <div class="oj-helper-margin-start-auto oj-flex-item">
-        
-          <div class="oj-panel" on-click ="[[next1]]" 
-          style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
-  
+
+        <div class="oj-panel" on-click="[[next1]]" style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
+
           <span style="color:white;font-size:small;">Next</span>
         </div>
-      
-      
+
+
       </div>
     </div>
-  
-       
-      </oj-bind-if>
-      <oj-bind-if test="[[selectedItem() == 'Entity Mapping']]">
-          <div class="oj-hybrid-padding-internal2 ">
 
-        <entity-mapping></entity-mapping>
-        <!-- <span>
+
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'Entity Mapping']]">
+    <div class="oj-hybrid-padding-internal2 ">
+
+      <entity-mapping></entity-mapping>
+      <!-- <span>
           <oj-bind-text value="[[selectedItem]]" style="text-align:center"></oj-bind-text>
         </span> -->
-  </div>
+    </div>
 
-      
-  <div class="oj-flex oj-sm-flex-items-initial" style= "margin:30px;">
+
+    <div class="oj-flex oj-sm-flex-items-initial" style="margin:30px;">
       <div class="oj-flex-item">
-        
-          <div class="oj-panel" on-click ="[[back2]]" 
-          style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
-  
-          <span style="color:white;font-size:small;">Back</span>
+
+        <div class="oj-panel" on-click="[[back2]]" style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
+
+          <span style="color:white;font-size:small;">Previous</span>
         </div>
-      
+
       </div>
       <!-- <div class="oj-flex-item">B</div> -->
       <div class="oj-helper-margin-start-auto oj-flex-item">
-        
-          <div class="oj-panel" on-click ="[[next2]]" 
-          style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
-  
+
+        <div class="oj-panel" on-click="[[next2]]" style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
+
           <span style="color:white;font-size:small;">Next</span>
         </div>
-      
-      
+
+
       </div>
     </div>
 
-        <!-- <entity-mapping></entity-mapping> -->
-      </oj-bind-if>
-      <oj-bind-if test="[[selectedItem() == 'Data Mapping']]">
-          <div class="oj-hybrid-padding-internal2 ">
+    <!-- <entity-mapping></entity-mapping> -->
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'Data Mapping']]">
+    <div class="oj-hybrid-padding-internal2 ">
 
-              <data-mapping></data-mapping>
-        <!-- <span>
+      <data-mapping></data-mapping>
+      <!-- <span>
           <oj-bind-text value="[[selectedItem]]" style="text-align:center"></oj-bind-text>
         </span> -->
+    </div>
+
+
+    <div class="oj-flex oj-sm-flex-items-initial" style="margin:30px;">
+      <div class="oj-flex-item">
+
+        <div class="oj-panel" on-click="[[back3]]" style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
+
+          <span style="color:white;font-size:small;">Previous</span>
         </div>
 
-            
-        <div class="oj-flex oj-sm-flex-items-initial" style= "margin:30px;">
-            <div class="oj-flex-item">
-              
-                <div class="oj-panel" on-click ="[[back3]]" 
-                style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
-        
-                <span style="color:white;font-size:small;">Back</span>
-              </div>
-            
-            </div>
-            <!-- <div class="oj-flex-item">B</div> -->
-            <div class="oj-helper-margin-start-auto oj-flex-item">
-              
-                <div class="oj-panel" on-click ="[[next3]]"  
-                style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
-        
-                <span style="color:white;font-size:small;">Next</span>
-              </div>
-            
-            
-            </div>
-          </div>
+      </div>
+      <!-- <div class="oj-flex-item">B</div> -->
+      <div class="oj-helper-margin-start-auto oj-flex-item">
 
-        <!-- <data-mapping></data-mapping> -->
-      </oj-bind-if>
-      <oj-bind-if test="[[selectedItem() == 'Data Validation']]">
-          <div class="oj-hybrid-padding-internal2 ">
+        <div class="oj-panel" on-click="[[next3]]" style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
 
-            <data-validation></data-validation>
-        <!-- <span>
+          <span style="color:white;font-size:small;">Next</span>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- <data-mapping></data-mapping> -->
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'Data Validation']]">
+    <div class="oj-hybrid-padding-internal2 ">
+
+      <data-validation></data-validation>
+      <!-- <span>
           <oj-bind-text value="[[selectedItem]]" style="text-align:center"></oj-bind-text>
         </span> -->
+    </div>
+
+    <div class="oj-flex oj-sm-flex-items-initial" style="margin:30px;">
+      <div class="oj-flex-item">
+
+        <div class="oj-panel" on-click="[[back4]]" style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
+
+          <span style="color:white;font-size:small;">Previous</span>
         </div>
-            
-        <div class="oj-flex oj-sm-flex-items-initial" style= "margin:30px;">
-            <div class="oj-flex-item">
-              
-                <div class="oj-panel" on-click ="[[back4]]" 
-                style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
-        
-                <span style="color:white;font-size:small;">Back</span>
-              </div>
-            
-            </div>
-            <!-- <div class="oj-flex-item">B</div> -->
-            <div class="oj-helper-margin-start-auto oj-flex-item">
-              
-                <div class="oj-panel" on-click ="[[next4]]" 
-                style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
-        
-                <span style="color:white;font-size:small;">Next</span>
-              </div>
-            
-            
-            </div>
-          </div>
 
-        <!-- <data-validation></data-validation> -->
-      </oj-bind-if>
-      <oj-bind-if test="[[selectedItem() == 'Conversion']]">
-        <div class="oj-hybrid-padding-internal3 ">
+      </div>
+      <!-- <div class="oj-flex-item">B</div> -->
+      <div class="oj-helper-margin-start-auto oj-flex-item">
 
-          <data-conversion></data-conversion>
-        <!-- <span>
+        <div class="oj-panel" on-click="[[next4]]" style="background-color:#0f758e; border-radius:10px;cursor:pointer;width:100px;text-align:center;">
+
+          <span style="color:white;font-size:small;">Next</span>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- <data-validation></data-validation> -->
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() == 'Conversion']]">
+    <div class="oj-hybrid-padding-internal3 ">
+
+      <data-conversion></data-conversion>
+      <!-- <span>
           <oj-bind-text value="[[selectedItem]]" style="text-align:center"></oj-bind-text>
         </span> -->
+    </div>
+
+    <div class="oj-flex oj-sm-flex-items-initial" style="margin:30px;">
+      <div class="oj-flex-item">
+
+        <div class="oj-panel" on-click="[[back]]" style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
+
+          <span style="color:white;font-size:small;">Previous</span>
         </div>
 
-        <div class="oj-flex oj-sm-flex-items-initial" style= "margin:30px;">
-            <div class="oj-flex-item">
-              
-                <div class="oj-panel" on-click ="[[back]]" 
-                style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
-        
-                <span style="color:white;font-size:small;">Back</span>
-              </div>
-            
-            </div>
-            <!-- <div class="oj-flex-item">B</div> -->
-          
-          </div>
-        <!-- <data-conversion>
+      </div>
+      <!-- <div class="oj-flex-item">B</div> -->
+
+    </div>
+    <!-- <data-conversion>
           </data-convesion> -->
-      </oj-bind-if>
+  </oj-bind-if>
 
-  
-  
-  
-      <div class="oj-flex oj-sm-flex-items-1"
-      :class="[[{'oj-sm-flex-wrap-nowrap': nowrap()}]]" style="margin-top:30px;margin-bottom:20px;">
+
+
+
+  <div class="oj-flex oj-sm-flex-items-1" :class="[[{'oj-sm-flex-wrap-nowrap': nowrap()}]]" style="margin-top:30px;margin-bottom:20px;">
     <div class="oj-flex-item"></div>
-<!--     
+    <!--     
     <div class="oj-flex-item"> <div class="oj-panel" style="width:200px; height:50px;border:none;text-align:center;color:white;background-color:#0f758e;margin-left:50px;">
         <span><button on-click="[[save]]" style="
           border: none;
@@ -452,57 +521,12 @@ Next
           color: white;">SAVE & CONTINUE</button></span>
        </div></div> -->
     <div class="oj-flex-item"></div>
-    </div>
-  
-  
-  
-    </div>
-  
-   
-    
-  
-  
   </div>
+
+</div>
+
+</div>
 </oj-bind-if>
+<oj-messages messages="[[messagesDataprovider]]" position="{}" display="notification">
+</oj-messages>
 
-
-
-<!-- <div class="oj-flex-item" style="margin:20px;">
-  <div class="oj-panel" style="width:400px; height:50px; ">
-    <div class="oj-flex">
-      <div class="oj-flex-item">
-        HBL Group Data Conversion
-      </div>
-      <div class="oj-sm-flex-initial oj-flex-item">
-        <img src="../../../css/images/delete@2x.png" width="28" height="28">
-      </div>
-    </div>
-    <hr>
-
-    <div>
-      
-    </div>
-
-  </div>
-  <div class="oj-panel" style="width:400px; height:100px;border-top:none;border-bottom:none">
-      <p >Data migration projects typically require a lot of additional tools and
-          project support platforms to function smoothly</p>
-    </div>
-  <div class="oj-panel" style="width:400px; height:50px;border-top:none;">
-    <div class="oj-flex oj-sm-flex-items-1">
-      <div class="oj-sm-flex-initial oj-flex-item">
-
-      </div>
-      <div class="oj-flex-item" style="background-color:#dce6ea">
-        <img src="../../../css/images/dataloading_statusicon@2x.png" width="16" height="16"> <span>Entity Mapping</span>
-      </div>
-      <div class="oj-sm-flex-initial oj-flex-item">
-
-      </div>
-
-    </div>
-  </div>
-  <div class="oj-panel" style="width:400px; height:50px;background-color: #0f758e">
-    Open project
-  </div>
-</div> -->

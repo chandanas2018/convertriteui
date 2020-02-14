@@ -6,7 +6,8 @@
 
 
 
-<div class="oj-hybrid-padding">
+
+<div class="oj-hybrid-padding" id = "mainscreen">
 
   <div class="oj-flex" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
     <div class="oj-flex-item"></div>
@@ -35,6 +36,7 @@
   <div id="tabbarcontainer" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]">
     <oj-tab-bar display="[[display]]" edge="[[edge]]" selection="{{selectedItem}}">
       <ul>
+         
         <li id="Upload Extracts">
           <a href="#">
             Upload Extracts
@@ -43,7 +45,7 @@
         <li id="Entity Mapping">
           <a href="#">
 
-            Entity Mapping
+           Entity Mapping
           </a>
         </li>
         <li id="Data Mapping">
@@ -74,11 +76,8 @@
 
 
     <oj-bind-if test="[[selectedItem() == 'Upload Extracts']]">
-     
-      <upload-extracts></upload-extracts>
-    
-    
-    </oj-bind-if>
+           <upload-extracts></upload-extracts>
+            </oj-bind-if>
 
 
     <oj-bind-if test="[[selectedItem() == 'Entity Mapping']]">

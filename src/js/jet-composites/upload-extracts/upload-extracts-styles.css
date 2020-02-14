@@ -6,3 +6,30 @@ upload-extracts{
 	min-height: 50px;
 	width: 50px;
 }
+
+#status{
+	display: none;
+	position: absolute;
+	left: 36%;
+	width: 40px;
+	height: 40px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;	
+}
+
+#progressup{
+	
+	position: absolute;
+	margin-top: 5%;
+	left: 45%;
+	width: 70px;
+	height: 70px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;	
+}

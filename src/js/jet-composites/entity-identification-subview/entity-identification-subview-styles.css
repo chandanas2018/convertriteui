@@ -6,3 +6,36 @@ entity-identification-subview{
 	min-height: 50px;
 	width: 50px;
 }
+
+.button{
+	width:95px;
+	 height:40px;
+	 border-radius: 7px;
+	 background-color: #0f758e;
+	 color:white;
+	 border:none; 
+	 cursor:pointer;
+}
+#progress {
+	/* display: none; */
+	position: absolute;
+	left: 57%;
+	margin-top: 10%;
+	width: 70px;
+	height: 70px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;
+	
+  }
+#selectall{
+margin-right: 10px
+}
+#deselectall{
+	margin-right: 10px
+}
+#save{
+	margin-right: 35px
+}
