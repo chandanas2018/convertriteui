@@ -103,7 +103,7 @@ define(
 
 
       self.saveSelections = function () {
-
+        $("#progress").show();
         console.log(self.data1);
         var tmp = [];
         var tmp2 = [];
@@ -161,6 +161,7 @@ define(
                 detail: "Identified Columns saved successfully",
                 autoTimeout: parseInt(self.errorMessageTimeout())
               }
+              $("#progress").hide();
               self.messagesArray.push(success);
 
 

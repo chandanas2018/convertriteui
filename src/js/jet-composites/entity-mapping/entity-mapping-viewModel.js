@@ -132,7 +132,7 @@ define(
 
         success: function (data, textStatus, jqXHR) {
 
-          console.log(data, listItems);
+          // console.log(data, listItems);
           // self.itemsArray.removeAll();
           // self.listItems(data.data);
           var tempArray = [];

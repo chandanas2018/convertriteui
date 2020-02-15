@@ -21,7 +21,7 @@ define(
 
       var data23 = [];
       // var data1=[];
-
+$("#dataloader").show();
       $.ajax({
         url: "http://localhost:3333/api/v1/exceldata",
         data: { entityid: context.properties.entityId },
@@ -49,6 +49,7 @@ define(
                   sourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
                   desData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
                 }
+                $("#dataloader").hide();
                 data1.push(obj);
 
               }
@@ -62,6 +63,7 @@ define(
                   sourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
                   desData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
                 }
+                $("#dataloader").hide();
                 data1.push(obj);
 
               }
@@ -94,7 +96,7 @@ define(
 
         },
         error: function (xhr, textStatus, errorThrown) {
-
+          $("#dataloader").hide();
           console.log(errorThrown);
         }
       });
@@ -129,6 +131,7 @@ define(
             detail: "Mapping Template Uploaded",
             autoTimeout: parseInt(self.errorMessageTimeout())
           }
+          $("#dataloader").hide();
           self.messagesArray.push(success);
         }
 

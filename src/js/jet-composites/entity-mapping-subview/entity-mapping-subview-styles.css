@@ -11,3 +11,15 @@ entity-mapping-subview{
 	background-color: red;
 
   }
+  #entityloader{
+	position: absolute;
+	left: 57%;
+	margin-top: 25%;
+	width: 70px;
+	height: 70px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;
+  }
