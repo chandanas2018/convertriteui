@@ -6,13 +6,16 @@ data-validation-subview{
 	min-height: 50px;
 	width: 50px;
 }
+.oj-tabbar-focused-element oj-tabbar-item-content oj-tabbar-item-no-icon{
+	
+}
 .loader {
 	position: absolute;
 	left: 50%;
 	z-index: 1;
 	width: 150px;
 	height: 150px;
-		border: 16px solid #f3f3f3;
+	border: 16px solid #f3f3f3;
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;

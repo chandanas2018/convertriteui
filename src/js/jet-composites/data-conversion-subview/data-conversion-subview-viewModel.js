@@ -120,6 +120,7 @@ self.messagesArray = ko.observableArray(self.messages);
 
         $("#validatestatus").show();
         $.ajax({
+          
           url: "http://localhost:3333/api/v1/download/hdl",
           type: 'GET',
           // dataType: 'json',
@@ -130,7 +131,7 @@ self.messagesArray = ko.observableArray(self.messages);
 
             var filePath = "http://localhost:3333" + data.loc;
 
-            saveAs(filePath, "Worker.DAT");
+            saveAs(filePath, "Worker.dat");
 
 
             var success ={

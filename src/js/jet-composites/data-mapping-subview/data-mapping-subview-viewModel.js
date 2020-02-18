@@ -402,7 +402,7 @@ $("#dataloader").show();
 
 
       self.onMappingSelection = function (event, current, bindingContext) {
-        // self.dataProvider.remove(current.data);
+    
 
         self.mappingData(current.data);
         self.sourceData('');
@@ -538,8 +538,10 @@ $("#dataloader").show();
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
-
+              
+            
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
+           
               var success = {
                 severity: 'confirmation',
                 summary: 'Success',
@@ -592,6 +594,8 @@ $("#dataloader").show();
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
+              console.log(data.sourceDataName());
+
 
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
               var success = {

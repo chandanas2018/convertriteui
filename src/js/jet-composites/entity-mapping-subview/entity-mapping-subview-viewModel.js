@@ -23,9 +23,9 @@ define(
       self.loaded1 = ko.observable("two");
       self.loaded2 = ko.observable("two");
       self.loaded3 = ko.observable();
-      self.sourceEntityColumns = [ ];
+      self.sourceEntityColumns = [];
 
-      self.destinationEntity = [ ];
+      self.destinationEntity = [];
 
       self.destinationColumns = []
 
@@ -120,7 +120,24 @@ define(
         } else {
           console.log("Task done")
         }
+        //to-do refactor after demo
+        var lookups = ["BLOOD_TYPE", "TITLE", "SEX"];
+        for (let i = 0; i < lookups.length; i++) {
+          if (current.data.COLUMN_NAME == lookups[i]) {
+            $(".destinationEntity:nth-child(11)").find("div").css({"color":"white","background":"#0f758e"});
+          //  $(".destinationEntity .destination:nth-child(11)").css("color", "red");
+
+          }
+        }
+
+        var location = ["LOCATION_CODE"]
+        for (let i = 0; i < location.length; i++) {
+          if (current.data.COLUMN_NAME == location[i]) {
+            $(".destinationEntity:nth-child(7)").find("div").css({"color":"white","background":"#0f758e"});
+          }
+        }
       }
+
 
 
 
@@ -158,6 +175,8 @@ define(
         self.destinationEntityId(current.data.DEST_ENTITY_ID);
 
       };
+
+
 
       self.onDestinationColumnSelection = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
@@ -212,7 +231,7 @@ define(
         if (self.noData() == "yes") {
           self.errorColumn("You haven't selected any source fields for mapping. Please select them from the entity idetification");
           document.getElementById('modalDialog1').open();
-                }
+        }
         else if (self.sourceColumn() == undefined) {
           self.errorColumn("Please Select Source Field");
           // self.open = function (event) {

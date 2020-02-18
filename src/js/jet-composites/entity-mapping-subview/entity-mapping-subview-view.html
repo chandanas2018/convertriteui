@@ -4,7 +4,7 @@
 -->
 
 <div class="loader" id="entityloader"></div>
-<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Mandatory columns are mapped by the tool  and so they can't be Selected *.</p>
+<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Mandatory fields to generate HDL are mapped by the tool  and so they can't be Selected *</p>
 
 <div class="oj-panel" style="border:none;margin-top:-17px;">
   <h2 style="color:#0f758e;"><b>Source Fields</b></h2>
@@ -118,8 +118,8 @@
   <div class="oj-flex oj-sm-flex-items-initial" style="height:100px;overflow-y: auto;">
     <oj-bind-for-each data="[[dataProviderForDestinationEntity]]">
       <template>
-        <div class="oj-flex-item">
-          <div class="oj-panel" on-click="[[onDestinationEntitySelection]]"
+        <div class="oj-flex-item destinationEntity">
+          <div class="oj-panel destination" on-click="[[onDestinationEntitySelection]]"
             style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
 
             <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[onDestinationEntitySelection]]"> -->
@@ -230,9 +230,11 @@
         <span style="color:white;font-size:small;">CLEAR ALL</span>
       </div>
 
-      <oj-dialog style="display:none" id="clearallbox" dialog-title="clearing confirmation">
+      <oj-dialog style="display:none" id="clearallbox" dialog-title="Clearing confirmation">
         <div slot="body">
           Do you want to clear it completely?
+
+          
         </div>
         <div slot="footer">
           <oj-button id="okButton" on-oj-action="[[removeAllMappings]]">OK

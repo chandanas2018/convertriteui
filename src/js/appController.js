@@ -11,8 +11,8 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
   function(ko, moduleUtils, KnockoutTemplateUtils, Router, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider, OffcanvasUtils) {
      function ControllerViewModel() {
        var self = this;
-       self.userLogin1 = ko.observable("Welcome");
-       self.userLogin2 = ko.observable("John Doe");
+       self.userLogin1 = ko.observable("");
+       self.userLogin2 = ko.observable("");
        this.KnockoutTemplateUtils = KnockoutTemplateUtils;
 
       // Media queries for repsonsive layouts
@@ -24,7 +24,7 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
        // Router setup
        self.router = Router.rootInstance;
        self.router.configure({
-         'dashboard': {label: 'Dashboard', isDefault: true},
+         'dashboard': {label: '', isDefault: true},
          'incidents': {label: 'Incidents'},
          'customers': {label: 'Customers'},
          'about': {label: 'About'}
@@ -52,8 +52,8 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
 
       // Navigation setup
       var navData = [
-      {name: 'Dashboard', id: 'dashboard',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-chart-icon-24'},
+      {name: '', id: 'dashboard',}
+      //  iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-chart-icon-24'},
       // {name: 'Incidents', id: 'incidents',
       //  iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'},
       // {name: 'Customers', id: 'customers',
@@ -82,7 +82,7 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
       // Application Name used in Branding Area
       self.appName = ko.observable("App Name");
       // User Info used in Global Navigation area
-      self.userLogin = ko.observable("john.hancock@oracle.com");
+      self.userLogin = ko.observable("");
 
       // Footer
       function footerLink(name, id, linkTarget) {
