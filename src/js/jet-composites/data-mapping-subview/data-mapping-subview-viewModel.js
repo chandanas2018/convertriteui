@@ -21,7 +21,7 @@ define(
 
       var data23 = [];
       // var data1=[];
-$("#dataloader").show();
+      $("#dataloader").show();
       $.ajax({
         url: "http://localhost:3333/api/v1/exceldata",
         data: { entityid: context.properties.entityId },
@@ -30,13 +30,13 @@ $("#dataloader").show();
 
         success: function (data, textStatus, jqXHR) {
           console.log(data);
-         for (let j = 0; j < data.data.length; j++) {
+          for (let j = 0; j < data.data.length; j++) {
             var obj2 = {
               sheetid: data.data[j].sourcecolumnname + "-" + data.data[j].destinationcolumnname,
               header: true
             }
             sheetNames.push(obj2);
-            
+
             var data1 = [];
 
             // if(data.data[j].sourcedata.length >= data.data[j].destinationdata.length){
@@ -423,15 +423,30 @@ $("#dataloader").show();
             console.log(data);
 
             var tempArray1 = [];
-            for (let i = 0; i < data.data.srcdata.length; i++) {
-              tempArray1.push(data.data.srcdata[i]);
+            if (current.data.SOURCE_COLUMN_NAME == "LOCATION_CODE") {
+              for (let i = 0; i < data.data.srcdata1.length; i++) {
+                tempArray1.push(data.data.srcdata1[i]);
+              }
             }
+            else {
+              for (let i = 0; i < data.data.srcdata.length; i++) {
+                tempArray1.push(data.data.srcdata[i]);
+              }
+            }
+
 
             self.sourceData(tempArray1);
 
             var tempArray2 = [];
-            for (let i = 0; i < data.data.destdata.length; i++) {
-              tempArray2.push(data.data.destdata[i]);
+            if (current.data.DESTINATION_COLUMN_NAME == "LOCATION_CODE") {
+              for (let i = 0; i < data.data.destdata1.length; i++) {
+                tempArray2.push(data.data.destdata1[i]);
+              }
+            }
+            else {
+              for (let i = 0; i < data.data.destdata.length; i++) {
+                tempArray2.push(data.data.destdata[i]);
+              }
             }
 
             self.destData(tempArray2);
@@ -451,13 +466,14 @@ $("#dataloader").show();
 
       self.sourceDataName = ko.observable();
       self.sourceDataId = ko.observable();
-
+      self.sourceDataCode = ko.observable();
 
       self.onSourceDataSelection = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
         self.loaded2("one");
-        self.sourceDataName(current.data.LOOKUPMEANING);
-        self.sourceDataId(current.data.LOOKUPCODE);
+        self.sourceDataName(current.data.SOURCE_DATA_NAME);
+        self.sourceDataId(current.data.SOURCE_DATA_ID);
+        self.sourceDataCode(current.data.SOURCE_DATA_CODE);
 
       };
 
@@ -528,7 +544,9 @@ $("#dataloader").show();
               projectid: 2,
               sourceentityid: context.properties.entityId,
               sourcedataname: self.sourceDataId(),
+              sourcedatacode: self.sourceDataCode(),
               destinationdataname: self.destinationDataName(),
+              destinationdataid: self.destinationDataId(),
               remainingdata: self.mappingData(),
             },
 
@@ -536,6 +554,7 @@ $("#dataloader").show();
             dataType: 'json',
 
             success: function (data, textStatus, jqXHR) {
+              // alert('hi');
 
               console.log(data);
               
@@ -556,9 +575,47 @@ $("#dataloader").show();
             }
           });
 
+        } 
+        // else if (self.sourceColumn() === "LOCATION_CODE"){
+        //   $.ajax({
+        //     url: "http://localhost:3333/api/v1/save/locationmappings",
+        //     data: {
+        //       projectid: 2,
+        //       sourceentityid: context.properties.entityId,
+        //       sourcedataname: self.sourceDataId(),
+        //       sourcedatacode: self.sourceDataCode(),
+        //       destinationdataname: self.destinationDataName(),
+        //       destinationdataid: self.destinationDataId(),
+        //       remainingdata: self.mappingData(),
+        //     },
+
+        //     type: 'POST',
+        //     dataType: 'json',
+
+        //     success: function (data, textStatus, jqXHR) {
+        //       alert('hi');
+
+        //       console.log(data);
+
+        //       self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
+        //           var success = {
+        //             severity: 'confirmation',
+        //             summary: 'Success',
+        //             detail: "Mapping Added Successfully",
+        //             autoTimeout: parseInt(self.errorMessageTimeout())
+        //           }
+        //           self.messagesArray.push(success);
+        //     },
+        //     fail: function (xhr, textStatus, errorThrown) {
+
+        //       console.log(errorThrown);
+        //     }
+        //   });
+        // }
+
 
           // self.dataProvider2.push({ sourceDataName: self.sourceDataName, destinationDataName: self.destinationDataName });
-        } else {
+         else {
 
           var matchFound = false;
           for (let i = 0; i < self.dataProvider2().length; i++) {
@@ -584,27 +641,31 @@ $("#dataloader").show();
               projectid: 2,
               sourceentityid: context.properties.entityId,
               sourcedataname: self.sourceDataId(),
+              sourcedatacode: self.sourceDataCode(),
               destinationdataname: self.destinationDataName(),
-              remainingdata: self.mappingData(),
-
+              destinationdataid: self.destinationDataId(),
+              remainingdata: self.mappingData()
             },
             type: 'POST',
             dataType: 'json',
-
             success: function (data, textStatus, jqXHR) {
+              // alert("hello");
 
               console.log(data);
               console.log(data.sourceDataName());
 
 
-              self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-              var success = {
-                severity: 'confirmation',
-                summary: 'Success',
-                detail: "Mapping Added Successfully",
-                autoTimeout: parseInt(self.errorMessageTimeout())
-              }
-              self.messagesArray.push(success);
+              // }
+            // }
+
+              // self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
+              // var success = {
+              //   severity: 'confirmation',
+              //   summary: 'Success',
+              //   detail: "Mapping Added Successfully",
+              //   autoTimeout: parseInt(self.errorMessageTimeout())
+              // }
+              // self.messagesArray.push(success);
             },
             fail: function (xhr, textStatus, errorThrown) {
 
@@ -612,6 +673,42 @@ $("#dataloader").show();
             }
           });
         }
+        // else if(self.sourceColumn() === "LOCATION_CODE"){
+        //   $.ajax({
+        //     url: "http://localhost:3333/api/v1/save/locationmappings",
+        //     data: {
+        //       projectid: 2,
+        //       sourceentityid: context.properties.entityId,
+        //       sourcedataname: self.sourceDataId(),
+        //       sourcedatacode: self.sourceDataCode(),
+        //       destinationdataname: self.destinationDataName(),
+        //       destinationdataid: self.destinationDataId(),
+        //       remainingdata: self.mappingData()
+        //     },
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     success: function (data, textStatus, jqXHR) {
+        //       alert("hello");
+
+        //       console.log(data);
+             
+        //         self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
+        //         var success = {
+        //           severity: 'confirmation',
+        //           summary: 'Success',
+        //           detail: "Mapping Added Successfully",
+        //           autoTimeout: parseInt(self.errorMessageTimeout())
+        //         }
+        //         self.messagesArray.push(success);
+
+              
+        //     },
+        //     fail: function (xhr, textStatus, errorThrown) {
+
+        //       console.log(errorThrown);
+        //     }
+        //   });
+        // }
 
       };
 
