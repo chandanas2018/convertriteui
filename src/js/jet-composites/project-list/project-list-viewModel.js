@@ -60,7 +60,7 @@ define(
               self.messagesArray.push(success);
             },
             fail: function (xhr, textstatus, errorThrown) {
-             
+
               console.log(errorThrown)
 
             }
@@ -119,8 +119,16 @@ define(
               self.messagesArray.push(success);
             },
             fail: function (xhr, textstatus, errorThrown) {
-             console.log(errorThrown)
-                }
+              console.log(errorThrown)
+              $("#progressset").hide();
+              var warning = {
+                severity: 'error',
+                summary: 'Error',                
+                detail: "Failed to Extract file.please try again",
+                autoTimeout: parseInt(self.errorMessageTimeout(), 10)
+              }
+              self.messagesArray.push(warning);
+            }
           });
         };
       }
@@ -138,6 +146,7 @@ define(
         self.loaded("one");
 
       }
+
       self.empextracts = function () {
         $("#ebsscreen").hide();
         $("#employeeextracts").show();
@@ -150,7 +159,7 @@ define(
 
       }
 
-      self.backempextracts = function(){
+      self.backempextracts = function () {
         $("#mainscreen").hide();
         $("#employeeextracts").show();
       }
@@ -170,7 +179,6 @@ define(
       self.name = ko.observable();
       self.addNew = function () {
         // self.name('clicked');
-
         self.dataProvider.push({ name: "Payroll Data Migration", description: "Data migration projects typically require a lot of additional tools and project support platforms to function smoothly", status: "Upload Extracts" })
       };
 
@@ -237,6 +245,7 @@ define(
         $("#mainscreen").hide();
         self.projectName(current.data.name);
       };
+
       self.nxtbtn = function () {
         $("#ebsscreen").hide();
         $("#mainscreen").show();
@@ -265,6 +274,7 @@ define(
       self.next1 = function () {
         self.selectedItem("Entity Mapping");
       }
+
       self.back1 = function () {
         self.selectedItem("Upload Extracts");
       }
@@ -272,6 +282,7 @@ define(
       self.next2 = function () {
         self.selectedItem("Data Mapping");
       }
+
       self.back2 = function () {
         self.selectedItem("Entity Identification");
       }
@@ -279,6 +290,7 @@ define(
       self.next3 = function () {
         self.selectedItem("Data Validation");
       }
+
       self.back3 = function () {
         self.selectedItem("Entity Mapping");
       }
@@ -286,6 +298,7 @@ define(
       self.next4 = function () {
         self.selectedItem("Conversion");
       }
+
       self.back4 = function () {
         self.selectedItem("Data Mapping");
       }
@@ -294,18 +307,15 @@ define(
         self.selectedItem("Data Validation");
       }
 
-
-
       //   self.buttonClick = function(event){
       //     self.clickedButton(event.currentTarget.id);
       //     return true;
       // }.bind(self);
+
       self.selectedItem = ko.observable("Upload Extracts");
       self.display = ko.observable("all");
       self.edge = ko.observable("top");
       self.displaym = ko.observable('false');
-
-
 
       //At the start of your viewModel constructor
       var busyContext = oj.Context.getContext(context.element).getBusyContext();
@@ -318,6 +328,7 @@ define(
       self.messageText = ko.observable('Hello from Example Component');
       self.properties = context.properties;
       self.res = componentStrings['project-list'];
+      
       // Example for parsing context properties
       // if (context.properties.name) {
       //     parse the context properties here

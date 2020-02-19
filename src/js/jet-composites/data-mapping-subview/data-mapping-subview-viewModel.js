@@ -358,8 +358,8 @@ define(
             var tempArray = [];
             for (let i = 0; i < data.data.length; i++) {
               var obj = {
-                sourceDataName: data.data[i].SOURCE_DATA,
-                destinationDataName: data.data[i].DESTINATION_DATA,
+                sourceDataName: data.data[i].SOURCE_DISPLAY_NAME,
+                destinationDataName: data.data[i].DESTINATION_DISPLAY_NAME,
                 // sourceColumnId: data.data[i].SOURCE_COLUMN_ID,
                 // destColumnId: data.data[i].DESTINATION_COLUMN_ID,
                 // projectid: data.data[i].PROJECT_ID,
@@ -380,15 +380,7 @@ define(
       }
 
 
-
-
-
-
-
       // }
-
-
-
 
 
       self.sourceColumn = ko.observable();
@@ -402,7 +394,7 @@ define(
 
 
       self.onMappingSelection = function (event, current, bindingContext) {
-    
+
 
         self.mappingData(current.data);
         self.sourceData('');
@@ -423,32 +415,21 @@ define(
             console.log(data);
 
             var tempArray1 = [];
-            if (current.data.SOURCE_COLUMN_NAME == "LOCATION_CODE") {
-              for (let i = 0; i < data.data.srcdata1.length; i++) {
-                tempArray1.push(data.data.srcdata1[i]);
-              }
-            }
-            else {
+           
               for (let i = 0; i < data.data.srcdata.length; i++) {
                 tempArray1.push(data.data.srcdata[i]);
               }
-            }
+           
 
 
             self.sourceData(tempArray1);
 
             var tempArray2 = [];
-            if (current.data.DESTINATION_COLUMN_NAME == "LOCATION_CODE") {
-              for (let i = 0; i < data.data.destdata1.length; i++) {
-                tempArray2.push(data.data.destdata1[i]);
-              }
-            }
-            else {
+           
               for (let i = 0; i < data.data.destdata.length; i++) {
                 tempArray2.push(data.data.destdata[i]);
               }
-            }
-
+            
             self.destData(tempArray2);
 
 
@@ -543,6 +524,7 @@ define(
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
+              sourcedisplayname: self.sourceDataName(),
               sourcedataname: self.sourceDataId(),
               sourcedatacode: self.sourceDataCode(),
               destinationdataname: self.destinationDataName(),
@@ -554,13 +536,11 @@ define(
             dataType: 'json',
 
             success: function (data, textStatus, jqXHR) {
-              // alert('hi');
 
               console.log(data);
-              
-            
+
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-           
+
               var success = {
                 severity: 'confirmation',
                 summary: 'Success',
@@ -575,47 +555,9 @@ define(
             }
           });
 
-        } 
-        // else if (self.sourceColumn() === "LOCATION_CODE"){
-        //   $.ajax({
-        //     url: "http://localhost:3333/api/v1/save/locationmappings",
-        //     data: {
-        //       projectid: 2,
-        //       sourceentityid: context.properties.entityId,
-        //       sourcedataname: self.sourceDataId(),
-        //       sourcedatacode: self.sourceDataCode(),
-        //       destinationdataname: self.destinationDataName(),
-        //       destinationdataid: self.destinationDataId(),
-        //       remainingdata: self.mappingData(),
-        //     },
+        }
 
-        //     type: 'POST',
-        //     dataType: 'json',
-
-        //     success: function (data, textStatus, jqXHR) {
-        //       alert('hi');
-
-        //       console.log(data);
-
-        //       self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-        //           var success = {
-        //             severity: 'confirmation',
-        //             summary: 'Success',
-        //             detail: "Mapping Added Successfully",
-        //             autoTimeout: parseInt(self.errorMessageTimeout())
-        //           }
-        //           self.messagesArray.push(success);
-        //     },
-        //     fail: function (xhr, textStatus, errorThrown) {
-
-        //       console.log(errorThrown);
-        //     }
-        //   });
-        // }
-
-
-          // self.dataProvider2.push({ sourceDataName: self.sourceDataName, destinationDataName: self.destinationDataName });
-         else {
+        else {
 
           var matchFound = false;
           for (let i = 0; i < self.dataProvider2().length; i++) {
@@ -640,6 +582,7 @@ define(
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
+              sourcedisplayname:self.sourceDataName(),
               sourcedataname: self.sourceDataId(),
               sourcedatacode: self.sourceDataCode(),
               destinationdataname: self.destinationDataName(),
@@ -649,23 +592,17 @@ define(
             type: 'POST',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-              // alert("hello");
 
               console.log(data);
-              console.log(data.sourceDataName());
 
-
-              // }
-            // }
-
-              // self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-              // var success = {
-              //   severity: 'confirmation',
-              //   summary: 'Success',
-              //   detail: "Mapping Added Successfully",
-              //   autoTimeout: parseInt(self.errorMessageTimeout())
-              // }
-              // self.messagesArray.push(success);
+              self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
+              var success = {
+                severity: 'confirmation',
+                summary: 'Success',
+                detail: "Mapping Added Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+              }
+              self.messagesArray.push(success);
             },
             fail: function (xhr, textStatus, errorThrown) {
 
@@ -673,42 +610,6 @@ define(
             }
           });
         }
-        // else if(self.sourceColumn() === "LOCATION_CODE"){
-        //   $.ajax({
-        //     url: "http://localhost:3333/api/v1/save/locationmappings",
-        //     data: {
-        //       projectid: 2,
-        //       sourceentityid: context.properties.entityId,
-        //       sourcedataname: self.sourceDataId(),
-        //       sourcedatacode: self.sourceDataCode(),
-        //       destinationdataname: self.destinationDataName(),
-        //       destinationdataid: self.destinationDataId(),
-        //       remainingdata: self.mappingData()
-        //     },
-        //     type: 'POST',
-        //     dataType: 'json',
-        //     success: function (data, textStatus, jqXHR) {
-        //       alert("hello");
-
-        //       console.log(data);
-             
-        //         self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-        //         var success = {
-        //           severity: 'confirmation',
-        //           summary: 'Success',
-        //           detail: "Mapping Added Successfully",
-        //           autoTimeout: parseInt(self.errorMessageTimeout())
-        //         }
-        //         self.messagesArray.push(success);
-
-              
-        //     },
-        //     fail: function (xhr, textStatus, errorThrown) {
-
-        //       console.log(errorThrown);
-        //     }
-        //   });
-        // }
 
       };
 
