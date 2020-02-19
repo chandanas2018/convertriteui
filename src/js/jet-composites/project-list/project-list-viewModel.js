@@ -98,16 +98,14 @@ define(
           }
           self.messagesArray.push(warning);
 
-        }
-
-        {
+        }else {
           $("#progressset").show();
           $.ajax({
             url: 'http://localhost:3333/api/EbsExtracts',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
-              $("#progressset").show();
+              // $("#progressset").show();
               console.log(data);
               var filePath = "http://localhost:3333" + data.loc;
               saveAs(filePath, entityvalue + ".DAT");
@@ -124,15 +122,7 @@ define(
              console.log(errorThrown)
                 }
           });
-        }
-        $("#progressset").hide();
-        var warning = {
-          severity: 'error',
-          summary: 'Error',
-          detail: "Failed to Extract file.please try again",
-          autoTimeout: parseInt(self.errorMessageTimeout(), 10)
-        }
-        self.messagesArray.push(warning);
+        };
       }
 
       self.Back = function () {
