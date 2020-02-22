@@ -11,7 +11,7 @@
 
 <div class="oj-panel">
     <div class = "oj-flex demo-edge-start">
-    <oj-navigation-list class="oj-contrast-background oj-contrast-marker" selection="{{selectedItem}}" style="
+    <oj-navigation-list class="oj-contrast-background oj-contrast-marker" selection="{{selectedItem}}" style="margin-top: 17%;
     height: 730px;">
         <ul>
           <oj-bind-for-each data="[[listItems]]">
@@ -80,6 +80,12 @@
      <oj-bind-if test="[[selectedItem() == 'ELEMENT_ENTRIES_VALUES']]" style="width: 75%;">
          <data-mapping-subview entity-id="16" style="width: 75%;"></data-mapping-subview>
      </oj-bind-if>
+     <oj-bind-if test="[[selectedItem() == 'WORK_TERMS']]" style="width: 75%;">
+        <data-mapping-subview entity-id="17" style="width: 75%;"></data-mapping-subview>
+    </oj-bind-if>
+    <oj-bind-if test="[[selectedItem() == 'WORK_RELATIONSHIP']]" style="width: 75%;">
+        <data-mapping-subview entity-id="18" style="width: 75%;"></data-mapping-subview>
+    </oj-bind-if>
         <!-- <oj-switcher value="[[selectedItem]]" style="width: 75%;">
           <div slot="PERSON"
                id="home-tab-panel"

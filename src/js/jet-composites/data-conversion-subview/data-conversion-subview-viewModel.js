@@ -118,19 +118,20 @@ self.messagesArray = ko.observableArray(self.messages);
 
       self.saveFile = function () {
 
-
+        $("#validatestatus").show();
         $.ajax({
+          
           url: "http://localhost:3333/api/v1/download/hdl",
           type: 'GET',
           // dataType: 'json',
 
           success: function (data, textStatus, jqXHR) {
-
+          
             console.log(data);
 
             var filePath = "http://localhost:3333" + data.loc;
 
-            saveAs(filePath, "check.DAT");
+            saveAs(filePath, "Worker.dat");
 
 
             var success ={
@@ -139,11 +140,12 @@ self.messagesArray = ko.observableArray(self.messages);
                 detail: "HDL File Downloaded Successfully",
                 autoTimeout: parseInt(self.errorMessageTimeout())
             }
+            $("#validatestatus").hide();
             self.messagesArray.push(success);
 
           },
           fail: function (xhr, textStatus, errorThrown) {
-
+            $("#validatestatus").hide();
             console.log(errorThrown);
           }
         });

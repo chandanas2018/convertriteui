@@ -4,10 +4,11 @@
 -->
 <!-- <p data-bind="text:messageText"></p> -->
 
-<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Please select the entity columns you want to map, change the display name (if needed) and click save for saving the identified columns.</p>
+<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Please select the  Source entity columns you want to map, change the display name (if needed) and click save for saving the identified
+    columns.</p>
 <!-- <div class="oj-panel" > -->
 
-  <!-- <oj-table id="table"
+<!-- <oj-table id="table"
   aria-label="Employee Table"  data='[[dataprovider]]' 
   edit-mode='rowEdit' 
   edit-row='{{editRow}}' 
@@ -72,88 +73,87 @@
   </oj-table> -->
 
 
+  
+  
+<div class="oj-flex" style="margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
 
-  <div class="oj-flex" style= "margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
-    <div class ="oj-flex-item"></div>
-      
-  
-      <div class="oj-flex-item"> </div>
-  
-      <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
-        
-          <div class="oj-panel" on-click='[[selectAll]]' style="
-          border-radius: 5px;
-          background-color: #0f758e;
-          color:white;
-          border:none; cursor:pointer; width:100px; text-align:center;
-      ">Select all</div>
-      
-    </div>
-    <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
-        
-        <div class="oj-panel" on-click='[[deSelectAll]]' style="
-        border-radius: 5px;
-        background-color: #0f758e;
-        color:white;
-        border:none; cursor:pointer; width:100px; text-align:center;
-    ">Deselect all</div>
-    
-  </div>
-      <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;">
-  
-        <div class="oj-panel" on-click='[[saveSelections]]' style="
-        border-radius: 5px;
-        background-color: #0f758e;
-        color:white;
-        border:none; cursor:pointer; width:100px; text-align:center;
-    ">Save</div>
-        
-      </div>
-    
-   
-  
-    </div>
 
-  <oj-table id="table" aria-label="Tasks Table"
-              data="[[datasource]]"
-              edit-mode="rowEdit"
-              scroll-policy='loadMoreOnScroll'
-                      scroll-policy-options='{"fetchSize": 10}'
-              row-renderer="[[rowRenderer]]"
-              on-oj-before-row-edit-end="[[beforeRowEditEndListener]]"
-              columns='[
+  
+
+    <div class="oj-flex-item"></div>
+
+
+    <div class="oj-flex-item"> </div>
+
+    <!-- <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> -->
+            <button id="selectall"  class="button"  on-click='[[selectAll]]'>Select all</button>
+
+       
+
+    <!-- </div> -->
+    <!-- <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> -->
+            <button  id="deselectall" class="button" on-click='[[deSelectAll]]'>Deselect all</button>
+           
+      
+
+    <!-- </div> -->
+    <!-- <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> -->
+        <button  id="save" class="button" on-click='[[saveSelections]]'>Save</button>
+      
+       
+    <!-- </div> -->
+
+
+
+</div>
+
+
+<br>
+
+<div class="loader" id="progress"></div>
+
+<oj-table id="table" aria-label="Tasks Table" data="[[datasource]]" edit-mode="rowEdit" scroll-policy='loadMoreOnScroll'
+    scroll-policy-options='{"fetchSize": 10}' row-renderer="[[rowRenderer]]" on-oj-before-row-edit-end="[[beforeRowEditEndListener]]"
+    columns='[
               
               {"headerText": "SELECT",
               "sortProperty": "IDENTIFICATION_STATUS",
-            
               "headerStyle": "min-width: 15em; max-width: 15em; width: 15em; text-align:center;",
               "style": "min-width: 15em; max-width: 15em; width: 15em ; text-align:center;"},
 
-                                       {"headerText": "ENTITY COLUMN NAME",
-                          "sortProperty": "COLUMN_NAME",
-                          "className": "oj-read-only",
-                          "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
-                          "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"},
+                 {"headerText": "ENTITY COLUMN NAME",
+                 "sortProperty": "COLUMN_NAME",
+                 "className": "oj-read-only",
+                 "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
+                 "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"},
 
                           {"headerText": "ENTITY DISPLAY NAME",
                           "sortProperty": "DISPLAY_NAME",
                           "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
                           "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"}]' 
-                          style="height:650px; width:97%;overflow:auto;margin:10px;">                
-                        
-       </oj-table>
+                          style="height:650px; width:92%;overflow:auto;margin-left:5%;">
 
-  <!-- <textarea id="rowDataDump" style="height: 200px; width: 300px; box-sizing: border-box;"></textarea> -->
-          <script type="text/html" id="row_template">
+                         
+
+</oj-table>
+
+<!-- <textarea id="rowDataDump" style="height: 200px; width: 300px; box-sizing: border-box;"></textarea> -->
+<script type="text/html" id="row_template">
               <tr>
 
                   <!-- <td data-bind="text: IDENTIFICATION_STATUS"> -->
                       <td >
-
+                        <!-- disabled ="{{DISABLED_STATUS}}" -->
                       <div oj-sm-justify-content-center >
-                          <oj-checkboxset id="cs1" value="{{IDENTIFICATION_STATUS}}"
+                        <!-- disabled ='[[DISABLED_STATUS]]' -->
+                          <oj-checkboxset id="cs1"  value='{{IDENTIFICATION_STATUS}}' 
+                          disabled = '[[DISABLED_STATUS]]'
+                     
                          
+                                                   
                           class="oj-choice-direction-row">
+                          <!--  -->
+
                               <oj-option value="CHECKED"></oj-option>
                           </oj-checkboxset>
                       </div>
@@ -169,7 +169,7 @@
                
               </tr>
           </script>
-          <script type="text/html" id="row_template_editable">
+<script type="text/html" id="row_template_editable">
               <tr>
 
                   <td>
@@ -194,8 +194,8 @@
                 
               </tr>
           </script>
-  
-          <!-- <div class="oj-flex" style= "margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
+
+<!-- <div class="oj-flex" style= "margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
               <div class="oj-flex-item"></div>
           
               <div class="oj-flex-item"> </div>

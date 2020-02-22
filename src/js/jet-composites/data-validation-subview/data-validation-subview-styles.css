@@ -6,19 +6,20 @@ data-validation-subview{
 	min-height: 50px;
 	width: 50px;
 }
+.oj-tabbar-focused-element oj-tabbar-item-content oj-tabbar-item-no-icon{
+	
+}
 .loader {
 	position: absolute;
 	left: 50%;
-	/* top: 50%; */
 	z-index: 1;
 	width: 150px;
 	height: 150px;
-	/* margin: -75px 0 0 -75px; */
 	border: 16px solid #f3f3f3;
 	border-radius: 50%;
-	border-top: 16px solid #ffcc33;
-	border-right: 16px solid green;
-	border-bottom: 16px solid crimson;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;
 	width: 70px;
 	height: 70px;
 	-webkit-animation: spin 2s linear infinite;

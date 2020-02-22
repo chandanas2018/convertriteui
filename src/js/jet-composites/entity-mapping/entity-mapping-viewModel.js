@@ -4,13 +4,13 @@
 */
 'use strict';
 define(
-  ['knockout', 'jquery', 'ojL10n!./resources/nls/entity-mapping-strings','ojs/ojarraydataprovider','entity-mapping-subview/loader', 'ojs/ojnavigationlist', 'ojs/ojswitcher', 'ojs/ojbutton', 'ojs/ojlistview'],
+  ['knockout', 'jquery', 'ojL10n!./resources/nls/entity-mapping-strings', 'ojs/ojarraydataprovider', 'entity-mapping-subview/loader', 'ojs/ojnavigationlist', 'ojs/ojswitcher', 'ojs/ojbutton', 'ojs/ojlistview'],
 
-  function (ko, $, componentStrings,ArrayDataProvider) {
+  function (ko, $, componentStrings, ArrayDataProvider) {
 
     function ExampleComponentModel(context) {
       var self = this;
-  self.listItems = [
+      self.listItems = [
 
         {
           entityid: 1,
@@ -18,7 +18,7 @@ define(
           label: "PERSON",
           disabled: false
         },
-       {
+        {
 
           entityid: 2,
           id: "PERSON_NAME",
@@ -62,7 +62,7 @@ define(
           label: "PERSON_PHONE",
           disabled: false
         },
-         {
+        {
           entityid: 9,
           id: "PERSON_EMAIL",
           label: "PERSON_EMAIL",
@@ -103,6 +103,17 @@ define(
           label: "ELEMENT_ENTRIES_VALUES",
           disabled: false
         },
+        {
+          entityid: 17,
+          id: "WORK_TERMS",
+          label: "WORK_TERMS",
+          disabled: false
+        }, {
+          entityid: 18,
+          id: "WORK_RELATIONSHIP",
+          label: "WORK_RELATIONSHIP",
+          disabled: false
+        },
       ];
 
 
@@ -121,9 +132,6 @@ define(
 
         success: function (data, textStatus, jqXHR) {
 
-          console.log(data, listItems);
-          // self.itemsArray.removeAll();
-          // self.listItems(data.data);
           var tempArray = [];
           for (let i = 0; i < data.data.length; i++) {
             var obj = {
@@ -131,21 +139,8 @@ define(
               label: data.data[i].ENTITY_NAME,
               disabled: false,
             }
-          // self.itemsArray.push(obj);
-          
-         //   tempArray.push(obj);
 
-         
           }
-          //console.log(listItems);
-
-          // self.itemsArray(tempArray);
-
-
-          //self.listItems= tempArray;
-          // self.getList = ko.observableArray(tempArray);
-          // console.log(self.getList);
-
 
         },
         fail: function (xhr, textStatus, errorThrown) {
@@ -159,21 +154,11 @@ define(
 
       var userIdCount = 0;
 
-     
+
       this.activeCardStyle = "default";
-      //   self.cardStyleOptions = [
-      //     {id: 'none', label: 'Default', value: 'default'},
-      //     {id: 'alt1', label: 'Alt 1', value: 'demo-custom-card-alt1-style'},
-      //     {id: 'alt2', label: 'Alt 2', value: 'demo-custom-card-alt2-style'},
-      //     {id: 'alt3', label: 'Alt 3', value: 'demo-custom-card-alt3-style'},
-      //     {id: 'alt4', label: 'Alt 4', value: 'demo-custom-card-alt4-style'},
-      //     {id: 'alt5', label: 'Alt 5', value: 'demo-custom-card-alt5-style'}
-      // ];
+
       self.handleCardStyleChange = function (event) {
-        // var listview = document.getElementById('listview');
-        // listview.classList.toggle(event.detail.previousValue);
-        // listview.classList.toggle(event.detail.value);
-        // listview.refresh();
+
       };
 
 

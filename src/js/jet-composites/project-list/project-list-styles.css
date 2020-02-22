@@ -6,3 +6,161 @@ project-list{
 	min-height: 50px;
 	width: 50px;
 }
+#ebsscreen{
+	border: 30px solid #dce6ea;
+	margin-top: 30px ;
+	margin-left: 32%;
+	 width:30%; 
+	 height:450px;
+
+	 
+}
+
+#employeeextracts{
+border: 30px solid #dce6ea;
+	margin-top: 30px ;
+	margin-left: 32%;
+	 width:30%; 
+	 height:400px;
+
+}
+.extractbtn{
+	background-color: #0f758e ;
+	color:white ;
+	width:95px;
+	 height:40px;
+	 border-radius: 7px;
+	 margin-left: 140px;
+        margin-top: 100px;
+	 
+ }
+ .demo-home-icon-24 demo-icon-font-24{
+	font-size: 19px;
+	margin-top: 5px;
+ }
+
+ .HomeLogo{
+	  background-color:#0f758e  ;
+	  border-radius: 7px;
+	  text-align: center;
+	  margin-top: 16%;
+		width: 95px;
+		height: 40px;
+		color:white ;
+	
+ }
+ 
+ #progressset{
+	display: none;
+	position: absolute;
+	left: 35%;
+	width: 50px;
+	height: 50px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;
+	
+
+ }
+
+ #progressex {
+	 display: none;
+	position: absolute;
+	left: 35%;
+	width: 50px;
+	height: 50px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #dce6ea;
+	border-right: 16px solid #dce6ea;
+	border-bottom: 16px solid #0f758e;
+	
+  }
+.Back{
+	background-color: #0f758e ;
+	color:white ;
+	font-size: 16px;
+	width:90px;
+	text-align: center;
+	border-radius: 7px;
+	 height:40px;
+	 margin-top: 25%;
+}
+
+#skipnext{
+	background-color: #0f758e ;
+	color:white ;
+	font-size: 16px;
+	width:90px;
+	text-align: center;
+	 height:40px;
+	 border-radius: 7px;
+	 margin-left: 78%;
+	 margin-top: -42px;
+
+}
+
+
+#tabbar{
+
+	background-color:#f1f3f4;
+	border-radius: 10px
+}
+ 
+/* 
+.tabbutton{
+	height:40px;
+	margin-right: 1px;
+	background:#f1f3f4;
+	color: #fff;
+	border: 1px solid grey;
+ float: left;
+	position:relative;
+	width:200px;
+	text-align:center;
+	line-height:40px;
+} 
+.tabbutton:after{
+	content:"";
+	position:absolute;
+	 color:black; 
+	 height:1;
+	width:0;
+	left:100%;
+	top:0;
+
+ }  */
+ .tabbutton {
+
+	width: 120px;
+	height: 10px;
+	
+	background-color: #dce6ea;
+	color: white;
+	
+	border: 2px solid grey;
+	/* position: relative; */
+ } 
+  
+ /* .tabbutton:before {
+	content: '';
+	position: absolute;
+	top: 0px;
+	left: 211px;
+	width: 0;
+	height: 18px;
+	border: 10px solid transparent;
+	border-left: 5px solid #0f758e;
+}  */
+
+
+
+
+.oj-tabbar-horizontal:not(.oj-tabbar-icon-only) .oj-tabbar-item.oj-selected a.oj-tabbar-item-content .oj-tabbar-item-label {
+   
+	
+	color: white;
+    font-weight: normal;
+}

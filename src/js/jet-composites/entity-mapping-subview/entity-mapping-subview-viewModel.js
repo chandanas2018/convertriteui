@@ -4,7 +4,8 @@
 */
 'use strict';
 define(
-  ['knockout', 'ojs/ojbootstrap', 'jquery', 'ojL10n!./resources/nls/entity-mapping-subview-strings','ojs/ojarraydataprovider', 'ojs/ojdialog','ojs/ojmessages'],
+  ['knockout', 'ojs/ojbootstrap', 'jquery', 'ojL10n!./resources/nls/entity-mapping-subview-strings',
+    'ojs/ojarraydataprovider', 'ojs/ojdialog', 'ojs/ojbutton', 'ojs/ojmessages'],
   function (ko, Bootstrap, $, componentStrings, ArrayDataProvider) {
 
     function ExampleComponentModel(context) {
@@ -17,288 +18,21 @@ define(
           self.checkValue()[0] === "dirColumn") ? true : false;
       }.bind(self));
 
-self.noData = ko.observable("no");
+      self.noData = ko.observable("no");
 
       self.loaded1 = ko.observable("two");
       self.loaded2 = ko.observable("two");
       self.loaded3 = ko.observable();
-      self.sourceEntityColumns = [
-        // { name: "UNIQUE_IDENTIFIER" },
-        // { name: "USER_PERSON_TYPE" },
-        // { name: "COUNTRY_CODE" },
-        // { name: "ASSIGNMENT_NUMBER" },
-        // { name: "EFFECTIVE_DATE" },
-        // { name: "ORIGINAL_DATE_OF_HIRE" },
-        // { name: "HIRE_DATE" },
-        // { name: "ACCEPTED_TERMINATION_DATE" },
-        // { name: "ACTUAL_TERMINATION_DATE" },
-        // { name: "ADJUSTED_SVC_DATE" },
-        // { name: "PROJECTED_TERMINATION_DATE" },
-        // { name: "ACTION" },
-        // { name: "ACTION_REASON" },
-        // { name: "PAYROLL_NAME" },
-        // { name: "REHIRE_AUTHORIZOR" },
-        // { name: "REHIRE_RECOMMENDATION" },
-        // { name: "REHIRE_MANAGER" },
-        // { name: "CHANGE_REASON" },
-        // { name: "ASSIGNMENT_STATUS_TYPE" },
-        // { name: "BARGAINING_UNIT_CODE" },
-        // { name: "BUSINESS_UNIT" },
-        // { name: "DATE_PROBATION_END" },
-        // { name: "EMPLOYEE_CATEGORY" },
-        // { name: "EMPLOYMENT_CATEGORY" },
-        // { name: "ESTABLISHMENT_ID" },
-        // { name: "FREQUENCY" },
-        // { name: "GRADE" },
-        // { name: "GRADE_LADDER" },
-        // { name: "HOURLY_SALARIED_CODE" },
-        // { name: "JOB" },
-        // { name: "LABOUR_UNION_MEMBER_FLAG" },
-        // { name: "LEGAL_ENTITY" },
-        // { name: "LOCATION" },
-        // { name: "MANAGER_FLAG" },
-        // { name: "NORMAL_HOURS" },
-        // { name: "NOTICE_PERIOD" },
-        // { name: "NOTICE_PERIOD_UOM" },
-        // { name: "DEPARTMENT" },
-        // { name: "POSITION" },
-        // { name: "PRIMARY_ASSIGNMENT_FLAG" },
-        // { name: "PROBATION_PERIOD" },
-        // { name: "PROBATION_UNIT" },
-        // { name: "TIME_NORMAL_FINISH" },
-        // { name: "TIME_NORMAL_START" },
-        // { name: "WORK_MEASURE_UNIT" },
-        // { name: "WORK_MEASURE_VALUE" },
-        // { name: "WORK_AT_HOME" },
-        // { name: "ON_MILITARY_SERVICE" },
-        // { name: "CONTEXT" },
-        // { name: "ATTRIBUTE1" },
-        // { name: "ATTRIBUTE2" },
-        // { name: "ATTRIBUTE3" },
-        // { name: "ATTRIBUTE4" },
-        // { name: "ATTRIBUTE5" },
-        // { name: "ATTRIBUTE6" },
-        // { name: "ATTRIBUTE7" },
-        // { name: "ATTRIBUTE8" },
-        // { name: "ATTRIBUTE9" },
-        // { name: "ATTRIBUTE10" },
-        // { name: "ATTRIBUTE_NUMBER1" },
-        // { name: "ATTRIBUTE_NUMBER2" },
-        // { name: "ATTRIBUTE_NUMBER3" },
-        // { name: "ATTRIBUTE_NUMBER4" },
-        // { name: "ATTRIBUTE_NUMBER5" },
-        // { name: "ATTRIBUTE_NUMBER6" },
-        // { name: "ATTRIBUTE_NUMBER7" },
-        // { name: "ATTRIBUTE_NUMBER8" },
-        // { name: "ATTRIBUTE_NUMBER9" },
-        // { name: "ATTRIBUTE_NUMBER10" },
-        // { name: "ATTRIBUTE_DATE1" },
-        // { name: "ATTRIBUTE_DATE2" },
-        // { name: "ATTRIBUTE_DATE3" },
-        // { name: "ATTRIBUTE_DATE4" },
-        // { name: "ATTRIBUTE_DATE5" },
-        // { name: "ATTRIBUTE_DATE6" },
-        // { name: "ATTRIBUTE_DATE7" },
-        // { name: "ATTRIBUTE_DATE8" },
-        // { name: "ATTRIBUTE_DATE9" },
-        // { name: "ATTRIBUTE_DATE10" },
-      ];
+      self.sourceEntityColumns = [];
 
-      self.destinationEntity = [
-        // {
-        //   "ENTITY_ID": "1",
-        //   "ENTITY_NAME": "Worker"
-        // },
-        // {
-        //   "ENTITY_ID": "2",
-        //   "ENTITY_NAME": "ExternalIdentifier"
-        // },
-        // {
-        //   "ENTITY_ID": "3",
-        //   "ENTITY_NAME": "PersonAddress"
-        // },
-        // {
-        //   "ENTITY_ID": "4",
-        //   "ENTITY_NAME": "PersonCitizenship"
-        // },
-        // {
-        //   "ENTITY_ID": "5",
-        //   "ENTITY_NAME": "PersonDeliveryMethod"
-        // },
-        // {
-        //   "ENTITY_ID": "6",
-        //   "ENTITY_NAME": "PersonDriversLicence"
-        // },
-        // {
-        //   "ENTITY_ID": "7",
-        //   "ENTITY_NAME": "PersonEmail"
-        // },
-        // {
-        //   "ENTITY_ID": "8",
-        //   "ENTITY_NAME": "PersonEthnicity"
-        // },
-        // {
-        //   "ENTITY_ID": "9",
-        //   "ENTITY_NAME": "PersonImage"
-        // },
-        // {
-        //   "ENTITY_ID": "10",
-        //   "ENTITY_NAME": "PersonLegislativeData"
-        // },
-        // {
-        //   "ENTITY_ID": "11",
-        //   "ENTITY_NAME": "PersonName"
-        // },
-        // {
-        //   "ENTITY_ID": "12",
-        //   "ENTITY_NAME": "PersonNationalIdentifier"
-        // },
-        // {
-        //   "ENTITY_ID": "13",
-        //   "ENTITY_NAME": "PersonPassport"
-        // },
-        // {
-        //   "ENTITY_ID": "14",
-        //   "ENTITY_NAME": "PersonPhone"
-        // },
-        // {
-        //   "ENTITY_ID": "15",
-        //   "ENTITY_NAME": "PersonReligion"
-        // },
-        // {
-        //   "ENTITY_ID": "16",
-        //   "ENTITY_NAME": "PersonUserInformation"
-        // },
-        // {
-        //   "ENTITY_ID": "17",
-        //   "ENTITY_NAME": "PersonUserManualRoles"
-        // },
-        // {
-        //   "ENTITY_ID": "18",
-        //   "ENTITY_NAME": "PersonVisa"
-        // },
-        // {
-        //   "ENTITY_ID": "19",
-        //   "ENTITY_NAME": "WorkRelationship"
-        // },
-        // {
-        //   "ENTITY_ID": "20",
-        //   "ENTITY_NAME": "WorkTerms"
-        // },
-        // {
-        //   "ENTITY_ID": "21",
-        //   "ENTITY_NAME": "Assignment"
-        // },
-        // {
-        //   "ENTITY_ID": "22",
-        //   "ENTITY_NAME": "AssignmentExtraInfo"
-        // },
-        // {
-        //   "ENTITY_ID": "23",
-        //   "ENTITY_NAME": "AssignmentGradeSteps"
-        // },
-        // {
-        //   "ENTITY_ID": "24",
-        //   "ENTITY_NAME": "AssignmentSupervisor"
-        // },
-        // {
-        //   "ENTITY_ID": "25",
-        //   "ENTITY_NAME": "AssignmentWorkMeasure"
-        // },
-        // {
-        //   "ENTITY_ID": "26",
-        //   "ENTITY_NAME": "WorkingHourPattern"
-        // },
-        // {
-        //   "ENTITY_ID": "27",
-        //   "ENTITY_NAME": "Contract"
-        // },
-        // {
-        //   "ENTITY_ID": "28",
-        //   "ENTITY_NAME": "WorkTermsExtraInfo"
-        // },
-        // {
-        //   "ENTITY_ID": "29",
-        //   "ENTITY_NAME": "WorkTermsGradeSteps"
-        // },
-        // {
-        //   "ENTITY_ID": "30",
-        //   "ENTITY_NAME": "WorkTermsSupervisor"
-        // },
-        // {
-        //   "ENTITY_ID": "31",
-        //   "ENTITY_NAME": "WorkTermsWorkMeasure"
-        // },
-        // {
-        //   "ENTITY_ID": "32",
-        //   "ENTITY_NAME": "WorkerExtraInfo"
-        // },
+      self.destinationEntity = [];
 
-      ];
-
-      self.destinationColumns = [
-        // {
-        //   "COLUMN_NAME": "PERSONID"
-        // },
-        // {
-        //   "COLUMN_NAME": "PERSONNUMBER"
-        // },
-        // {
-        //   "COLUMN_NAME": "EFFECTIVEENDDATE"
-        // },
-        // {
-        //   "COLUMN_NAME": "EFFECTIVESTARTDATE"
-        // },
-        // {
-        //   "COLUMN_NAME": "ACTIONCODE"
-        // },
-        // {
-        //   "COLUMN_NAME": "BLOODTYPE"
-        // },
-        // {
-        //   "COLUMN_NAME": "CORRESPONDENCELANGUAGE"
-        // },
-        // {
-        //   "COLUMN_NAME": "COUNTRYOFBIRTH"
-        // },
-        // {
-        //   "COLUMN_NAME": "DATEOFBIRTH"
-        // },
-        // {
-        //   "COLUMN_NAME": "DATEOFDEATH"
-        // },
-        // {
-        //   "COLUMN_NAME": "PERSONDUPLICATECHECK"
-        // },
-        // {
-        //   "COLUMN_NAME": "REASONCODE"
-        // },
-        // {
-        //   "COLUMN_NAME": "REGIONOFBIRTH"
-        // },
-        // {
-        //   "COLUMN_NAME": "STARTDATE"
-        // },
-        // {
-        //   "COLUMN_NAME": "TOWNOFBIRTH"
-        // },
-        // {
-        //   "COLUMN_NAME": "SOURCESYSTEMID"
-        // },
-        // {
-        //   "COLUMN_NAME": "SOURCESYSTEMOWNER"
-        // },
-        // {
-        //   "COLUMN_NAME": "GUID"
-        // },
-
-      ]
+      self.destinationColumns = []
 
 
       self.dataProviderForSourceEntityColumns = ko.observableArray(self.sourceEntityColumns);
 
-
-
+      $("#entityloader").show()
       $.ajax({
         url: "http://localhost:3333/api/v1/source/entity/columns",
         data: { id: context.properties.entityId },
@@ -308,30 +42,28 @@ self.noData = ko.observable("no");
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
-          if(data.success == true){
+          if (data.success == true) {
 
-                if(data.data.length == 0){
-                    self.noData("yes");
-                  
-                                 }else{
+            if (data.data.length == 0) {
+              self.noData("yes");
 
-                  var tempArray = [];
-                  for (let i = 0; i < data.data.length; i++) {
-                    tempArray.push(data.data[i]);
-                  }
-        
-                  self.dataProviderForSourceEntityColumns(tempArray);
-                }
+            } else {
 
-          }else{
+              var tempArray = [];
+
+              for (let i = 0; i < data.data.length; i++) {
+                tempArray.push(data.data[i]);
+              }
+              $("#entityloader").hide()
+              self.dataProviderForSourceEntityColumns(tempArray);
+            }
+
+          } else {
 
           }
-
-          
-
         },
         fail: function (xhr, textStatus, errorThrown) {
-
+          $("#entityloader").hide()
           console.log(errorThrown);
         }
       });
@@ -340,6 +72,7 @@ self.noData = ko.observable("no");
 
 
       self.dataProviderForDestinationEntity = ko.observableArray(self.destinationEntity);
+      $("#entityloader").show()
 
       $.ajax({
         url: "http://localhost:3333/api/v1/dest/entities",
@@ -354,7 +87,7 @@ self.noData = ko.observable("no");
           for (let i = 0; i < data.data.length; i++) {
             tempArray.push(data.data[i]);
           }
-
+          $("#entityloader").hide();
           self.dataProviderForDestinationEntity(tempArray);
 
         },
@@ -366,7 +99,7 @@ self.noData = ko.observable("no");
 
 
 
-      // self.dataProviderForDestinationEntityColumns = ko.observableArray(self.destinationColumns);
+
       self.dataProviderForDestinationEntityColumns = ko.observableArray();
       self.sourceColumn = ko.observable();
       self.sourceColumnOriginalName = ko.observable();
@@ -376,24 +109,40 @@ self.noData = ko.observable("no");
       self.destinationColumn = ko.observable();
       self.destinationColumnId = ko.observable();
 
-      // self.dataProvider = new ArrayDataProvider(users, {keyAttributes: 'name'});
+
+
       self.onSourceColumnSelection = function (event, current, bindingContext) {
-        // self.dataProvider.remove(current.data);
+        if (current.data.IS_MANDATORY == "N") {
+          self.loaded1("one");
+          self.sourceColumn(current.data.DISPLAY_NAME);
+          self.sourceColumnOriginalName(current.data.COLUMN_NAME);
+          self.sourceColumnId(current.data.COLUMN_ID);
+        } else {
+          console.log("Task done")
+        }
+        //to-do refactor after demo
+        var lookups = ["BLOOD_TYPE", "TITLE", "SEX"];
+        for (let i = 0; i < lookups.length; i++) {
+          if (current.data.COLUMN_NAME == lookups[i]) {
+            $(".destinationEntity:nth-child(11)").find("div").css({"color":"white","background":"#0f758e"});
+          //  $(".destinationEntity .destination:nth-child(11)").css("color", "red");
 
-        $('#foo').addClass('myClass');
+          }
+        }
 
-        self.loaded1("one");
-        self.sourceColumn(current.data.DISPLAY_NAME);
-        self.sourceColumnOriginalName(current.data.COLUMN_NAME);
-        self.sourceColumnId(current.data.COLUMN_ID);
+        var location = ["LOCATION_CODE"]
+        for (let i = 0; i < location.length; i++) {
+          if (current.data.COLUMN_NAME == location[i]) {
+            $(".destinationEntity:nth-child(7)").find("div").css({"color":"white","background":"#0f758e"});
+          }
+        }
+      }
 
-      };
+
+
 
       self.onDestinationEntitySelection = function (event, current, bindingContext) {
-        // self.dataProvider.remove(current.data);
 
-
-        // self.dataProviderForDestinationEntityColumns(self.destinationColumns);
         self.loaded2("one");
         self.loaded3("two");
         self.destinationColumn(undefined);
@@ -427,6 +176,8 @@ self.noData = ko.observable("no");
 
       };
 
+
+
       self.onDestinationColumnSelection = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
         self.loaded3("one");
@@ -435,13 +186,7 @@ self.noData = ko.observable("no");
 
       };
 
-      self.dataProvider = ko.observableArray([
-
-        // {sourceColumn: "userid" , destinationEntity: "table", destinationColumn:"id"},
-        // { name: "Bert" },
-        // { name: "Charles" },
-        // { name: "Denise" }
-      ]);
+      self.dataProvider = ko.observableArray();
 
 
       $.ajax({
@@ -476,23 +221,16 @@ self.noData = ko.observable("no");
       self.errorColumn = ko.observable();
 
 
-      self.messages = [
-      ];
-self.errorMessageTimeout = ko.observable('0');
-self.messagesArray = ko.observableArray(self.messages);
- self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
+      self.messages = [];
+      self.errorMessageTimeout = ko.observable('0');
+      self.messagesArray = ko.observableArray(self.messages);
+      self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
 
       self.mapFields = function () {
 
-        if(self.noData() == "yes"){
+        if (self.noData() == "yes") {
           self.errorColumn("You haven't selected any source fields for mapping. Please select them from the entity idetification");
           document.getElementById('modalDialog1').open();
-
-          // self.errorColumn("Please Select Source Field test");
-          // self.open = function (event) {
-          // document.getElementById('modalDialog1').open();
-
-         
         }
         else if (self.sourceColumn() == undefined) {
           self.errorColumn("Please Select Source Field");
@@ -509,7 +247,7 @@ self.messagesArray = ko.observableArray(self.messages);
           // self.open = function (event) {
           document.getElementById('modalDialog1').open();
           // }
-        } else if(self.dataProvider().length == 0){
+        } else if (self.dataProvider().length == 0) {
           $.ajax({
             url: "http://localhost:3333/api/v1/mappings",
             data:
@@ -534,16 +272,16 @@ self.messagesArray = ko.observableArray(self.messages);
 
               if (data.success == true) {
                 self.dataProvider.push({ DISPLAY_NAME: self.sourceColumn(), DESTINATION_ENTITY_NAME: self.destinationEntity(), DESTINATION_COLUMN_NAME: self.destinationColumn() });
-             
-                var success ={
+
+                var success = {
                   severity: 'confirmation',
-                    summary: 'Success',
-                    detail: "Mapping Added Successfully",
-                    autoTimeout: parseInt(self.errorMessageTimeout())
+                  summary: 'Success',
+                  detail: "Mapping Added Successfully",
+                  autoTimeout: parseInt(self.errorMessageTimeout())
                 }
                 self.messagesArray.push(success);
-  
-  
+
+
               }
 
             },
@@ -551,22 +289,22 @@ self.messagesArray = ko.observableArray(self.messages);
 
               console.log(errorThrown);
             }
-          });      
+          });
 
-         
-        }else {
-          var matchFound  = false;
-          for(let i=0; i<self.dataProvider().length; i++ ){
 
-            
-            if(self.sourceColumn() == self.dataProvider()[i].DISPLAY_NAME && self.destinationColumn() == self.dataProvider()[i].DESTINATION_COLUMN_NAME){
+        } else {
+          var matchFound = false;
+          for (let i = 0; i < self.dataProvider().length; i++) {
+
+
+            if (self.sourceColumn() == self.dataProvider()[i].DISPLAY_NAME && self.destinationColumn() == self.dataProvider()[i].DESTINATION_COLUMN_NAME) {
               matchFound = true;
               self.errorColumn("Duplicate Mapping (mapping for these fields is already done)");
-                document.getElementById('modalDialog1').open();
-                break;
+              document.getElementById('modalDialog1').open();
+              break;
             }
-           
-            
+
+
           }
 
           if (matchFound == false) {
@@ -587,29 +325,29 @@ self.messagesArray = ko.observableArray(self.messages);
               },
               type: 'POST',
               dataType: 'json',
-  
+
               success: function (data, textStatus, jqXHR) {
-  
+
                 console.log(data);
-  
+
                 if (data.success == true) {
                   self.dataProvider.push({ DISPLAY_NAME: self.sourceColumn(), DESTINATION_ENTITY_NAME: self.destinationEntity(), DESTINATION_COLUMN_NAME: self.destinationColumn() });
-               
-                  var success ={
+
+                  var success = {
                     severity: 'confirmation',
-                      summary: 'Success',
-                      detail: "Mapping Added Successfully",
-                      autoTimeout: parseInt(self.errorMessageTimeout())
+                    summary: 'Success',
+                    detail: "Mapping Added Successfully",
+                    autoTimeout: parseInt(self.errorMessageTimeout())
                   }
                   self.messagesArray.push(success);
-               
+
                 }
-  
-  
-  
+
+
+
               },
               fail: function (xhr, textStatus, errorThrown) {
-  
+
                 console.log(errorThrown);
               }
             });
@@ -618,44 +356,49 @@ self.messagesArray = ko.observableArray(self.messages);
 
 
 
-          // $.ajax({
-          //   url: "http://localhost:3333/api/v1/mappings",
-          //   data:
-          //   {
-          //     projectid: 2,
-          //     sourceentityid: context.properties.entityId,
-          //     sourceentityname: "nil",
-          //     sourcecolumnid: self.sourceColumnId(),
-          //     sourcecolumnname: self.sourceColumn(),
-          //     sourcecolumnnameoriginal: self.sourceColumnOriginalName(),
-          //     destinationentityid: self.destinationEntityId(),
-          //     destinationentityname: self.destinationEntity(),
-          //     destinationcolumnid: self.destinationColumnId(),
-          //     destinationcolumnname: self.destinationColumn(),
-          //   },
-          //   type: 'POST',
-          //   dataType: 'json',
+        // $.ajax({
+        //   url: "http://localhost:3333/api/v1/mappings",
+        //   data:
+        //   {
+        //     projectid: 2,
+        //     sourceentityid: context.properties.entityId,
+        //     sourceentityname: "nil",
+        //     sourcecolumnid: self.sourceColumnId(),
+        //     sourcecolumnname: self.sourceColumn(),
+        //     sourcecolumnnameoriginal: self.sourceColumnOriginalName(),
+        //     destinationentityid: self.destinationEntityId(),
+        //     destinationentityname: self.destinationEntity(),
+        //     destinationcolumnid: self.destinationColumnId(),
+        //     destinationcolumnname: self.destinationColumn(),
+        //   },
+        //   type: 'POST',
+        //   dataType: 'json',
 
-          //   success: function (data, textStatus, jqXHR) {
+        //   success: function (data, textStatus, jqXHR) {
 
-          //     console.log(data);
+        //     console.log(data);
 
-          //     if (data.success == true) {
-          //       self.dataProvider.push({ SOURCE_COLUMN_NAME: self.sourceColumn(), destinationEntity: self.destinationEntity(), DESTINATION_COLUMN_NAME: self.destinationColumn() });
-          //     }
+        //     if (data.success == true) {
+        //       self.dataProvider.push({ SOURCE_COLUMN_NAME: self.sourceColumn(), destinationEntity: self.destinationEntity(), DESTINATION_COLUMN_NAME: self.destinationColumn() });
+        //     }
 
 
 
-          //   },
-          //   fail: function (xhr, textStatus, errorThrown) {
+        //   },
+        //   fail: function (xhr, textStatus, errorThrown) {
 
-          //     console.log(errorThrown);
-          //   }
-          // });
+        //     console.log(errorThrown);
+        //   }
+        // });
 
-       
+
 
       };
+
+      self.openremoveUser = function (event) {
+        document.getElementById('removeUserbox').open();
+      };
+
 
       self.removeUser = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
@@ -673,6 +416,8 @@ self.messagesArray = ko.observableArray(self.messages);
 
             if (data.success == true) {
               self.dataProvider.remove(current.data);
+              document.getElementById('removeuserbox').close();
+
             }
 
 
@@ -680,11 +425,18 @@ self.messagesArray = ko.observableArray(self.messages);
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
+            document.getElementById('removeuserbox').close();
+
           }
         });
 
 
       };
+
+      this.openclearallbox = function (event) {
+        document.getElementById('clearallbox').open();
+      };
+
 
       self.removeAllMappings = function (event, current, bindingContext) {
 
@@ -700,6 +452,10 @@ self.messagesArray = ko.observableArray(self.messages);
             console.log(data);
             if (data.success == true) {
               self.dataProvider.removeAll();
+
+              document.getElementById('clearallbox').close();
+
+
             }
 
 
@@ -708,6 +464,8 @@ self.messagesArray = ko.observableArray(self.messages);
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
+            document.getElementById('clearallbox').close();
+
           }
         });
 

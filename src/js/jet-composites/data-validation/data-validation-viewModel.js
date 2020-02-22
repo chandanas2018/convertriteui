@@ -103,6 +103,16 @@ define(
             id: "ELEMENT_ENTRIES_VALUES",
             label: "ELEMENT_ENTRIES_VALUES",
             disabled: false
+          },{
+            entityid: 17,
+            id: "WORK_TERMS",
+            label: "WORK_TERMS",
+            disabled: false
+          }, {
+            entityid: 18,
+            id: "WORK_RELATIONSHIP",
+            label: "WORK_RELATIONSHIP",
+            disabled: false
           },
         ];
   

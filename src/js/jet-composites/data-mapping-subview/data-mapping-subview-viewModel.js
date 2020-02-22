@@ -4,7 +4,7 @@
 */
 'use strict';
 define(
-  ['knockout', 'jquery', 'ojL10n!./resources/nls/data-mapping-subview-strings','ojs/ojarraydataprovider', 'ojs/ojdialog','ojs/ojmessages', 'libs/file-saver/FileSaver'],
+  ['knockout', 'jquery', 'ojL10n!./resources/nls/data-mapping-subview-strings', 'ojs/ojarraydataprovider', 'ojs/ojdialog', 'ojs/ojmessages', 'libs/file-saver/FileSaver'],
   function (ko, $, componentStrings, ArrayDataProvider) {
 
     function ExampleComponentModel(context) {
@@ -21,32 +21,20 @@ define(
 
       var data23 = [];
       // var data1=[];
-
+      $("#dataloader").show();
       $.ajax({
         url: "http://localhost:3333/api/v1/exceldata",
-        data: { entityid: context.properties.entityId},
+        data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
 
         success: function (data, textStatus, jqXHR) {
-
           console.log(data);
-
-          // for(let i=0; i<data.data.mappings.length;i++){
-          //   var obj ={
-          //     sourceData: data.data.source[i]
-          //   }
-          // }
-
-          // var data23 = [];
           for (let j = 0; j < data.data.length; j++) {
-
-
             var obj2 = {
               sheetid: data.data[j].sourcecolumnname + "-" + data.data[j].destinationcolumnname,
               header: true
             }
-
             sheetNames.push(obj2);
 
             var data1 = [];
@@ -61,6 +49,7 @@ define(
                   sourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
                   desData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
                 }
+                $("#dataloader").hide();
                 data1.push(obj);
 
               }
@@ -74,6 +63,7 @@ define(
                   sourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
                   desData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
                 }
+                $("#dataloader").hide();
                 data1.push(obj);
 
               }
@@ -106,7 +96,7 @@ define(
 
         },
         error: function (xhr, textStatus, errorThrown) {
-
+          $("#dataloader").hide();
           console.log(errorThrown);
         }
       });
@@ -117,36 +107,37 @@ define(
       self.selectListener = function (event, current, bindingContext) {
 
 
-        if(self.dataProvider().length == 0){
+        if (self.dataProvider().length == 0) {
 
-          var error ={   
+          var error = {
             severity: 'error',
-          summary: 'No Mappings selected',
-          detail: "There are no active mappings to upload the template",
-          autoTimeout: parseInt(self.errorMessageTimeout())
-        }
+            summary: 'No Mappings selected',
+            detail: "There are no active mappings to upload the template",
+            autoTimeout: parseInt(self.errorMessageTimeout())
+          }
           self.messagesArray.push(error);
           //Invalid file format
-        
 
-        }else{
+
+        } else {
 
 
           var files = event.detail.files; // FileList object
           // var xl2json = new ExcelToJSON();
           self.parseExcel(files[0]);
-          var success ={
+          var success = {
             severity: 'confirmation',
-              summary: 'Success',
-              detail: "Mapping Template Uploaded",
-              autoTimeout: parseInt(self.errorMessageTimeout())
+            summary: 'Success',
+            detail: "Mapping Template Uploaded",
+            autoTimeout: parseInt(self.errorMessageTimeout())
           }
+          $("#dataloader").hide();
           self.messagesArray.push(success);
-}
+        }
 
 
 
-   
+
 
 
         // var file = new File([event.detail.files], event.detail.files[0].name, {
@@ -178,40 +169,40 @@ define(
         // var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
         //                   [opts,[sheet_1_data ,sheet_2_data]]);
 
-        if(self.dataProvider().length == 0){
+        if (self.dataProvider().length == 0) {
 
-          var error ={   
+          var error = {
             severity: 'error',
-          summary: 'No Mappings selected',
-          detail: "There are no active mappings to download the template",
-          autoTimeout: parseInt(self.errorMessageTimeout())
-        }
+            summary: 'No Mappings selected',
+            detail: "There are no active mappings to download the template",
+            autoTimeout: parseInt(self.errorMessageTimeout())
+          }
           self.messagesArray.push(error);
           //Invalid file format
-        
 
-        }else{
+
+        } else {
           var sheetData = [];
           for (let i = 0; i < data23.length; i++) {
-  
+
             sheetData.push(data23[i]);
-  
+
           }
           var result = alasql('SELECT * INTO XLSX("Mapping_Template.xlsx",?) FROM ?',
             [sheetNames, sheetData]);
 
-            var success ={
-              severity: 'confirmation',
-                summary: 'Success',
-                detail: "Mapping Template Downloaded Successfully",
-                autoTimeout: parseInt(self.errorMessageTimeout())
-            }
-            self.messagesArray.push(success);
+          var success = {
+            severity: 'confirmation',
+            summary: 'Success',
+            detail: "Mapping Template Downloaded Successfully",
+            autoTimeout: parseInt(self.errorMessageTimeout())
+          }
+          self.messagesArray.push(success);
 
         }
 
 
-    
+
       }
 
 
@@ -252,7 +243,7 @@ define(
 
           $.ajax({
             url: "http://localhost:3333/api/v1/exceldataupload",
-            data: { entityid:context.properties.entityId, mappings: mappingsObj },
+            data: { entityid: context.properties.entityId, mappings: mappingsObj },
             type: 'POST',
             dataType: 'json',
 
@@ -367,8 +358,8 @@ define(
             var tempArray = [];
             for (let i = 0; i < data.data.length; i++) {
               var obj = {
-                sourceDataName: data.data[i].SOURCE_DATA,
-                destinationDataName: data.data[i].DESTINATION_DATA,
+                sourceDataName: data.data[i].SOURCE_DISPLAY_NAME,
+                destinationDataName: data.data[i].DESTINATION_DISPLAY_NAME,
                 // sourceColumnId: data.data[i].SOURCE_COLUMN_ID,
                 // destColumnId: data.data[i].DESTINATION_COLUMN_ID,
                 // projectid: data.data[i].PROJECT_ID,
@@ -389,15 +380,7 @@ define(
       }
 
 
-
-
-
-
-
       // }
-
-
-
 
 
       self.sourceColumn = ko.observable();
@@ -411,7 +394,7 @@ define(
 
 
       self.onMappingSelection = function (event, current, bindingContext) {
-        // self.dataProvider.remove(current.data);
+
 
         self.mappingData(current.data);
         self.sourceData('');
@@ -432,17 +415,21 @@ define(
             console.log(data);
 
             var tempArray1 = [];
-            for (let i = 0; i < data.data.srcdata.length; i++) {
-              tempArray1.push(data.data.srcdata[i]);
-            }
+           
+              for (let i = 0; i < data.data.srcdata.length; i++) {
+                tempArray1.push(data.data.srcdata[i]);
+              }
+           
+
 
             self.sourceData(tempArray1);
 
             var tempArray2 = [];
-            for (let i = 0; i < data.data.destdata.length; i++) {
-              tempArray2.push(data.data.destdata[i]);
-            }
-
+           
+              for (let i = 0; i < data.data.destdata.length; i++) {
+                tempArray2.push(data.data.destdata[i]);
+              }
+            
             self.destData(tempArray2);
 
 
@@ -460,13 +447,14 @@ define(
 
       self.sourceDataName = ko.observable();
       self.sourceDataId = ko.observable();
-
+      self.sourceDataCode = ko.observable();
 
       self.onSourceDataSelection = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
         self.loaded2("one");
         self.sourceDataName(current.data.SOURCE_DATA_NAME);
         self.sourceDataId(current.data.SOURCE_DATA_ID);
+        self.sourceDataCode(current.data.SOURCE_DATA_CODE);
 
       };
 
@@ -504,9 +492,9 @@ define(
 
       self.messages = [
       ];
-self.errorMessageTimeout = ko.observable('0');
-self.messagesArray = ko.observableArray(self.messages);
- self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
+      self.errorMessageTimeout = ko.observable('0');
+      self.messagesArray = ko.observableArray(self.messages);
+      self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
       self.mapData = function () {
         // if (self.sourceData().length == undefined || self.sourceData().length == 0) {
         //   self.errorColumn('Invalid mapping');
@@ -536,11 +524,14 @@ self.messagesArray = ko.observableArray(self.messages);
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
-              sourcedataname: self.sourceDataName(),
+              sourcedisplayname: self.sourceDataName(),
+              sourcedataname: self.sourceDataId(),
+              sourcedatacode: self.sourceDataCode(),
               destinationdataname: self.destinationDataName(),
+              destinationdataid: self.destinationDataId(),
               remainingdata: self.mappingData(),
-
             },
+
             type: 'POST',
             dataType: 'json',
 
@@ -549,11 +540,12 @@ self.messagesArray = ko.observableArray(self.messages);
               console.log(data);
 
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-              var success ={
+
+              var success = {
                 severity: 'confirmation',
-                  summary: 'Success',
-                  detail: "Mapping Added Successfully",
-                  autoTimeout: parseInt(self.errorMessageTimeout())
+                summary: 'Success',
+                detail: "Mapping Added Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
               }
               self.messagesArray.push(success);
             },
@@ -563,9 +555,9 @@ self.messagesArray = ko.observableArray(self.messages);
             }
           });
 
+        }
 
-          // self.dataProvider2.push({ sourceDataName: self.sourceDataName, destinationDataName: self.destinationDataName });
-        } else {
+        else {
 
           var matchFound = false;
           for (let i = 0; i < self.dataProvider2().length; i++) {
@@ -590,24 +582,25 @@ self.messagesArray = ko.observableArray(self.messages);
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
-              sourcedataname: self.sourceDataName(),
+              sourcedisplayname:self.sourceDataName(),
+              sourcedataname: self.sourceDataId(),
+              sourcedatacode: self.sourceDataCode(),
               destinationdataname: self.destinationDataName(),
-              remainingdata: self.mappingData(),
-
+              destinationdataid: self.destinationDataId(),
+              remainingdata: self.mappingData()
             },
             type: 'POST',
             dataType: 'json',
-
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
 
               self.dataProvider2.push({ sourceDataName: self.sourceDataName(), destinationDataName: self.destinationDataName() });
-              var success ={
+              var success = {
                 severity: 'confirmation',
-                  summary: 'Success',
-                  detail: "Mapping Added Successfully",
-                  autoTimeout: parseInt(self.errorMessageTimeout())
+                summary: 'Success',
+                detail: "Mapping Added Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
               }
               self.messagesArray.push(success);
             },
@@ -618,6 +611,11 @@ self.messagesArray = ko.observableArray(self.messages);
           });
         }
 
+      };
+
+
+      this.openremoveUser = function (event) {
+        document.getElementById('removeUserbox').open();
       };
 
       self.removeUser = function (event, current, bindingContext) {
@@ -651,6 +649,10 @@ self.messagesArray = ko.observableArray(self.messages);
 
 
       };
+      this.openclearall = function (event) {
+        document.getElementById('clearallbox').open();
+      };
+
 
       self.removeAllMappings = function (event, current, bindingContext) {
         // self.dataProvider2.removeAll();
@@ -666,6 +668,7 @@ self.messagesArray = ko.observableArray(self.messages);
             console.log(data);
             if (data.success == true) {
               self.dataProvider2.removeAll();
+              document.getElementById('clearallbox').close();
             }
 
 
@@ -674,6 +677,8 @@ self.messagesArray = ko.observableArray(self.messages);
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
+            document.getElementById('clearallbox').close();
+
           }
         });
 
