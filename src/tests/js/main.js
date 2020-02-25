@@ -6,7 +6,7 @@
 
 requirejs.config(
   {
-    baseUrl : '../../js',
+    baseUrl : '/js',
     // Path mappings for the logical module names
     paths :
         //injector:mainReleasePaths
@@ -26,7 +26,7 @@ requirejs.config(
           'touchr' : 'libs/touchr/touchr',
           'persist': 'libs/persist/debug',
           'customElements': 'libs/webcomponents/custom-elements.min',
-          'test' : '../tests/js/test',
+          'test' : '/tests/js/test',
         }
         //endinjector
       ,
