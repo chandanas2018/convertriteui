@@ -4,10 +4,11 @@
 -->
 
 <div class="loader" id="entityloader"></div>
-<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Mandatory fields to generate HDL are mapped by the tool  and so they can't be Selected *</p>
+<p style="color:red;margin:10px;margin-bottom:20px;text-align:center;"> * Mandatory fields to generate HDL are mapped by
+  the tool and so they can't be Selected *</p>
 
 <div class="oj-panel" style="border:none;margin-top:-17px;">
-  <h2 style="color:#0f758e;"><b> Select your Source Fields</b></h2>
+  <h2 style="color: #1464a0;"><b> Select your Source Fields</b></h2>
   <hr>
 
   <oj-bind-if test="[[noData()=='yes']]">
@@ -32,7 +33,7 @@
       <div class="oj-flex-item">
         <oj-bind-if test="[[loaded1()=='one']]">
           <div class="oj-panel"
-            style="background-color:#0f758e;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
+            style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
               style="color:white;" data-bind="text:sourceColumn"></span> </div>
         </oj-bind-if>
         <!-- <div class="oj-flex-item">text</div> -->
@@ -46,30 +47,27 @@
     <div class="oj-flex oj-sm-flex-items-initial" style="height:100px;overflow-y: auto;">
 
 
-    
+
       <oj-bind-for-each data="[[dataProviderForSourceEntityColumns]]">
         <template>
-          <div class="oj-flex-item">
+          <div class="oj-flex-item mandate">
             <div class="oj-panel" on-click="[[onSourceColumnSelection]]"
               style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
               <oj-bind-text value="[[$current.data.DISPLAY_NAME]]" style="font-size:12px;"></oj-bind-text>
             </div>
-            <!-- <oj-dialog style="display:none" id="mappingdilogue" dialog-title="Information">
+            <oj-dialog style="display:none" id="mappingdilogue" dialog-title="Information">
               <div slot="body">
-                This Column is already mapped by this tool.To see the mapping please check the preview in conversion
-                stage.
+                This field is already mapped by the tool.So this can't be selected again.
               </div>
-              <div slot="footer">
-                <oj-button id="okButton" on-oj-action="[[closebox]]">OK
-                </oj-button>
-              </div>
-              
-            
-            </oj-dialog> -->
+              <!-- <div slot="footer">
+                <button on-click="[[closemapping]]">ok</button>
+              </div> -->
+            </oj-dialog>
 
-         
+
+
           </div>
-        </template>                                       
+        </template>
       </oj-bind-for-each>
 
 
@@ -86,8 +84,8 @@
 
 
 <div class="oj-panel" style="border:none">
-  <!-- <h2 style="color:#0f758e;"><b>Destination Entities</b></h2> -->
-  <h2 style="color:#0f758e;"><b>Data Mapping Entities</b></h2>
+  <!-- <h2 style="color: #1464a0;"><b>Destination Entities</b></h2> -->
+  <h2 style="color: #1464a0;"><b>Data Mapping Entities</b></h2>
   <hr>
 
   <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
@@ -106,7 +104,7 @@
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded2()=='one']]">
         <div class="oj-panel"
-          style="background-color:#0f758e;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
+          style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
             style="color:white;" data-bind="text:destinationEntity"></span> </div>
       </oj-bind-if>
 
@@ -134,7 +132,7 @@
 </div>
 
 <div class="oj-panel" style="border:none">
-  <h2 style="color:#0f758e;"><b>Data Mapping Fields</b></h2>
+  <h2 style="color: #1464a0;"><b>Data Mapping Fields</b></h2>
   <hr>
 
 
@@ -153,7 +151,7 @@
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded3()=='one']]">
         <div class="oj-panel"
-          style="background-color:#0f758e;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
+          style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
             style="color:white;" data-bind="text:destinationColumn"></span> </div>
       </oj-bind-if>
       <!-- <div class="oj-flex-item">text</div> -->
@@ -166,7 +164,7 @@
     <div class="oj-flex-item">Selected field name:</div>
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded3()=='one']]">
-        <div class="oj-panel" style="background-color:#0f758e;text-align:center;width:200px;"><span style="color:white;"
+        <div class="oj-panel" style="background-color: #1464a0;text-align:center;width:200px;"><span style="color:white;"
             data-bind="text:destinationColumn"></span> </div>
       </oj-bind-if>
     </div>
@@ -199,7 +197,7 @@
 </div>
 
 <div class="oj-panel" on-click="[[mapFields]]"
-  style="border:none;background-color:#0f758e;margin:10px;border-radius: 10px;text-align: center;cursor:pointer;">
+  style="border:none;background-color: #1464a0;margin:10px;border-radius: 10px;text-align: center;cursor:pointer;">
   <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[mapFields]]" > -->
   <span style="color:white;">MAP FIELDS -></span>
   <!-- </oj-button> -->
@@ -220,12 +218,12 @@
 
   <div class="oj-flex">
     <div class="oj-flex-item">
-      <h2 style="color:#0f758e;"><b>Mappings</b></h2>
+      <h2 style="color: #1464a0;"><b>Mappings</b></h2>
     </div>
     <div class="oj-flex-item"></div>
     <div class="oj-sm-flex-initial oj-flex-item">
       <div class="oj-panel" on-click="[[openclearallbox]]"
-        style="background-color:#0f758e; border-radius:10px;cursor:pointer;">
+        style="background-color: #1464a0; border-radius:10px;cursor:pointer;">
 
         <span style="color:white;font-size:small;">DELETE MAPPINGS</span>
       </div>
@@ -234,7 +232,7 @@
         <div slot="body">
           Do you want to clear it completely?
 
-          
+
         </div>
         <div slot="footer">
           <oj-button id="okButton" on-oj-action="[[removeAllMappings]]">OK
@@ -253,7 +251,7 @@
 
           <div class="oj-flex oj-sm-flex-items-initial" style="margin:5px;">
             <div class="oj-flex-item">
-              <div class="oj-panel" style="border-radius:10px 0px 0px 10px;font-size:smaller;color:#0f758e;">
+              <div class="oj-panel" style="border-radius:10px 0px 0px 10px;font-size:smaller;color: #1464a0;">
 
 
                 <oj-bind-text value="[[$current.data.DISPLAY_NAME]]"></oj-bind-text> -> (<oj-bind-text
@@ -263,14 +261,14 @@
             </div>
             <div class="oj-flex-item">
               <div class="oj-panel" on-click="[[openremoveUser]]"
-                style="background-color:#0f758e;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
+                style="background-color: #1464a0;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
                 <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[removeUser]]"> -->
                 <img src="../../../css/images/delete_white@2x.png" width="16" height="16"
                   style="padding:6px 6px 3px 3px;">
               </div>
               <oj-dialog style="display:none" id="removeUserbox" dialog-title="Delete confirmation">
                 <div slot="body">
-                  Do u want to delete this permanently
+                  Do you want to delete this permanently
                 </div>
                 <div slot="footer">
                   <oj-button id="okButton" on-oj-action="[[removeUser]]">OK

@@ -11,7 +11,7 @@ entity-identification-subview{
 	width:95px;
 	 height:40px;
 	 border-radius: 7px;
-	 background-color: #0f758e;
+	 background-color:  #1464a0;
 	 color:white;
 	 border:none; 
 	 cursor:pointer;
@@ -27,7 +27,7 @@ entity-identification-subview{
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;
-	border-bottom: 16px solid #0f758e;
+	border-bottom: 16px solid  #1464a0;
 	
   }
 #selectall{

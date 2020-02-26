@@ -55,10 +55,21 @@ define(
                 tempArray.push(data.data[i]);
               }
               $("#entityloader").hide()
+
               self.dataProviderForSourceEntityColumns(tempArray);
+
+              for (let i = 0; i < tempArray.length; i++) {
+                if (tempArray[i].IS_MANDATORY == "Y") {
+                  $(".mandate").eq(i).find("div").css({ "color": "black", "background": " #f2f4f5" });
+                }
+                else {
+                  $(".mandate").eq(i).find("div").css({ "color": "black", "background": "white" });
+                }
+              }
             }
 
           } else {
+
 
           }
         },
@@ -118,22 +129,50 @@ define(
           self.sourceColumnOriginalName(current.data.COLUMN_NAME);
           self.sourceColumnId(current.data.COLUMN_ID);
         } else {
-          console.log("Task done")
+          document.getElementById('mappingdilogue').open();
+
+          // self.closemapping = function() {
+          //   document.getElementById('mappingdilogue').close();
+          // }
         }
+
+       
         //to-do refactor after demo
         var lookups = ["BLOOD_TYPE", "TITLE", "SEX"];
         for (let i = 0; i < lookups.length; i++) {
           if (current.data.COLUMN_NAME == lookups[i]) {
-            $(".destinationEntity:nth-child(11)").find("div").css({"color":"white","background":"#0f758e"});
-          //  $(".destinationEntity .destination:nth-child(11)").css("color", "red");
+            $(".destinationEntity:nth-child(11)").find("div").css({ "color": "white", "background": " #1464a0" });
+          }
+        }
+
+        var location = ["LOCATION_CODE"];
+        for (let i = 0; i < location.length; i++) {
+          if (current.data.COLUMN_NAME == location[i]) {
+            $(".destinationEntity:nth-child(7)").find("div").css({ "color": "white", "background": " #1464a0" });
+          }
+        }
+
+        var grades = ["GRADE_CODE"];
+        for (let i = 0; i < grades.length; i++) {
+          if (current.data.COLUMN_NAME == grades[i]) {
+            $(".destinationEntity:nth-child(10)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
         }
 
-        var location = ["LOCATION_CODE"]
-        for (let i = 0; i < location.length; i++) {
-          if (current.data.COLUMN_NAME == location[i]) {
-            $(".destinationEntity:nth-child(7)").find("div").css({"color":"white","background":"#0f758e"});
+        var departments = ["DEPARTMENT_NAME"];
+        for (let i = 0; i < departments.length; i++) {
+          if (current.data.COLUMN_NAME == departments[i]) {
+            $(".destinationEntity:nth-child(6)").find("div").css({ "color": "white", "background": " #1464a0" });
+
+          }
+        }
+
+        var jobs = ["JOB_CODE"];
+        for (let i = 0; i < jobs.length; i++) {
+          if (current.data.COLUMN_NAME == jobs) {
+            $(".destinationEntity:nth-child(8)").find("div").css({ "color": "white", "background": " #1464a0" });
+
           }
         }
       }

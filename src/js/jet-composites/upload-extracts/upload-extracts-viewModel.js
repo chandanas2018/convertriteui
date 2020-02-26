@@ -2,13 +2,19 @@
   Copyright (c) 2015, 2019, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
+
+
 'use strict';
 define(
   ['knockout', 'jquery', 'ojL10n!./resources/nls/upload-extracts-strings', 'ojs/ojarraydataprovider', 'ojs/ojbutton', 'ojs/ojfilepicker', 'ojs/ojmessages'],
-  function (ko, $, componentStrings, ArrayDataProvider) {
+ function (ko, $, componentStrings, ArrayDataProvider) {
 
     function ExampleComponentModel(context) {
+      // require(['require','../js/configuration.js']),
       var self = this;
+
+    
+     
      
       self.entityList = [];
       self.entityListArray = ko.observableArray(self.entityList);

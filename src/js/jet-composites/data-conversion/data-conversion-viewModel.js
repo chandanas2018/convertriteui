@@ -124,7 +124,7 @@ define(
         self.dataProvider = new ArrayDataProvider(self.itemsArray);
   
   
-        self.selectedItem = ko.observable('PERSON');
+        self.selectedItem = ko.observable(sessionStorage.getItem("user"));
   
   
         $.ajax({
