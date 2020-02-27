@@ -6,6 +6,9 @@ upload-extracts{
 	min-height: 50px;
 	width: 50px;
 }
+.oj-filepicker-dropzone{
+	background-color: #d50b36;
+}
 
 #status{
 	display: none;
@@ -17,7 +20,7 @@ upload-extracts{
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;
-	border-bottom: 16px solid #0f758e;	
+	border-bottom: 16px solid  #1464a0;	
 }
 
 #progressup{
@@ -31,5 +34,5 @@ upload-extracts{
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;
-	border-bottom: 16px solid #0f758e;	
+	border-bottom: 16px solid  #1464a0;	
 }

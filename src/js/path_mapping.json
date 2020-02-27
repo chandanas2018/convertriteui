@@ -102,6 +102,24 @@
       }
     },
 
+    "papaparse": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/papaparse",
+      "debug": {
+        "src": "papaparse.js",
+        "path": "libs/papaparse/papaparse.js",
+        "cdnPath": "papaparse/papaparse-5.1.1"
+      },
+      "release": {
+        "src": "papaparse.min.js",
+        "path": "libs/papaparse/papaparse-#{version}.min.js",
+        "cdnPath": "papaparse/papaparse-5.1.1.min"
+      }
+    },
+
+
+   
+
     "ojdnd": {
       "cdn": "3rdparty",
       "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/dnd-polyfill",
