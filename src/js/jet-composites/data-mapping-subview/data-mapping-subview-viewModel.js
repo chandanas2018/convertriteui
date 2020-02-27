@@ -23,7 +23,7 @@ define(
       // var data1=[];
       $("#dataloader").show();
       $.ajax({
-        url: "http://localhost:3333/api/v1/exceldata",
+        url: "http://localhost:3333/api/v1/exceldatamapping",
         data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -32,43 +32,28 @@ define(
           console.log(data);
           for (let j = 0; j < data.data.length; j++) {
             var obj2 = {
-              sheetid: data.data[j].sourcecolumnname + "-" + data.data[j].destinationcolumnname,
+              sheetid: data.data[j].projectname,
               header: true
             }
             sheetNames.push(obj2);
 
             var data1 = [];
 
-            // if(data.data[j].sourcedata.length >= data.data[j].destinationdata.length){
-
-            if (data.data[j].sourcedata.length > data.data[j].destinationdata.length) {
-
-              for (let i = 0; i < data.data[j].sourcedata.length; i++) {
+            
 
                 var obj = {
-                  sourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
-                  desData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
+                  ProjectName: (data.data[j].projectname) ? data.data[j].projectname : '',
+                  SourceEntity: (data.data[j].sourceentityname) ? data.data[j].sourceentityname : '',
+                  SourceColumnName: (data.data[j].sourcecolumnname) ? data.data[j].sourcecolumnname : '',
+                  SourceData: (data.data[j].sourcedata) ? data.data[j].sourcedata : '',
+                  DestinationEntity: (data.data[j].destinationentity) ? data.data[j].destinationentity : '',
+                  DestinationColumnName: (data.data[j].destinationcolumnname) ? data.data[j].destinationcolumnname : '',
+                  DestinationData: (data.data[j].destinationdata) ? data.data[j].destinationdata : '',
                 }
                 $("#dataloader").hide();
                 data1.push(obj);
 
-              }
-
-            } else {
-
-
-              for (let i = 0; i < data.data[j].destinationdata.length; i++) {
-
-                var obj = {
-                  sourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
-                  desData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
-                }
-                $("#dataloader").hide();
-                data1.push(obj);
-
-              }
-
-            }
+              
 
 
             // }
@@ -242,7 +227,7 @@ define(
 
 
           $.ajax({
-            url: "http://localhost:3333/api/v1/exceldataupload",
+            url: "http://localhost:3333/api/v1/uploaddatamappings",
             data: { entityid: context.properties.entityId, mappings: mappingsObj },
             type: 'POST',
             dataType: 'json',

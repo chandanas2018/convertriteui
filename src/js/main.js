@@ -9,6 +9,9 @@
  * Example of Require.js boostrap javascript
  */
 
+
+
+
 requirejs.config(
 {
   baseUrl: 'js',

@@ -14,7 +14,7 @@
 
 
 <oj-bind-if test="[[dataLoaded()=='yes']]">
-<div id="tabbarcontainer" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]"
+<div id="tabbarcontainer1" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]"
   style="margin-bottom:20px;">
   <oj-tab-bar display="[[display]]" edge="[[edge]]" selection="{{selectedItem}}">
     <ul>
@@ -39,7 +39,7 @@
 
 
 
-  <div class="oj-flex">
+  <div class="oj-flex" style="width: 848px;margin-left: -10px;">
     <div class="oj-flex-item" style="border:1px solid #e0e1e1;border-radius: 5px;">
      
 
@@ -83,7 +83,7 @@
       <!-- </div> -->
     </div>
     <div class="oj-flex-item">
-      <div class="oj-flex" style="border:1px solid #e0e1e1;border-radius: 5px;">
+      <div class="oj-flex" style="border:1px solid #e0e1e1;border-radius: 5px;margin-left: 5px">
 
         <div class="oj-panel"
           style="width:160px; height:150px;border-radius:10px 65px 65px 10px;background-color:#f7f5eb;">
@@ -109,7 +109,7 @@
 
               <div class="oj-flex-item">
                 <div style="max-width: 175px; margin-top:10px;color:#ffcc33; font-size:30px;">
-                    <span data-bind="text:warningsCount"></span><b></b></div>
+                    <span data-bind="text:warningsCount"></span><b>1</b></div>
               </div>
 
             </div>
@@ -123,7 +123,7 @@
     <div class="oj-flex-item">
 
 
-      <div class="oj-flex" style="border:1px solid #e0e1e1; border-radius: 5px;">
+      <div class="oj-flex" style="border:1px solid #e0e1e1; border-radius: 5px;margin-left: 5px">
 
         <div class="oj-panel"
           style="width:160px; height:150px;border-radius:10px 65px 65px 10px;background-color:#f7ebeb;">
@@ -149,7 +149,7 @@
 
               <div class="oj-flex-item">
                 <div style="max-width: 175px; margin-top:10px;color:crimson; font-size:30px;">
-                    <span data-bind="text:errorsCount"></span> <b></b></div>
+                    <span data-bind="text:errorsCount"></span> <b>1</b></div>
               </div>
 
             </div>
@@ -229,7 +229,7 @@
     <div class="oj-sm-flex-items-initial oj-flex-item">
       
         <div class="oj-panel"  
-        style="background-color:#0f758e; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
+        style="background-color: #1464a0; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
 
         <span style="color:white;font-size:small;">Download</span>
       </div>
@@ -251,7 +251,7 @@
 
     <div class="oj-panel" on-click= "[[downloadValidations]]" style="
           border-radius: 5px;
-          background-color: #0f758e;
+          background-color:  #1464a0;
           color:white;
           border:none; cursor:pointer; width:100px; text-align:center;
       ">Download</div>

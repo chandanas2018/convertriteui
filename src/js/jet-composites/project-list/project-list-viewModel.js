@@ -22,6 +22,12 @@ define(
       self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
 
 
+      self.Nextupload = function () {
+        $("#ebsscreen").hide();
+        $("#employeeextracts").hide();
+        $("#mainscreen").show();
+      }
+
 
       self.skip = function () {
         $("#employeeextracts").hide();
@@ -39,8 +45,7 @@ define(
             autoTimeout: parseInt(self.errorMessageTimeout(), 10)
           }
           self.messagesArray.push(warning);
-        }
-        {
+        } else {
           $("#progressex").show();
           $.ajax({
             url: 'http://localhost:3333/csv',
@@ -61,20 +66,21 @@ define(
             },
             fail: function (xhr, textstatus, errorThrown) {
 
-              console.log(errorThrown)
+              console.log(errorThrown);
+              $("#progressex").hide();
+              var warning = {
+                severity: 'error',
+                summary: 'Error',
+                detail: "File Downloading Incomplete",
+                autoTimeout: parseInt(self.errorMessageTimeout(), 10)
+              }
+              self.messagesArray.push(warning);
 
             }
           });
 
         }
-        $("#progressex").hide();
-        var warning = {
-          severity: 'error',
-          summary: 'Error',
-          detail: "File Downloading Incomplete",
-          autoTimeout: parseInt(self.errorMessageTimeout(), 10)
-        }
-        self.messagesArray.push(warning);
+
       }
 
 
@@ -98,7 +104,7 @@ define(
           }
           self.messagesArray.push(warning);
 
-        }else {
+        } else {
           $("#progressset").show();
           $.ajax({
             url: 'http://localhost:3333/api/EbsExtracts',
@@ -123,7 +129,7 @@ define(
               $("#progressset").hide();
               var warning = {
                 severity: 'error',
-                summary: 'Error',                
+                summary: 'Error',
                 detail: "Failed to Extract file.please try again",
                 autoTimeout: parseInt(self.errorMessageTimeout(), 10)
               }
@@ -328,7 +334,7 @@ define(
       self.messageText = ko.observable('Hello from Example Component');
       self.properties = context.properties;
       self.res = componentStrings['project-list'];
-      
+
       // Example for parsing context properties
       // if (context.properties.name) {
       //     parse the context properties here

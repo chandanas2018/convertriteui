@@ -102,7 +102,7 @@ define(
             disabled: false
           },
         ];
-        self.selectedItem = ko.observable('PERSON');
+        self.selectedItem = ko.observable(sessionStorage.getItem("user"));
 
 
 

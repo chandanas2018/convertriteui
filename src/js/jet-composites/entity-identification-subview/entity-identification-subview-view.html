@@ -127,8 +127,8 @@
                  "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
                  "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"},
 
-                          {"headerText": "ENTITY DISPLAY NAME",
-                          "sortProperty": "DISPLAY_NAME",
+                          {"headerText": "MULTI SELECT",
+                          "sortProperty": "IS_MULTISELECT",
                           "headerStyle": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;",
                           "style": "min-width: 20em; max-width: 20em; width: 20em ; text-align:center;"}]' 
                           style="height:650px; width:92%;overflow:auto;margin-left:5%;">
@@ -141,18 +141,18 @@
 <script type="text/html" id="row_template">
               <tr>
 
-                  <!-- <td data-bind="text: IDENTIFICATION_STATUS"> -->
+                  
                       <td >
-                        <!-- disabled ="{{DISABLED_STATUS}}" -->
+                       
                       <div oj-sm-justify-content-center >
-                        <!-- disabled ='[[DISABLED_STATUS]]' -->
+                        
                           <oj-checkboxset id="cs1"  value='{{IDENTIFICATION_STATUS}}' 
                           disabled = '[[DISABLED_STATUS]]'
                      
                          
                                                    
                           class="oj-choice-direction-row">
-                          <!--  -->
+                      
 
                               <oj-option value="CHECKED"></oj-option>
                           </oj-checkboxset>
@@ -164,7 +164,21 @@
                   <span data-bind="text: COLUMN_NAME"></span>
                   </td>
 
-                  <td data-bind="text: DISPLAY_NAME">
+                  <!-- <td data-bind="text: DISPLAY_NAME"> -->
+                    <td>
+                      <div oj-sm-justify-content-center >
+                        
+                        <oj-checkboxset id="cs2"  value='{{IS_MULTISELECT}}' 
+                      
+                   
+                       
+                                                 
+                        class="oj-choice-direction-row">
+                    
+
+                            <oj-option value="CHECKED"></oj-option>
+                        </oj-checkboxset>
+                    </div>
                     </td>
                
               </tr>
@@ -204,7 +218,7 @@
           
                 <div class="oj-panel" on-click='[[saveSelections]]' style="
                 border-radius: 5px;
-                background-color: #0f758e;
+                background-color:  #1464a0;
                 color:white;
                 border:none; cursor:pointer;
             ">Save</div>
@@ -225,7 +239,7 @@
 
       <div class="oj-panel" on-click='[[saveSelections]]' style="
       border-radius: 5px;
-      background-color: #0f758e;
+      background-color:  #1464a0;
       color:white;
       border:none; cursor:pointer;
   ">save</div>
