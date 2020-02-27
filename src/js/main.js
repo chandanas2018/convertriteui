@@ -33,7 +33,12 @@ requirejs.config(
     'proj4': 'libs/proj4js/dist/proj4-src',
     'css': 'libs/require-css/css.min',
     'touchr': 'libs/touchr/touchr',
-    'FileSaver': 'libs/file-saver/FileSaver'
+    'FileSaver': 'libs/file-saver/FileSaver',
+    'papaparse':'libs/papaparse/papaparse'
+
+
+
+    
   }
   //endinjector
 }
@@ -46,7 +51,7 @@ requirejs.config(
  * objects in the callback
  */
 require(['ojs/ojbootstrap', 'knockout', 'appController', 'ojs/ojrouter', 'ojs/ojlogger', 'ojs/ojknockout',
-  'ojs/ojmodule', 'ojs/ojrouter', 'ojs/ojnavigationlist', 'ojs/ojbutton', 'ojs/ojtoolbar','libs/file-saver/FileSaver'],
+  'ojs/ojmodule', 'ojs/ojrouter', 'ojs/ojnavigationlist', 'ojs/ojbutton', 'ojs/ojtoolbar','libs/file-saver/FileSaver', 'libs/papaparse/papaparse'],
   function (Bootstrap, ko, app, Router, Logger) { // this callback gets executed when all required modules are loaded
     Bootstrap.whenDocumentReady().then(
       function() {

@@ -229,7 +229,7 @@ define(
       });
 
       self.dataProvider = ko.observableArray([
-        { name: "HBL Group Data Conversion", description: "We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
+        { name: "HR Data Migration", description: "We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
         { name: "Payroll Data Migration", description: "Data migration projects typically require a lot of additional tools and project support platforms to function smoothly", status: "Upload Extracts" },
         // { name: "HBL Group Data Conversion", description:"We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
 

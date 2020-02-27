@@ -134,15 +134,21 @@ module.exports = function () {
  * The hybrid specific configurations will override the general configuration. 
  */
     hybrid: {
-    // copyCustomLibsToStaging: {
-    //  fileList: [
-    //   {
-    //     cwd:'node_modules/oraclejet/',
-    //     src: ['*'],
-    //     dest: 'hybrid/www/js/libs/oraclejet'
-    //   }
-    //  ]
-    // }
+    copyCustomLibsToStaging: {
+     fileList: [
+      {
+        cwd:'node_modules/oraclejet/',
+        src: ['*'],
+        dest: 'hybrid/www/js/libs/oraclejet'
+      },
+      {
+         cwd:'node_modules/csv2json/',
+         src: ['*'],
+         dest: 'hybrid/www/js/libs/csv2json'
+       }
+      
+     ]
+    }
     }
   };
 };
