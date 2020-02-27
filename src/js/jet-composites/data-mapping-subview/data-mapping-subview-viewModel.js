@@ -9,6 +9,7 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
+      var host = sessionStorage.getItem("hostname");
 
       self.checkValue = ko.observableArray();
 
@@ -23,7 +24,7 @@ define(
       // var data1=[];
       $("#dataloader").show();
       $.ajax({
-        url: "http://localhost:3333/api/v1/exceldata",
+        url: host+"/api/v1/exceldata",
         data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -242,7 +243,7 @@ define(
 
 
           $.ajax({
-            url: "http://localhost:3333/api/v1/exceldataupload",
+            url: host+"/api/v1/exceldataupload",
             data: { entityid: context.properties.entityId, mappings: mappingsObj },
             type: 'POST',
             dataType: 'json',
@@ -304,7 +305,7 @@ define(
       self.noData = ko.observable("no");
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/listof/mappedfields",
+        url: host+"/api/v1/listof/mappedfields",
         data: { sourceentityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -347,7 +348,7 @@ define(
       function loadmappings() {
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/listof/value/mappings",
+          url: host+"/api/v1/listof/value/mappings",
           data: { sourceentityid: context.properties.entityId },
           type: 'POST',
           dataType: 'json',
@@ -405,7 +406,7 @@ define(
         self.destinationDataName("undefined");
         self.sourceColumn(current.data.SOURCE_COLUMN_NAME + " --> " + current.data.DESTINATION_COLUMN_NAME);
         $.ajax({
-          url: "http://localhost:3333/api/v1/master/datalist",
+          url: host+"/api/v1/master/datalist",
           data: { data: current.data },
           type: 'POST',
           dataType: 'json',
@@ -520,7 +521,7 @@ define(
         } else if (self.dataProvider2().length == 0) {
 
           $.ajax({
-            url: "http://localhost:3333/api/v1/save/datamappings",
+            url: host+"/api/v1/save/datamappings",
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
@@ -578,7 +579,7 @@ define(
 
         if (matchFound == false) {
           $.ajax({
-            url: "http://localhost:3333/api/v1/save/datamappings",
+            url: host+"/api/v1/save/datamappings",
             data: {
               projectid: 2,
               sourceentityid: context.properties.entityId,
@@ -614,9 +615,7 @@ define(
       };
 
 
-      this.openremoveUser = function (event) {
-        document.getElementById('removeUserbox').open();
-      };
+    
 
       self.removeUser = function (event, current, bindingContext) {
         // self.dataProvider2.remove(current.data);
@@ -624,7 +623,7 @@ define(
 
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/delete/individual/datamapping",
+          url:host+"/api/v1/delete/individual/datamapping",
           data: { sourceentityid: context.properties.entityId, sourcedataname: current.data.sourceDataName, destinationdataname: current.data.destinationDataName },
           type: 'DELETE',
           dataType: 'json',
@@ -658,7 +657,7 @@ define(
         // self.dataProvider2.removeAll();
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/removeall/datamappings",
+          url: host+"/api/v1/removeall/datamappings",
           data: { sourceentityid: context.properties.entityId },
           type: 'DELETE',
           dataType: 'json',

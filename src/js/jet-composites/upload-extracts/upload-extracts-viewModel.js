@@ -20,9 +20,17 @@ define(
       self.entityListArray = ko.observableArray(self.entityList);
 
       self.dataProvider = new ArrayDataProvider(self.entityListArray);
+      
+      //  $.getJSON("../js/appconfig.json").then(function(x){
+      //   sessionStorage.setItem("hostname",x.host) ;
+        
+      // })
+      var host = sessionStorage.getItem("hostname");
+      // console.log("<<<<",host);
+   
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/upload/extracts",
+        url: host+"/api/v1/upload/extracts",
         type: 'GET',
         //dataType: 'json',
 
@@ -119,7 +127,7 @@ define(
             formdata.append("myFile", event.detail.files[0]);
          
             $.ajax({
-              url: "http://localhost:3333/api/v1/uploadfile",
+              url: host+"/api/v1/uploadfile",
               data: formdata,
               type: 'POST',
               dataType: 'json',
@@ -150,7 +158,7 @@ define(
                 else {
                   //for errorlist 
                   $.ajax({
-                    url: "http://localhost:3333/api/v1/oracle/errors",
+                    url: host+"/api/v1/oracle/errors",
                     type: 'POST',
                     dataType: "json",
                     processData: false,
