@@ -63,6 +63,7 @@ define(
               DISPLAY_NAME: data.data[i].DISPLAY_NAME,
               IDENTIFICATION_STATUS: Checkboxdata,
               IS_MANDATORY: data.data[i].IS_MANDATORY,
+              IS_MULTISELECT: ['UNCHECKED'],
               DISABLED_STATUS: false
             }
             tempArray.push(obj);
@@ -117,7 +118,8 @@ define(
               COLUMN_ID: data[i].COLUMN_ID,
               COLUMN_NAME: data[i].COLUMN_NAME,
               DISPLAY_NAME: data[i].DISPLAY_NAME,
-              IDENTIFICATION_STATUS: data[i].IDENTIFICATION_STATUS[0]
+              IDENTIFICATION_STATUS: data[i].IDENTIFICATION_STATUS[0],
+              IS_MULTISELECT: ['UNCHECKED']
 
             }
             tmp.push(obj);
@@ -128,8 +130,8 @@ define(
               COLUMN_ID: data[i].COLUMN_ID,
               COLUMN_NAME: data[i].COLUMN_NAME,
               DISPLAY_NAME: data[i].DISPLAY_NAME,
-              IDENTIFICATION_STATUS: "UNCHECKED"
-
+              IDENTIFICATION_STATUS: "UNCHECKED",
+              IS_MULTISELECT:"UNCHECKED"
             }
             tmp2.push(obj)
           }
@@ -229,7 +231,8 @@ define(
             DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
             IDENTIFICATION_STATUS: ['CHECKED'],
             DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
-            IS_MANDATORY: self.data1()[i].IS_MANDATORY
+            IS_MANDATORY: self.data1()[i].IS_MANDATORY,
+            IS_MULTISELECT: self.data1()[i].IS_MULTISELECT
           }
          if (self.data1()[i].DISABLED_STATUS == false){
           self.data1()[i].IDENTIFICATION_STATUS =['CHECKED']
@@ -255,6 +258,7 @@ define(
             DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
             IDENTIFICATION_STATUS: ['CHECKED'],
             DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+            IS_MULTISELECT: self.data1()[i].IS_MULTISELECT,
             IS_MANDATORY: self.data1()[i].IS_MANDATORY
           }
           
@@ -267,6 +271,7 @@ define(
               DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
               IDENTIFICATION_STATUS: self.data1()[i].IDENTIFICATION_STATUS,
               DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+              IS_MULTISELECT: self.data1()[i].IS_MULTISELECT,
               IS_MANDATORY: self.data1()[i].IS_MANDATORY
             }
                 tempArray.push(obj1);
@@ -280,6 +285,7 @@ define(
               DISPLAY_NAME: self.data1()[i].DISPLAY_NAME,
               IDENTIFICATION_STATUS: self.data1()[i].IDENTIFICATION_STATUS ,
               DISABLED_STATUS : self.data1()[i].DISABLED_STATUS,
+              IS_MULTISELECT: self.data1()[i].IS_MULTISELECT,
               IS_MANDATORY: self.data1()[i].IS_MANDATORY
             }
             tempArray.push(obj2);

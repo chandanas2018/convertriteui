@@ -22,68 +22,76 @@ define(
             label: "PERSON_NAME",
             disabled: false
           },
-          {
-            id: "PERSON_NID",
-            label: "PERSON_NID",
-            disabled: false
-          },
-          {
-            id: "DOCUMENTS_OF_RECORD_VO",
-            label: "DOCUMENTS_OF_RECORD_VO",
-            disabled: false
-          },
-          {
-            id: "CITIZENSHIP_VO",
-            label: "CITIZENSHIP_VO",
-            disabled: false
-          },
+          // {
+          //   id: "PERSON_NID",
+          //   label: "PERSON_NID",
+          //   disabled: false
+          // },
+          // {
+          //   id: "DOCUMENTS_OF_RECORD_VO",
+          //   label: "DOCUMENTS_OF_RECORD_VO",
+          //   disabled: false
+          // },
+          // {
+          //   id: "CITIZENSHIP_VO",
+          //   label: "CITIZENSHIP_VO",
+          //   disabled: false
+          // },
           {
             id: "PERSON_LEGISLATIVE_INFO",
             label: "PERSON_LEGISLATIVE_INFO",
             disabled: false
           },
-          {
-            id: "PERSON_ADDRESS",
-            label: "PERSON_ADDRESS",
-            disabled: false
-          },
-          {
-            id: "PERSON_PHONE",
-            label: "PERSON_PHONE",
-            disabled: false
-          }, {
-            id: "PERSON_EMAIL",
-            label: "PERSON_EMAIL",
-            disabled: false
-          }, {
+          // {
+          //   id: "PERSON_ADDRESS",
+          //   label: "PERSON_ADDRESS",
+          //   disabled: false
+          // },
+          // {
+          //   id: "PERSON_PHONE",
+          //   label: "PERSON_PHONE",
+          //   disabled: false
+          // }, 
+          // {
+          //   id: "PERSON_EMAIL",
+          //   label: "PERSON_EMAIL",
+          //   disabled: false
+          // },
+           {
             id: "ASSIGNMENT",
             label: "ASSIGNMENT",
             disabled: false
-          }, {
-            id: "ASSIGNMENT_EFF",
-            label: "ASSIGNMENT_EFF",
-            disabled: false
-          }, {
+          }, 
+          // {
+          //   id: "ASSIGNMENT_EFF",
+          //   label: "ASSIGNMENT_EFF",
+          //   disabled: false
+          // }, 
+          {
             id: "PERSON_SALARY",
             label: "PERSON_SALARY",
             disabled: false
-          }, {
+          }, 
+          {
             id: "SUPERVISOR",
             label: "SUPERVISOR",
             disabled: false
-          }, {
-            id: "CONTACT_RELATIONSHIP",
-            label: "CONTACT_RELATIONSHIP",
-            disabled: false
-          }, {
-            id: "ELEMENT_ENTRIES",
-            label: "ELEMENT_ENTRIES",
-            disabled: false
-          }, {
-            id: "ELEMENT_ENTRIES_VALUES",
-            label: "ELEMENT_ENTRIES_VALUES",
-            disabled: false
           },
+          //  {
+          //   id: "CONTACT_RELATIONSHIP",
+          //   label: "CONTACT_RELATIONSHIP",
+          //   disabled: false
+          // }, 
+          // {
+          //   id: "ELEMENT_ENTRIES",
+          //   label: "ELEMENT_ENTRIES",
+          //   disabled: false
+          // }, 
+          // {
+          //   id: "ELEMENT_ENTRIES_VALUES",
+          //   label: "ELEMENT_ENTRIES_VALUES",
+          //   disabled: false
+          // },
           {
             id: "WORK_TERMS",
             label: "WORK_TERMS",
@@ -94,7 +102,7 @@ define(
             disabled: false
           },
         ];
-        self.selectedItem = ko.observable('PERSON');
+        self.selectedItem = ko.observable(sessionStorage.getItem("user"));
 
 
 

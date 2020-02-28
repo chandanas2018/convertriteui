@@ -46,7 +46,7 @@
 
 
 .oj-tabbar-item-label{
-  color:#0f758e;
+  color: #1464a0;
 }
 
 .oj-filepicker-dropzone{
@@ -54,8 +54,8 @@
   width:250px;
   border-style:unset;
   border-radius:0px 0px 10px 10px;
-background-color:#0f758e;
-cursor:pointer;
+  background-color: #1464a0;
+  cursor:pointer;
 
 }
 
@@ -73,7 +73,7 @@ cursor:pointer;
   width:300px;
   border-style:unset;
   border-radius:0px 0px 10px 10px;
-background-color:#0f758e;
+background-color: #1464a0;
 cursor:pointer;
 }
 .oj-filepicker-text{
@@ -119,17 +119,17 @@ cursor:pointer;
 
 
     /* .oj-contrast-marker a.oj-navigationlist-item-content .oj-navigationlist-item-label {
-      color: #0f758e;
+      color:  #1464a0;
   } */
 
 
   /* .oj-contrast-background .oj-contrast-marker{
-    background-color:#0f758e;
+    background-color: #1464a0;
   } */
 
 
   .oj-contrast-marker.oj-contrast-background {
-    background-color: #0f758e;
+    background-color:  #1464a0;
     
 }
 
@@ -211,7 +211,7 @@ tr:nth-child(odd){
 } */
 
 th{
-  background-color:#0f758e;
+  background-color: #1464a0;
   color:white;
 }
 

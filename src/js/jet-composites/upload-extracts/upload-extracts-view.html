@@ -3,12 +3,13 @@
   The Universal Permissive License (UPL), Version 1.0
 -->
 <!-- <p data-bind="text:messageText"></p> -->
+<!-- <script src="./papaparse.min.js"></script> -->
 <div class="oj-flex oj-sm-flex-items-initial" style="margin-left:2rem;">
 
   <div class="loader" id="progressup"></div>
   <oj-bind-for-each data="[[dataProvider]]">
     <template>
-      <div class="oj-flex-item">
+      <div class="oj-flex-item ss">
         <div class="oj-flex-item" style="margin:20px;">
           <div class="oj-panel"
             style="width:250px; height:50px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;">
@@ -35,6 +36,7 @@
 
           <oj-file-picker on-oj-select='[[selectListener]]'>
             <div tabindex='0' slot='trigger' class='oj-filepicker-dropzone'>
+              <!-- <input type = "file"  id="files"> -->
               <p class='oj-filepicker-text' style="color:white">UPLOAD</p>
             </div>
           </oj-file-picker>

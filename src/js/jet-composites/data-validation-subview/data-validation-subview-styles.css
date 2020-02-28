@@ -6,8 +6,8 @@ data-validation-subview{
 	min-height: 50px;
 	width: 50px;
 }
-.oj-tabbar-focused-element oj-tabbar-item-content oj-tabbar-item-no-icon{
-	
+#tabbarcontainer1{
+	background-color:#dce6ea ;
 }
 .loader {
 	position: absolute;
@@ -19,7 +19,7 @@ data-validation-subview{
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;
-	border-bottom: 16px solid #0f758e;
+	border-bottom: 16px solid  #1464a0;
 	width: 70px;
 	height: 70px;
 	-webkit-animation: spin 2s linear infinite;

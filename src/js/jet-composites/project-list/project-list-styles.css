@@ -6,6 +6,24 @@ project-list{
 	min-height: 50px;
 	width: 50px;
 }
+#uploadnext{
+	background-color:  #1464a0 ;
+	color:white ;
+	width:95px;
+	 height:40px;
+	 border-radius: 7px;
+	 margin-left: 48%;
+}
+#employeenext{
+	background-color:  #1464a0 ;
+	color:white ;
+	width:95px;
+	 height:40px;
+	 border-radius: 7px;
+	 margin-left: 49%;
+
+}
+
 #ebsscreen{
 	border: 30px solid #dce6ea;
 	margin-top: 30px ;
@@ -25,7 +43,7 @@ border: 30px solid #dce6ea;
 
 }
 .extractbtn{
-	background-color: #0f758e ;
+	background-color:  #1464a0 ;
 	color:white ;
 	width:95px;
 	 height:40px;
@@ -40,7 +58,7 @@ border: 30px solid #dce6ea;
  }
 
  .HomeLogo{
-	  background-color:#0f758e  ;
+	  background-color: #1464a0  ;
 	  border-radius: 7px;
 	  text-align: center;
 	  margin-top: 16%;
@@ -60,7 +78,7 @@ border: 30px solid #dce6ea;
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;
-	border-bottom: 16px solid #0f758e;
+	border-bottom: 16px solid  #1464a0;
 	
 
  }
@@ -75,11 +93,11 @@ border: 30px solid #dce6ea;
 	border-radius: 50%;
 	border-top: 16px solid #dce6ea;
 	border-right: 16px solid #dce6ea;
-	border-bottom: 16px solid #0f758e;
+	border-bottom: 16px solid  #1464a0;
 	
   }
 .Back{
-	background-color: #0f758e ;
+	background-color:  #1464a0 ;
 	color:white ;
 	font-size: 16px;
 	width:90px;
@@ -90,7 +108,7 @@ border: 30px solid #dce6ea;
 }
 
 #skipnext{
-	background-color: #0f758e ;
+	background-color:  #1464a0 ;
 	color:white ;
 	font-size: 16px;
 	width:90px;
@@ -103,7 +121,7 @@ border: 30px solid #dce6ea;
 }
 
 
-#tabbar{
+#tabbar1{
 
 	background-color:#f1f3f4;
 	border-radius: 10px
@@ -136,10 +154,8 @@ border: 30px solid #dce6ea;
 
 	width: 120px;
 	height: 10px;
-	
 	background-color: #dce6ea;
 	color: white;
-	
 	border: 2px solid grey;
 	/* position: relative; */
  } 
@@ -152,7 +168,7 @@ border: 30px solid #dce6ea;
 	width: 0;
 	height: 18px;
 	border: 10px solid transparent;
-	border-left: 5px solid #0f758e;
+	border-left: 5px solid  #1464a0;
 }  */
 
 
@@ -160,7 +176,8 @@ border: 30px solid #dce6ea;
 
 .oj-tabbar-horizontal:not(.oj-tabbar-icon-only) .oj-tabbar-item.oj-selected a.oj-tabbar-item-content .oj-tabbar-item-label {
    
-	
+	/* background-color: #1464a0; */
 	color: white;
     font-weight: normal;
 }
+
