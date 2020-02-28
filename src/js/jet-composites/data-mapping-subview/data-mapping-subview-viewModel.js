@@ -9,7 +9,7 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
-
+      var deferred = $.Deferred();
       self.checkValue = ko.observableArray();
 
       self.dircolumn = ko.pureComputed(function () {
@@ -39,19 +39,46 @@ define(
 
             var data1 = [];
 
-            
+            if (data.data[j].sourcedata.length > data.data[j].destinationdata.length) {
+
+              for (let i = 0; i < data.data[j].sourcedata.length; i++) {
 
                 var obj = {
                   ProjectName: (data.data[j].projectname) ? data.data[j].projectname : '',
                   SourceEntity: (data.data[j].sourceentityname) ? data.data[j].sourceentityname : '',
                   SourceColumnName: (data.data[j].sourcecolumnname) ? data.data[j].sourcecolumnname : '',
-                  SourceData: (data.data[j].sourcedata) ? data.data[j].sourcedata : '',
+                  SourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
                   DestinationEntity: (data.data[j].destinationentity) ? data.data[j].destinationentity : '',
                   DestinationColumnName: (data.data[j].destinationcolumnname) ? data.data[j].destinationcolumnname : '',
-                  DestinationData: (data.data[j].destinationdata) ? data.data[j].destinationdata : '',
+                  DestinationData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
                 }
                 $("#dataloader").hide();
                 data1.push(obj);
+
+              }
+
+            } else {
+
+
+              for (let i = 0; i < data.data[j].destinationdata.length; i++) {
+
+                var obj = {
+                  ProjectName: (data.data[j].projectname) ? data.data[j].projectname : '',
+                  SourceEntity: (data.data[j].sourceentityname) ? data.data[j].sourceentityname : '',
+                  SourceColumnName: (data.data[j].sourcecolumnname) ? data.data[j].sourcecolumnname : '',
+                  SourceData: (data.data[j].sourcedata[i] == undefined) ? '' : data.data[j].sourcedata[i].SOURCE_DATA_NAME,
+                  DestinationEntity: (data.data[j].destinationentity) ? data.data[j].destinationentity : '',
+                  DestinationColumnName: (data.data[j].destinationcolumnname) ? data.data[j].destinationcolumnname : '',
+                  DestinationData: (data.data[j].destinationdata[i] == undefined) ? '' : data.data[j].destinationdata[i].DEST_DATA_NAME
+                }
+                $("#dataloader").hide();
+                data1.push(obj);
+
+              }
+
+            }
+
+               
 
               
 
@@ -71,6 +98,7 @@ define(
 
             console.log(data1);
             data23.push(data1);
+            deferred.resolve(data23);
             console.log(data23);
           }
 
@@ -167,23 +195,28 @@ define(
 
 
         } else {
-          var sheetData = [];
-          for (let i = 0; i < data23.length; i++) {
+          deferred.then(function(defData){
 
-            sheetData.push(data23[i]);
+         
+              var sheetData = [];
+              for (let i = 0; i < defData.length; i++) {
 
-          }
-          var result = alasql('SELECT * INTO XLSX("Mapping_Template.xlsx",?) FROM ?',
-            [sheetNames, sheetData]);
+                sheetData.push(defData[i]);
 
-          var success = {
-            severity: 'confirmation',
-            summary: 'Success',
-            detail: "Mapping Template Downloaded Successfully",
-            autoTimeout: parseInt(self.errorMessageTimeout())
-          }
-          self.messagesArray.push(success);
+              }
+              console.log(sheetNames);
+              console.log(sheetData);
+              var result = alasql('SELECT * INTO XLSX("Mapping_Template.xlsx",?) FROM ?',
+                [sheetNames, sheetData]);
 
+              var success = {
+                severity: 'confirmation',
+                summary: 'Success',
+                detail: "Mapping Template Downloaded Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+              }
+              self.messagesArray.push(success);
+          });
         }
 
 
@@ -191,6 +224,30 @@ define(
       }
 
 
+      function paginate (array, index, size) {
+          // transform values
+          index = Math.abs(parseInt(index));
+          index = index > 0 ? index - 1 : index;
+          size = parseInt(size);
+          size = size < 1 ? 1 : size;
+
+          // filter
+          return [...(array.filter((value, n) => {
+              return (n >= (index * size)) && (n < ((index+1) * size))
+          }))];
+      }
+
+      
+        function Paginator(items, page, per_page) {
+        
+          var page = page || 1,
+          per_page = per_page || 10,
+          offset = (page - 1) * per_page,
+        
+          paginatedItems = items.slice(offset).slice(0, per_page);
+          console.log('paginatedItems--->',paginatedItems);
+          return paginatedItems;
+        }
 
       // var ExcelToJSON = function() {
 
@@ -224,26 +281,41 @@ define(
 
 
           })
+          var chunkMaxSize = 50;
+          if(mappingsObj[0].data.length > 0){
+            var totalLength = mappingsObj[0].data.length;
+            var chunkedCount = Math.ceil(totalLength / chunkMaxSize);
+            var si = 0;
+            var ei = 0;
+            var mappingArr = mappingsObj[0].data;
+            for(var i=0;i<chunkedCount;i++){
+              setTimeout(function(){
+                ei += chunkMaxSize;
+                var jsonFilterData = mappingArr.slice(si, ei);
+                si = ei + 1;
+               console.log(jsonFilterData);
+              
+                $.ajax({
+                  url: "http://localhost:3333/api/v1/uploaddatamappings",
+                  data: { entityid: context.properties.entityId, mappings: jsonFilterData },
+                  type: 'POST',
+                  dataType: 'json',
 
+                  success: function (data, textStatus, jqXHR) {
 
-          $.ajax({
-            url: "http://localhost:3333/api/v1/uploaddatamappings",
-            data: { entityid: context.properties.entityId, mappings: mappingsObj },
-            type: 'POST',
-            dataType: 'json',
+                    console.log(data);
 
-            success: function (data, textStatus, jqXHR) {
+                    loadmappings();
 
-              console.log(data);
+                  },
+                  error: function (xhr, textStatus, errorThrown) {
 
-              loadmappings();
-
-            },
-            error: function (xhr, textStatus, errorThrown) {
-
-              console.log(errorThrown);
+                    console.log(errorThrown);
+                  }
+                });
+              }, 500);
             }
-          });
+          }
         };
 
         reader.onerror = function (ex) {
