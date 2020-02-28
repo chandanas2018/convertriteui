@@ -52,7 +52,7 @@ define(
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
-              $("#progressex").hide();
+             
               console.log(data);
               var filePath = "http://localhost:3333" + data.loc;
               saveAs(filePath, entityvalue + ".csv");
@@ -62,18 +62,20 @@ define(
                 detail: "Extracted Successfully",
                 autoTimeout: parseInt(self.errorMessageTimeout())
               }
+              $("#progressex").hide();
               self.messagesArray.push(success);
             },
-            fail: function (xhr, textstatus, errorThrown) {
+            error: function (xhr, textStatus, errorThrown) {
 
               console.log(errorThrown);
-              $("#progressex").hide();
+            
               var warning = {
                 severity: 'error',
                 summary: 'Error',
                 detail: "File Downloading Incomplete",
                 autoTimeout: parseInt(self.errorMessageTimeout(), 10)
               }
+              $("#progressex").hide();
               self.messagesArray.push(warning);
 
             }
@@ -112,7 +114,7 @@ define(
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
               // $("#progressset").show();
-              console.log(data);
+              console.log(data,textstatus);
               var filePath = "http://localhost:3333" + data.loc;
               saveAs(filePath, entityvalue + ".DAT");
               var success = {
@@ -124,15 +126,16 @@ define(
               $("#progressset").hide();
               self.messagesArray.push(success);
             },
-            fail: function (xhr, textstatus, errorThrown) {
+            error: function (xhr, textstatus, errorThrown) {
               console.log(errorThrown)
-              $("#progressset").hide();
+             
               var warning = {
                 severity: 'error',
                 summary: 'Error',
                 detail: "Failed to Extract file.please try again",
                 autoTimeout: parseInt(self.errorMessageTimeout(), 10)
               }
+              $("#progressset").hide();
               self.messagesArray.push(warning);
             }
           });
