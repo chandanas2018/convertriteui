@@ -93,7 +93,7 @@ define(
 
           self.previewArray(tempArray);
 
-          console.log(self.previewArray);
+          console.log(self.previewArray());
 
 
 
