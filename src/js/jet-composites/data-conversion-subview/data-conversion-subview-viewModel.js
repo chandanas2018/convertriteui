@@ -68,8 +68,6 @@ define(
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
-
-
           var tempArray = [];
           for (let i = 0; i < data.data.length; i++) {
             for (let j = 0; j < data.data[i].DestinationColumns.length; j++) {
@@ -80,27 +78,19 @@ define(
                 destinationEntityName: data.data[i].DestinationEntity,
                 destinationColumnName: data.data[i].DestinationColumns[j]
 
-
               }
-
               // previewArray.push(obj);
               tempArray.push(obj);
 
-
-
             }
           }
-
           self.previewArray(tempArray);
-
           console.log(self.previewArray());
-
-
 
         },
         fail: function (xhr, textStatus, errorThrown) {
-
           console.log(errorThrown);
+
         }
       });
 
@@ -110,6 +100,51 @@ define(
       self.errorMessageTimeout = ko.observable('');
       self.messagesArray = ko.observableArray(self.messages);
       self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
+
+      self.supervisor = function () {
+        $("#validatestatus").show();
+        $.ajax({
+
+          url: "http://localhost:3333/api/v1/supervisior/hdl",
+          type: 'GET',
+          // dataType: 'json',
+
+          success: function (data, textStatus, jqXHR) {
+
+            console.log(data);
+
+            var filePath = "http://localhost:3333" + data.loc;
+
+            saveAs(filePath, "Supervisor.dat");
+
+
+            var success = {
+              severity: 'confirmation',
+              summary: 'Success',
+              detail: "Supervisor file Downloaded Successfully",
+              autoTimeout: parseInt(self.errorMessageTimeout())
+            }
+            $("#validatestatus").hide();
+            self.messagesArray.push(success);
+
+          },
+          error: function (xhr, textStatus, errorThrown) {
+
+            console.log(errorThrown);
+            var error = {
+              severity: 'error',
+              summary: 'Error',
+              detail: "Supervisor File Downloaded failed",
+              autoTimeout: parseInt(self.errorMessageTimeout())
+
+            }
+            $("#validatestatus").hide();
+            self.messagesArray.push(error);
+          }
+        });
+
+
+      }
 
       self.saveFile = function () {
 
@@ -140,7 +175,7 @@ define(
 
           },
           error: function (xhr, textStatus, errorThrown) {
-           
+
             console.log(errorThrown);
             var error = {
               severity: 'error',
@@ -153,6 +188,9 @@ define(
             self.messagesArray.push(error);
           }
         });
+
+
+
 
 
         // download('hdls/test.dat', "dlText.DAT", "text/plain");
