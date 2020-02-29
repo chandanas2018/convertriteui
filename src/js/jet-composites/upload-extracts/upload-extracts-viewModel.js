@@ -10,7 +10,7 @@
 
 define(
   ['knockout', 'jquery', 'ojL10n!./resources/nls/upload-extracts-strings', 'ojs/ojarraydataprovider', 'ojs/ojbutton', 'ojs/ojfilepicker', 'ojs/ojmessages'],
- function (ko, $, componentStrings, ArrayDataProvider) {
+  function (ko, $, componentStrings, ArrayDataProvider) {
 
 
     function csvJSON(lines) {
@@ -42,7 +42,7 @@ define(
 
 
     function ExampleComponentModel(context) {
-    
+
       var self = this;
 
       self.entityList = [];
@@ -87,7 +87,7 @@ define(
             detail: data.data[row].errorMsg,
             autoTimeout: parseInt(self.errorMessageTimeout())
           }
-
+          $("#progressup").hide();
           self.messagesArray.push(error);
 
           // var errorMessage = xhr.status + ': ' + xhr.statusText
@@ -100,7 +100,7 @@ define(
           //               }
           //               self.messagesArray.push(servererror);
 
-          $("#progressup").hide();
+
         }
 
       });
@@ -127,13 +127,39 @@ define(
 
 
       self.selectListener = function (event, current, bindingContext) {
-        
-        // var deferred = $.Deferred();
+
+
 
         if (current.data.ENTITY_NAME == event.detail.files[0].name.split(".")[0]) {
 
+
           if (event.detail.files[0].name.split(".")[1] == "csv") {
-            var files = event.detail.files;
+         
+            if (event.detail.files[0].name == "PERSON.csv") {
+              $(".ss:nth-child(2)").find(".loader").css({ "display": "block" });
+            } else if (event.detail.files[0].name == "PERSON_NAME.csv") {
+              $(".ss:nth-child(3)").find(".loader").css({ "display": "block" });
+            } else if (event.detail.files[0].name == "PERSON_LEGISLATIVE_INFO.csv") {
+              $(".ss:nth-child(4)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "ASSIGNMENT.csv") {
+              $(".ss:nth-child(5)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "PERSON_SALARY.csv") {
+              $(".ss:nth-child(6)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "SUPERVISOR.csv") {
+              $(".ss:nth-child(7)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "WORK_TERMS.csv") {
+              $(".ss:nth-child(8)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "WORK_RELATIONSHIP.csv") {
+              $(".ss:nth-child(9)").find(".loader").css({ "display": "block" });
+            } else
+              $(".ss:nth-child(n)").find(".loader").css({ "display": "none" });
+              
+        var files = event.detail.files;
             for (var i = 0; i < files.length; i++) {
               self.fileNames.push(files[i].name);
             }
@@ -144,7 +170,6 @@ define(
             var file = new File([event.detail.files], event.detail.files[0].name, {
               type: "text/plain",
             });
-
             console.log(file);
 
             //formdata.append("myFile", event.detail.files[0]);
@@ -167,10 +192,7 @@ define(
                     // processData: false,
                     // contentType: false,
                     success: function (data, textStatus, jqXHR) {
-                     
-
                       console.log(data);
-
                       if (data.success == true) {
                         self.entityList[current.index].UPLOAD_STATUS = "UPLOADED";
                         self.entityListArray(self.entityList);
@@ -180,13 +202,13 @@ define(
                           detail: "File is uploaded and stored",
                           autoTimeout: parseInt(self.errorMessageTimeout())
                         }
-                       
+                        $("#uploadprogress").hide()
                         self.messagesArray.push(success);
                       }
-                      
+
                     },
-                    error: function (xhr, status, error) {
-                      // fail: function (xhr, textstatus, errorThrown) {
+              
+                    error: function (xhr, textstatus, errorThrown) {
                       console.log(errorThrown)
                       var errorMessage = xhr.status + ': ' + xhr.statusText
                       var servererror = {
@@ -195,6 +217,7 @@ define(
                         detail: errorMessage,
                         autoTimeout: parseInt(self.errorMessageTimeout())
                       }
+                      $("#uploadprogress").hide()
                       self.messagesArray.push(servererror);
 
 
@@ -211,27 +234,28 @@ define(
 
           } else {
 
-            var error = {
+            var fileformaterror = {
               severity: 'error',
               summary: 'Invalid file Format',
               detail: "Should upload file in csv format only.",
               autoTimeout: parseInt(self.errorMessageTimeout())
             }
-            self.messagesArray.push(error);
+            $("#uploadprogress").hide()
+            self.messagesArray.push(fileformaterror);
             //Invalid file format
           }
 
         } else {
 
 
-          var error = {
+          var filenameerror = {
             severity: 'error',
             summary: 'Invalid file name',
             detail: "Name of the uploaded file should match with the name of the entity.",
             autoTimeout: parseInt(self.errorMessageTimeout())
           }
-
-          self.messagesArray.push(error);
+          $("#uploadprogress").hide()
+          self.messagesArray.push(filenameerror);
 
           //name of the entity should match with the name of the uploaded file.
         }
