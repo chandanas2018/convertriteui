@@ -212,20 +212,7 @@ define(
       var successObject = [];
       var validationObject = [];
 
-      // for(let i=0; i<errorsObject.length;i++){
-      //   var obj = {
-
-      //     SNO : errorsObject()[i].SNO,
-      //     SourceField: errorsObject()[i].SNO,
-      //     DestinationField: errorsObject()[i].SNO,
-      //     Message:  errorsObject()[i].SNO
-
-
-
-      //   }
-
-      //   deptArray.push(obj);
-      // }
+     
 
 
       var errorsObject1 = [];

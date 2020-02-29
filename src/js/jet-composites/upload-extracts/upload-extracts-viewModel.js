@@ -53,6 +53,14 @@ define(
       self.entityListArray = ko.observableArray(self.entityList);
 
       self.dataProvider = new ArrayDataProvider(self.entityListArray);
+      
+      //  $.getJSON("../js/appconfig.json").then(function(x){
+      //   sessionStorage.setItem("hostname",x.host) ;
+        
+      // })
+      var host = sessionStorage.getItem("hostname");
+      // console.log("<<<<",host);
+   
 
 
 

@@ -49,13 +49,13 @@ define(
         } else {
           $("#progressex").show();
           $.ajax({
-            url: 'http://localhost:3333/csv',
+            url: host+'/csv',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
-              var filePath = host + "" + data.loc;
+              var filePath = host + data.loc;
               saveAs(filePath, entityvalue + ".csv");
               var success = {
                 severity: 'confirmation',
@@ -110,13 +110,13 @@ define(
         } else {
           $("#progressset").show();
           $.ajax({
-            url: 'http://localhost:3333/api/EbsExtracts',
+            url: host+'/api/EbsExtracts',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
               // $("#progressset").show();
               console.log(data);
-              var filePath = host + "" + data.loc;
+              var filePath = host + data.loc;
               saveAs(filePath, entityvalue + ".DAT");
               var success = {
                 severity: 'confirmation',

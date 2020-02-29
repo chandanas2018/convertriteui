@@ -434,12 +434,6 @@ define(
 
 
       };
-
-      self.openremoveUser = function (event) {
-        document.getElementById('removeUserbox').open();
-      };
-
-
       self.removeUser = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
 
@@ -456,7 +450,7 @@ define(
 
             if (data.success == true) {
               self.dataProvider.remove(current.data);
-              document.getElementById('removeuserbox').close();
+            
 
             }
 
@@ -465,8 +459,7 @@ define(
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
-            document.getElementById('removeuserbox').close();
-
+          
           }
         });
 

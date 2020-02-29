@@ -161,7 +161,7 @@ define(
 
             console.log(data);
 
-            var filePath = host + "" + data.loc;
+            var filePath = host + data.loc;
 
             saveAs(filePath, "Worker.dat");
 

@@ -11,7 +11,8 @@ define(
 
       var host = sessionStorage.getItem("hostname");
       var self = this;
-      var deferred = $.Deferred();
+      var host = sessionStorage.getItem("hostname");
+
       self.checkValue = ko.observableArray();
 
       self.dircolumn = ko.pureComputed(function () {
@@ -300,9 +301,8 @@ define(
                   dataType: 'json',
 
                   success: function (data, textStatus, jqXHR) {
-
+                    
                     console.log(data);
-
                     loadmappings();
 
                   },
@@ -669,9 +669,7 @@ define(
       };
 
 
-      this.openremoveUser = function (event) {
-        document.getElementById('removeUserbox').open();
-      };
+    
 
       self.removeUser = function (event, current, bindingContext) {
         // self.dataProvider2.remove(current.data);
