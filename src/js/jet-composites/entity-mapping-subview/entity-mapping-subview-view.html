@@ -260,23 +260,12 @@
               </div>
             </div>
             <div class="oj-flex-item">
-              <div class="oj-panel" on-click="[[openremoveUser]]"
+              <div class="oj-panel" on-click="[[removeUser]]"
                 style="background-color: #1464a0;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
                 <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[removeUser]]"> -->
                 <img src="css/images/delete_white@2x.png" width="16" height="16"
                   style="padding:6px 6px 3px 3px;">
-              </div>
-              <oj-dialog style="display:none" id="removeUserbox" dialog-title="Delete confirmation">
-                <div slot="body">
-                  Do you want to delete this permanently
-                </div>
-                <div slot="footer">
-                  <oj-button id="okButton" on-oj-action="[[removeUser]]">OK
-                  </oj-button>
-
-                </div>
-              </oj-dialog>
-
+            
 
             </div>
             <!-- <div class="oj-flex-item">C</div> -->

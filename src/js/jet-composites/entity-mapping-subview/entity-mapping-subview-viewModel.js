@@ -11,6 +11,7 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
 
+      var host = sessionStorage.getItem("hostname")
       self.checkValue = ko.observableArray();
 
       self.dircolumn = ko.pureComputed(function () {
@@ -34,7 +35,7 @@ define(
 
       $("#entityloader").show()
       $.ajax({
-        url: "http://localhost:3333/api/v1/source/entity/columns",
+        url: host + "/api/v1/source/entity/columns",
         data: { id: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -86,7 +87,7 @@ define(
       $("#entityloader").show()
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/dest/entities",
+        url: host + "/api/v1/dest/entities",
         type: 'GET',
         // dataType: 'json',
 
@@ -187,7 +188,7 @@ define(
         self.destinationColumn(undefined);
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/dest/entity/columns",
+          url: host + "/api/v1/dest/entity/columns",
           data: { id: current.data.DEST_ENTITY_ID },
           type: 'POST',
           dataType: 'json',
@@ -229,7 +230,7 @@ define(
 
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/listof/mappedfields",
+        url: host + "/api/v1/listof/mappedfields",
         data: { sourceentityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -288,7 +289,7 @@ define(
           // }
         } else if (self.dataProvider().length == 0) {
           $.ajax({
-            url: "http://localhost:3333/api/v1/mappings",
+            url: host + "/api/v1/mappings",
             data:
             {
               projectid: 2,
@@ -348,7 +349,7 @@ define(
 
           if (matchFound == false) {
             $.ajax({
-              url: "http://localhost:3333/api/v1/mappings",
+              url: host + "/api/v1/mappings",
               data:
               {
                 projectid: 2,
@@ -396,7 +397,7 @@ define(
 
 
         // $.ajax({
-        //   url: "http://localhost:3333/api/v1/mappings",
+        //   url: host + "/api/v1/mappings",
         //   data:
         //   {
         //     projectid: 2,
@@ -443,7 +444,7 @@ define(
         // self.dataProvider.remove(current.data);
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/delete/individual/mapping",
+          url: host + "/api/v1/delete/individual/mapping",
           data: { sourceentityid: context.properties.entityId, sourcecolumnname: current.data.DISPLAY_NAME, destinationcolumnname: current.data.DESTINATION_COLUMN_NAME },
           type: 'DELETE',
           dataType: 'json',
@@ -481,7 +482,7 @@ define(
 
         // self.dataProvider.removeAll();
         $.ajax({
-          url: "http://localhost:3333/api/v1/removeall/mappedfields",
+          url: host + "/api/v1/removeall/mappedfields",
           data: { sourceentityid: context.properties.entityId },
           type: 'DELETE',
           dataType: 'json',

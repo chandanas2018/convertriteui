@@ -9,7 +9,7 @@ define(
     
     function ExampleComponentModel(context) {
         var self = this;
-
+        var host = sessionStorage.getItem("hostname")
 
         self.listItems = [
           {

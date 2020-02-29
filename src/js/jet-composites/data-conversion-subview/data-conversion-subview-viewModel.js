@@ -10,6 +10,8 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
 
+      var host = sessionStorage.getItem("hostname")
+
       self.nowrap = ko.observable(false);
       self.checkValue = ko.observableArray();
 
@@ -61,7 +63,7 @@ define(
       self.previewArray = ko.observableArray(previewArray1);
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/source/columns",
+        url: host + "/api/v1/source/columns",
         type: 'POST',
         // dataType: 'json',
 
@@ -105,7 +107,7 @@ define(
         $("#validatestatus").show();
         $.ajax({
 
-          url: "http://localhost:3333/api/v1/supervisior/hdl",
+          url: host + "/api/v1/supervisior/hdl",
           type: 'GET',
           // dataType: 'json',
 
@@ -113,7 +115,7 @@ define(
 
             console.log(data);
 
-            var filePath = "http://localhost:3333" + data.loc;
+            var filePath = host  +data.loc;
 
             saveAs(filePath, "Supervisor.dat");
 
@@ -151,7 +153,7 @@ define(
         $("#validatestatus").show();
         $.ajax({
 
-          url: "http://localhost:3333/api/v1/download/hdl",
+          url: host + "/api/v1/download/hdl",
           type: 'GET',
           // dataType: 'json',
 
@@ -159,7 +161,7 @@ define(
 
             console.log(data);
 
-            var filePath = "http://localhost:3333" + data.loc;
+            var filePath = host + "" + data.loc;
 
             saveAs(filePath, "Worker.dat");
 
