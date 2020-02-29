@@ -11,6 +11,8 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
 
+      var host = sessionStorage.getItem("hostname");
+
       self.dataLoaded = ko.observable('no');
 
       self.selectedItem = ko.observable("Table view");
@@ -211,20 +213,7 @@ define(
       var successObject = [];
       var validationObject = [];
 
-      // for(let i=0; i<errorsObject.length;i++){
-      //   var obj = {
-
-      //     SNO : errorsObject()[i].SNO,
-      //     SourceField: errorsObject()[i].SNO,
-      //     DestinationField: errorsObject()[i].SNO,
-      //     Message:  errorsObject()[i].SNO
-
-
-
-      //   }
-
-      //   deptArray.push(obj);
-      // }
+     
 
 
       var errorsObject1 = [];
@@ -235,7 +224,7 @@ define(
       self.warningsCount = ko.observable();
       self.errorsCount = ko.observable();
       $.ajax({
-        url: "http://localhost:3333/validation",
+        url: host+"/validation",
         type: 'GET',
         // dataType: 'json',
 

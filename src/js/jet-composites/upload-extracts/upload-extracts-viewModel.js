@@ -49,12 +49,20 @@ define(
       self.entityListArray = ko.observableArray(self.entityList);
 
       self.dataProvider = new ArrayDataProvider(self.entityListArray);
+      
+      //  $.getJSON("../js/appconfig.json").then(function(x){
+      //   sessionStorage.setItem("hostname",x.host) ;
+        
+      // })
+      var host = sessionStorage.getItem("hostname");
+      // console.log("<<<<",host);
+   
 
 
 
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/upload/extracts",
+        url: host+"/api/v1/upload/extracts",
         type: 'GET',
         //dataType: 'json',
 
@@ -185,7 +193,7 @@ define(
                   console.log(json);
 
                   $.ajax({
-                    url: "http://localhost:3333/api/v1/uploadfile",
+                    url: host+"api/v1/uploadfile",
                     data: { "data": json, "filename": event.detail.files[0].name.split(".")[0] },
                     type: 'POST',
                     dataType: 'json',

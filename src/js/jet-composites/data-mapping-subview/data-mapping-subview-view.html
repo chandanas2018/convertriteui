@@ -1,13 +1,14 @@
 <!--
   Copyright (c) 2015, 2019, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
---> 
+-->
 <!-- <p data-bind="text:messageText"></p> -->
 
 
-<div class="oj-flex oj-sm-flex-items-initial" style=" border:1px solid #f1f3f4;border-width:5px;height: 195px;width: 1254px;margin-left: -310px;margin-top: -11px">
+<div class="oj-flex oj-sm-flex-items-initial"
+  style=" border:1px solid #f1f3f4;border-width:5px;height: 195px;width: 1254px;margin-left: -310px;margin-top: -11px">
   <!-- <div class="oj-panel"style= "width=100%"> -->
-      <!-- margin-left:-305px -->
+  <!-- margin-left:-305px -->
   <div class="oj-flex-item" style="background-color:white;border-radius:10px 0px 0px 0px ;">
     <div class="oj-panel" style="width:330px; height:186px;border-radius:10px 75px 75px 0px;background-color:#dce6ea;">
 
@@ -29,27 +30,29 @@
   <div class="oj-flex-item" style="width:26% ;margin-left: 8%;margin-top: 1px">
     <div class="oj-panel" style="width: 320px; height:180px;padding:8px;border-radius:0px 10px 10px 0px;border:none;">
       <!-- <div class="oj-flex-item" style="margin:10px 0px 0px 20px;"> -->
-        <div class="oj-panel" style="width:300px; height:105px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;background-color:#dce6ea;">
+      <div class="oj-panel"
+        style="width:300px; height:105px;border-radius:10px 10px 0px 0px;text-align:center; border-bottom:none;background-color:#dce6ea;">
 
-          <!-- <div class="demo-flex-display oj-flex-items-pad"> -->
-          <div class="oj-flex ">
-            <div class="oj-flex-item">
-              <img src="css/images/download_template_icon@2x.png" width="48" height="60">
-            </div>
-            <div class="oj-flex-item">
-              <div style="max-width: 175px; margin-top:10px;color: #1464a0;">
-                Entity Data Mapping Template</div>
-            </div>
-            <!-- </div> -->
+        <!-- <div class="demo-flex-display oj-flex-items-pad"> -->
+        <div class="oj-flex ">
+          <div class="oj-flex-item">
+            <img src="../../../css/images/download_template_icon@2x.png" width="48" height="60">
           </div>
+          <div class="oj-flex-item">
+            <div style="max-width: 175px; margin-top:10px;color: #1464a0;">
+              Entity Data Mapping Template</div>
+          </div>
+          <!-- </div> -->
         </div>
-        <div class="oj-panel" on-click="[[saveFile]]" style="width:300px; height:60px;background-color:  #1464a0; text-align:center;color:white;border-radius:0px 0px 10px 10px; cursor: pointer;">
-          <p> DOWNLOAD TEMPLATE</p>
-        </div>
+      </div>
+      <div class="oj-panel" on-click="[[saveFile]]"
+        style="width:300px; height:60px;background-color:  #1464a0; text-align:center;color:white;border-radius:0px 0px 10px 10px; cursor: pointer;">
+        <p> DOWNLOAD TEMPLATE</p>
+      </div>
       <!-- </div> -->
     </div>
   </div>
- 
+
   <div class="oj-flex-item" style="width:26%;margin-left: 8%">
     <div class="oj-panel" style="width: 320px; height:180px;padding:8px;border-radius:10px 10px 0px 0px;border:none;">
       <oj-file-picker on-oj-select='[[selectListener]]'>
@@ -90,7 +93,8 @@
   </oj-bind-if>
 
   <oj-bind-if test="[[noData()!=='yes']]">
-    <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]" style="height:70px;">
+    <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+      style="height:70px;">
       <div class="oj-flex-item">
         <oj-bind-if test="[[loaded1()!=='one']]">
           Select Mapping:
@@ -104,7 +108,8 @@
       </div>
       <div class="oj-flex-item">
         <oj-bind-if test="[[loaded1()=='one']]">
-          <div class="oj-panel" style="background-color: #1464a0;text-align:center;width:300px;border-radius:10px;font-size:small;">
+          <div class="oj-panel"
+            style="background-color: #1464a0;text-align:center;width:300px;border-radius:10px;font-size:small;">
             <span style="color:white;" data-bind="text:sourceColumn"></span>
           </div>
         </oj-bind-if>
@@ -123,7 +128,8 @@
         <template>
           <div class="oj-flex-item">
 
-            <div class="oj-panel" on-click="[[onMappingSelection]]" style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
+            <div class="oj-panel" on-click="[[onMappingSelection]]"
+              style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
 
 
               <oj-bind-text value="[[$current.data.SOURCE_COLUMN_NAME]]"></oj-bind-text> ->
@@ -152,7 +158,8 @@
   <hr>
 
 
-  <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]" style="height:50px;">
+  <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+    style="height:50px;">
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded2()=='two']]">
         Select Source Data:
@@ -166,7 +173,8 @@
     </div>
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded2()=='one']]">
-        <div class="oj-panel" style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;">
+        <div class="oj-panel"
+          style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;">
           <span style="color:white;" data-bind="text:sourceDataName"></span>
         </div>
       </oj-bind-if>
@@ -181,7 +189,8 @@
     <oj-bind-for-each data="[[sourceData]]">
       <template>
         <div class="oj-flex-item">
-          <div class="oj-panel" on-click="[[onSourceDataSelection]]" style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
+          <div class="oj-panel" on-click="[[onSourceDataSelection]]"
+            style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
 
             <oj-bind-text value="[[$current.data.SOURCE_DATA_NAME]]"></oj-bind-text>
 
@@ -202,7 +211,8 @@
   <hr>
 
 
-  <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]" style="height:50px;">
+  <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
+    style="height:50px;">
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded3()=='two']]">
         Select Destination Data:
@@ -215,7 +225,8 @@
     </div>
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded3()=='one']]">
-        <div class="oj-panel" style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;">
+        <div class="oj-panel"
+          style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;">
           <span style="color:white;" data-bind="text:destinationDataName"></span>
         </div>
       </oj-bind-if>
@@ -230,7 +241,8 @@
     <oj-bind-for-each data="[[destData]]">
       <template>
         <div class="oj-flex-item">
-          <div class="oj-panel" on-click="[[onDestinationDataSelection]]" style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
+          <div class="oj-panel" on-click="[[onDestinationDataSelection]]"
+            style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
 
 
             <oj-bind-text value="[[$current.data.DEST_DATA_NAME]]"></oj-bind-text>
@@ -243,7 +255,8 @@
   </div>
 </div>
 
-<div class="oj-panel" on-click="[[mapData]]" style="border:none;background-color: #1464a0;margin:10px;border-radius: 10px;text-align: center;cursor:pointer;">
+<div class="oj-panel" on-click="[[mapData]]"
+  style="border:none;background-color: #1464a0;margin:10px;border-radius: 10px;text-align: center;cursor:pointer;">
 
   <span style="color:white;">MAP DATA -></span>
 
@@ -263,7 +276,8 @@
   </div>
 </oj-dialog>
 
-<div class="oj-panel" style="border:none;background-color:#f1f3f4;margin: 10px;margin-top:15px;border-radius: 10px;height:300px;overflow-y: auto;">
+<div class="oj-panel"
+  style="border:none;background-color:#f1f3f4;margin: 10px;margin-top:15px;border-radius: 10px;height:300px;overflow-y: auto;">
 
 
   <div class="oj-flex">
@@ -274,7 +288,8 @@
     </div>
     <div class="oj-flex-item"></div>
     <div class="oj-sm-flex-initial oj-flex-item">
-      <div class="oj-panel" on-click="[[openclearall]]" style="background-color: #1464a0; border-radius:10px;cursor:pointer;">
+      <div class="oj-panel" on-click="[[openclearall]]"
+        style="background-color: #1464a0; border-radius:10px;cursor:pointer;">
 
         <span style="color:white;font-size:small;">DELETE MAPPINGS</span>
       </div>
@@ -307,27 +322,15 @@
               </div>
             </div>
             <div class="oj-flex-item">
-              <div class="oj-panel" on-click="[[openremoveUser]]" style="background-color: #1464a0;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
+              <div class="oj-panel" on-click="[[removeUser]]"
+                style="background-color: #1464a0;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
 
-                <img src="css/images/delete_white@2x.png" width="16" height="16" style="padding:6px 6px 3px 3px;">
-
+                <img src="../../../css/images/delete_white@2x.png" width="16" height="16"
+                  style="padding:6px 6px 3px 3px;">
               </div>
 
-              <oj-dialog style="display:none" id="removeUserbox" dialog-title="Delete confirmation">
-                <div slot="body">
-                  Do you want to delete this permanently
-                </div>
-                <div slot="footer">
-                  <oj-button id="okButton" on-oj-action="[[removeUser]]">OK
-                  </oj-button>
-                </div>
-              </oj-dialog>
+
             </div>
-
-          </div>
-
-
-        </div>
       </template>
     </oj-bind-for-each>
   </div>

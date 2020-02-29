@@ -12,6 +12,7 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
+      var host = sessionStorage.getItem("hostname");
 
       self.val1 = ko.observable('');
       self.val2 = ko.observable('');
@@ -48,13 +49,13 @@ define(
         } else {
           $("#progressex").show();
           $.ajax({
-            url: 'http://localhost:3333/csv',
+            url: host+'/csv',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
              
               console.log(data);
-              var filePath = "http://localhost:3333" + data.loc;
+              var filePath = host + data.loc;
               saveAs(filePath, entityvalue + ".csv");
               var success = {
                 severity: 'confirmation',
@@ -109,13 +110,13 @@ define(
         } else {
           $("#progressset").show();
           $.ajax({
-            url: 'http://localhost:3333/api/EbsExtracts',
+            url: host+'/api/EbsExtracts',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
               // $("#progressset").show();
-              console.log(data,textstatus);
-              var filePath = "http://localhost:3333" + data.loc;
+              console.log(data);
+              var filePath = host + data.loc;
               saveAs(filePath, entityvalue + ".DAT");
               var success = {
                 severity: 'confirmation',
@@ -219,7 +220,7 @@ define(
       }
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/projects/list",
+        url: host+"/api/v1/projects/list",
         data: { email: 'Linda@xyz.com' },
         type: 'POST',
         dataType: 'json',

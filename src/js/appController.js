@@ -11,6 +11,18 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
   function(ko, moduleUtils, KnockoutTemplateUtils, Router, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider, OffcanvasUtils) {
      function ControllerViewModel() {
        var self = this;
+
+       $.getJSON("../js/appconfig.json").then(function(x){
+        sessionStorage.setItem("hostname",x.host);
+        
+      })
+      var host = sessionStorage.getItem("hostname");
+      console.log("<<<<",host);
+
+
+
+
+
        self.userLogin1 = ko.observable("");
        self.userLogin2 = ko.observable("");
        this.KnockoutTemplateUtils = KnockoutTemplateUtils;

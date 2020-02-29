@@ -23,12 +23,9 @@
         <oj-bind-if test="[[loaded1()!=='one']]">
           Select Column Name:
         </oj-bind-if>
-
         <oj-bind-if test="[[loaded1()=='one']]">
           Selected Column Name:
         </oj-bind-if>
-
-
       </div>
       <div class="oj-flex-item">
         <oj-bind-if test="[[loaded1()=='one']]">
@@ -63,9 +60,6 @@
                 <button on-click="[[closemapping]]">ok</button>
               </div> -->
             </oj-dialog>
-
-
-
           </div>
         </template>
       </oj-bind-for-each>
@@ -87,19 +81,15 @@
   <!-- <h2 style="color: #1464a0;"><b>Destination Entities</b></h2> -->
   <h2 style="color: #1464a0;"><b>Data Mapping Entities</b></h2>
   <hr>
-
   <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
     style="height:50px;">
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded2()!=='one']]">
         Select Entity Name:
       </oj-bind-if>
-
       <oj-bind-if test="[[loaded2()=='one']]">
         Selected Entity Name:
       </oj-bind-if>
-
-
     </div>
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded2()=='one']]">
@@ -107,24 +97,18 @@
           style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
             style="color:white;" data-bind="text:destinationEntity"></span> </div>
       </oj-bind-if>
-
     </div>
     <div class="oj-flex-item"> </div>
     <div class="oj-flex-item"> </div>
   </div>
-
   <div class="oj-flex oj-sm-flex-items-initial" style="height:100px;overflow-y: auto;">
     <oj-bind-for-each data="[[dataProviderForDestinationEntity]]">
       <template>
         <div class="oj-flex-item destinationEntity">
           <div class="oj-panel destination" on-click="[[onDestinationEntitySelection]]"
             style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
-
-            <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[onDestinationEntitySelection]]"> -->
             <oj-bind-text value="[[$current.data.DEST_ENTITY_NAME]]"></oj-bind-text>
-            <!-- </oj-button> -->
           </div>
-
         </div>
       </template>
     </oj-bind-for-each>
@@ -134,19 +118,15 @@
 <div class="oj-panel" style="border:none">
   <h2 style="color: #1464a0;"><b>Data Mapping Fields</b></h2>
   <hr>
-
-
   <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]"
     style="height:50px;">
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded3()=='two']]">
         Select Column Name:
       </oj-bind-if>
-
       <oj-bind-if test="[[loaded3()=='one']]">
         Selected Column Name:
       </oj-bind-if>
-
     </div>
     <div class="oj-flex-item">
       <oj-bind-if test="[[loaded3()=='one']]">
@@ -154,42 +134,18 @@
           style="background-color: #1464a0;text-align:center;width:200px;border-radius:10px;font-size:small;"><span
             style="color:white;" data-bind="text:destinationColumn"></span> </div>
       </oj-bind-if>
-      <!-- <div class="oj-flex-item">text</div> -->
     </div>
     <div class="oj-flex-item"> </div>
     <div class="oj-flex-item"> </div>
   </div>
-
-  <!-- <div class="oj-flex" style="margin-bottom:10px;">
-    <div class="oj-flex-item">Selected field name:</div>
-    <div class="oj-flex-item">
-      <oj-bind-if test="[[loaded3()=='one']]">
-        <div class="oj-panel" style="background-color: #1464a0;text-align:center;width:200px;"><span style="color:white;"
-            data-bind="text:destinationColumn"></span> </div>
-      </oj-bind-if>
-    </div>
-    <div class="oj-flex-item"></div>
-    <div class="oj-flex-item"></div>
-    <div class="oj-flex-item"></div>
-    <div class="oj-flex-item"></div>
-
-  </div> -->
-
-
-
-  <!-- <p>Selected field name: <span data-bind= "text:destinationColumn"></span> </p>  -->
   <div class="oj-flex oj-sm-flex-items-initial" style="height:100px;overflow-y: auto;">
     <oj-bind-for-each data="[[dataProviderForDestinationEntityColumns]]">
       <template>
         <div class="oj-flex-item">
           <div class="oj-panel" on-click="[[onDestinationColumnSelection]]"
             style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
-
-            <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[onDestinationColumnSelection]]"> -->
             <oj-bind-text value="[[$current.data.COLUMN_NAME]]"></oj-bind-text>
-            <!-- </oj-button> -->
           </div>
-
         </div>
       </template>
     </oj-bind-for-each>
@@ -198,15 +154,15 @@
 
 <div class="oj-panel" on-click="[[mapFields]]"
   style="border:none;background-color: #1464a0;margin:10px;border-radius: 10px;text-align: center;cursor:pointer;">
-  <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[mapFields]]" > -->
   <span style="color:white;">MAP FIELDS -></span>
-  <!-- </oj-button> -->
 </div>
+
 
 <oj-dialog style="display:none" id="modalDialog1" dialog-title="Information">
   <div slot="body">
     <span data-bind="text:errorColumn"></span>
   </div>
+
   <div slot="footer">
     <oj-button id="okButton" on-oj-action="[[close]]">OK
     </oj-button>
@@ -224,23 +180,17 @@
     <div class="oj-sm-flex-initial oj-flex-item">
       <div class="oj-panel" on-click="[[openclearallbox]]"
         style="background-color: #1464a0; border-radius:10px;cursor:pointer;">
-
         <span style="color:white;font-size:small;">DELETE MAPPINGS</span>
       </div>
-
       <oj-dialog style="display:none" id="clearallbox" dialog-title="Clearing confirmation">
         <div slot="body">
           Do you want to clear it completely?
-
-
         </div>
         <div slot="footer">
           <oj-button id="okButton" on-oj-action="[[removeAllMappings]]">OK
           </oj-button>
         </div>
       </oj-dialog>
-
-
     </div>
   </div>
 
@@ -248,64 +198,27 @@
     <oj-bind-for-each data="[[dataProvider]]">
       <template>
         <div class="oj-flex-item">
-
           <div class="oj-flex oj-sm-flex-items-initial" style="margin:5px;">
             <div class="oj-flex-item">
               <div class="oj-panel" style="border-radius:10px 0px 0px 10px;font-size:smaller;color: #1464a0;">
-
-
                 <oj-bind-text value="[[$current.data.DISPLAY_NAME]]"></oj-bind-text> -> (<oj-bind-text
                   value="[[$current.data.DESTINATION_ENTITY_NAME]]"></oj-bind-text>)
                 <oj-bind-text value="[[$current.data.DESTINATION_COLUMN_NAME]]"></oj-bind-text>
               </div>
             </div>
             <div class="oj-flex-item">
-              <div class="oj-panel" on-click="[[openremoveUser]]"
+              <div class="oj-panel" on-click="[[removeUser]]"
                 style="background-color: #1464a0;width:35px;padding:6px;border-radius:0px 10px 10px 0px;cursor:pointer;">
                 <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[removeUser]]"> -->
                 <img src="css/images/delete_white@2x.png" width="16" height="16"
                   style="padding:6px 6px 3px 3px;">
               </div>
-              <oj-dialog style="display:none" id="removeUserbox" dialog-title="Delete confirmation">
-                <div slot="body">
-                  Do you want to delete this permanently
-                </div>
-                <div slot="footer">
-                  <oj-button id="okButton" on-oj-action="[[removeUser]]">OK
-                  </oj-button>
-
-                </div>
-              </oj-dialog>
-
-
             </div>
-            <!-- <div class="oj-flex-item">C</div> -->
           </div>
-
-
-
-
-
-
-          <!-- <oj-bind-text value="[[$current.data.sourceColumn]]"></oj-bind-text> -> <oj-bind-text value="[[$current.data.destinationColumn]]"></oj-bind-text>
-            <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[removeUser]]">
-              <span slot="startIcon" class="oj-fwk-icon oj-fwk-icon-cross"></span>
-              Remove
-            </oj-button> -->
         </div>
       </template>
     </oj-bind-for-each>
   </div>
-
-
-
-
-
-
-
-  <!-- <oj-button class='oj-button-sm' chroming='half' display='icons' on-oj-action="[[mapFields]]" >
-       <span style="color:white;">MAP FIELDS -></span> 
-    </oj-button> -->
 </div>
 
 
