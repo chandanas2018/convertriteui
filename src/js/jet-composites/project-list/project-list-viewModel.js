@@ -53,7 +53,7 @@ define(
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
-              $("#progressex").hide();
+             
               console.log(data);
               var filePath = host + data.loc;
               saveAs(filePath, entityvalue + ".csv");
@@ -63,18 +63,20 @@ define(
                 detail: "Extracted Successfully",
                 autoTimeout: parseInt(self.errorMessageTimeout())
               }
+              $("#progressex").hide();
               self.messagesArray.push(success);
             },
-            fail: function (xhr, textstatus, errorThrown) {
+            error: function (xhr, textStatus, errorThrown) {
 
               console.log(errorThrown);
-              $("#progressex").hide();
+            
               var warning = {
                 severity: 'error',
                 summary: 'Error',
                 detail: "File Downloading Incomplete",
                 autoTimeout: parseInt(self.errorMessageTimeout(), 10)
               }
+              $("#progressex").hide();
               self.messagesArray.push(warning);
 
             }
@@ -125,15 +127,16 @@ define(
               $("#progressset").hide();
               self.messagesArray.push(success);
             },
-            fail: function (xhr, textstatus, errorThrown) {
+            error: function (xhr, textstatus, errorThrown) {
               console.log(errorThrown)
-              $("#progressset").hide();
+             
               var warning = {
                 severity: 'error',
                 summary: 'Error',
                 detail: "Failed to Extract file.please try again",
                 autoTimeout: parseInt(self.errorMessageTimeout(), 10)
               }
+              $("#progressset").hide();
               self.messagesArray.push(warning);
             }
           });
@@ -236,7 +239,7 @@ define(
       });
 
       self.dataProvider = ko.observableArray([
-        { name: "HBL Group Data Conversion", description: "We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
+        { name: "HR Data Migration", description: "We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
         { name: "Payroll Data Migration", description: "Data migration projects typically require a lot of additional tools and project support platforms to function smoothly", status: "Upload Extracts" },
         // { name: "HBL Group Data Conversion", description:"We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
 

@@ -10,8 +10,8 @@ upload-extracts{
 	background-color: #d50b36;
 }
 
-#status{
-	display: none;
+#uploadprogress{
+	  display: none;
 	position: absolute;
 	left: 36%;
 	width: 40px;

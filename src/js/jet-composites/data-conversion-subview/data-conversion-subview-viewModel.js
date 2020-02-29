@@ -4,8 +4,8 @@
 */
 'use strict';
 define(
-  ['knockout', 'jquery', 'ojL10n!./resources/nls/data-conversion-subview-strings','ojs/ojpagingdataproviderview','ojs/ojarraydataprovider','ojs/ojdialog','ojs/ojmessages'],
-  function (ko, $, componentStrings,PagingDataProviderView, ArrayDataProvider) {
+  ['knockout', 'jquery', 'ojL10n!./resources/nls/data-conversion-subview-strings', 'ojs/ojpagingdataproviderview', 'ojs/ojarraydataprovider', 'ojs/ojdialog', 'ojs/ojmessages'],
+  function (ko, $, componentStrings, PagingDataProviderView, ArrayDataProvider) {
 
     function ExampleComponentModel(context) {
       var self = this;
@@ -19,7 +19,7 @@ define(
           self.checkValue()[0] === "dirColumn") ? true : false;
       }.bind(self));
 
-self.showPreview = ko.observable();
+      self.showPreview = ko.observable();
       self.loadPreview = function () {
 
         // var inf = 'some text here';
@@ -30,41 +30,36 @@ self.showPreview = ko.observable();
         //           var win = window.open('mywindow');
         // win.document.write('<h1>Popup Test!</h1>');
 
-self.showPreview('true');
+        self.showPreview('true');
 
-for(let i=0; i<self.previewArray().length; i++){
+        for (let i = 0; i < self.previewArray().length; i++) {
 
-if(self.previewArray()[i].sourceEntityName == context.properties.entityName){
+          if (self.previewArray()[i].sourceEntityName == context.properties.entityName) {
 
-  var obj2 = {
-
-
-      SNO: self.previewArray()[i].sourceColumnName,
-      SourceField: self.previewArray()[i].destinationEntityName,
-      DestinationField: self.previewArray()[i].destinationColumnName,
-      Message: 'Column Rule  N to 1 filedmapping check. Multiple sourceColumns cannot have a single destinationColumn'
+            var obj2 = {
 
 
-  }
+              SNO: self.previewArray()[i].sourceColumnName,
+              SourceField: self.previewArray()[i].destinationEntityName,
+              DestinationField: self.previewArray()[i].destinationColumnName,
+              Message: 'Column Rule  N to 1 filedmapping check. Multiple sourceColumns cannot have a single destinationColumn'
+            }
 
-  deptArray.push(obj2);
+            deptArray.push(obj2);
 
-}
+          }
 
-}
-
-
-       
+        }
       }
 
-      self.closePreview = function(){
+      self.closePreview = function () {
 
         self.showPreview('false');
 
       }
 
-var previewArray1 = [];
-self.previewArray = ko.observableArray(previewArray1);
+      var previewArray1 = [];
+      self.previewArray = ko.observableArray(previewArray1);
 
       $.ajax({
         url: host+"/api/v1/source/columns",
@@ -76,14 +71,14 @@ self.previewArray = ko.observableArray(previewArray1);
           console.log(data);
 
 
-         var tempArray = [];
-          for(let i=0;i<data.data.length; i++){
-            for(let j=0;j<data.data[i].DestinationColumns.length;j++){
+          var tempArray = [];
+          for (let i = 0; i < data.data.length; i++) {
+            for (let j = 0; j < data.data[i].DestinationColumns.length; j++) {
 
-              var obj={
+              var obj = {
                 sourceEntityName: data.data[i].SourceColumnInfo[j].entity,
                 sourceColumnName: data.data[i].SourceColumnInfo[j].column,
-                destinationEntityName:data.data[i].DestinationEntity,
+                destinationEntityName: data.data[i].DestinationEntity,
                 destinationColumnName: data.data[i].DestinationColumns[j]
 
 
@@ -99,9 +94,9 @@ self.previewArray = ko.observableArray(previewArray1);
 
           self.previewArray(tempArray);
 
-          console.log(self.previewArray);
+          console.log(self.previewArray());
 
-         
+
 
         },
         fail: function (xhr, textStatus, errorThrown) {
@@ -113,9 +108,9 @@ self.previewArray = ko.observableArray(previewArray1);
 
       self.messages = [
       ];
-self.errorMessageTimeout = ko.observable('0');
-self.messagesArray = ko.observableArray(self.messages);
- self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
+      self.errorMessageTimeout = ko.observable('');
+      self.messagesArray = ko.observableArray(self.messages);
+      self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
 
       self.saveFile = function () {
 
@@ -127,7 +122,7 @@ self.messagesArray = ko.observableArray(self.messages);
           // dataType: 'json',
 
           success: function (data, textStatus, jqXHR) {
-          
+
             console.log(data);
 
             var filePath = host + data.loc;
@@ -135,19 +130,28 @@ self.messagesArray = ko.observableArray(self.messages);
             saveAs(filePath, "Worker.dat");
 
 
-            var success ={
+            var success = {
               severity: 'confirmation',
-                summary: 'Success',
-                detail: "HDL File Downloaded Successfully",
-                autoTimeout: parseInt(self.errorMessageTimeout())
+              summary: 'Success',
+              detail: "HDL File Downloaded Successfully",
+              autoTimeout: parseInt(self.errorMessageTimeout())
             }
             $("#validatestatus").hide();
             self.messagesArray.push(success);
 
           },
-          fail: function (xhr, textStatus, errorThrown) {
-            $("#validatestatus").hide();
+          error: function (xhr, textStatus, errorThrown) {
+           
             console.log(errorThrown);
+            var error = {
+              severity: 'error',
+              summary: 'Error',
+              detail: "HDL File Downloaded failed",
+              autoTimeout: parseInt(self.errorMessageTimeout())
+
+            }
+            $("#validatestatus").hide();
+            self.messagesArray.push(error);
           }
         });
 
@@ -172,37 +176,37 @@ self.messagesArray = ko.observableArray(self.messages);
 
 
       var deptArray = [
-         
-  //       {
-  //           SNO: 'Error',
-  //           SourceField: 'BLOOD_TYPE ',
-  //           DestinationField: 'DEPARTMENT_NAME',
-  //           Message: 'Column Rule  N to 1 filedmapping check. Multiple sourceColumns cannot have a single destinationColumn'
-  //       },
-  //       {
-  //         SNO: 'Warning',
-  //         SourceField: 'USER_PERSON_TYPE',
-  //         DestinationField: '',
-  //         Message: 'SourceColumn is not mapped with any of the destination columns'
-  //     },
-  //     {
-  //       SNO: 'Success',
-  //       SourceField: 'DRIVER_LICENSE_COUNTRY',
-  //       DestinationField: ' LDG_NAME',
-  //       Message: 'Mapped Successfully'
-  //   },
-  //   {
-  //     SNO: 'Error',
-  //           SourceField: 'DRIVER_LICENSE_COUNTRY ',
-  //           DestinationField: 'LDG_NAME',
-  //           Message: 'Data rule N to 1 mapping check. single sourceData cannot have multiple destinationData(us-haiti, us-unitedstates)'
-  // },
 
-    ];
+        //       {
+        //           SNO: 'Error',
+        //           SourceField: 'BLOOD_TYPE ',
+        //           DestinationField: 'DEPARTMENT_NAME',
+        //           Message: 'Column Rule  N to 1 filedmapping check. Multiple sourceColumns cannot have a single destinationColumn'
+        //       },
+        //       {
+        //         SNO: 'Warning',
+        //         SourceField: 'USER_PERSON_TYPE',
+        //         DestinationField: '',
+        //         Message: 'SourceColumn is not mapped with any of the destination columns'
+        //     },
+        //     {
+        //       SNO: 'Success',
+        //       SourceField: 'DRIVER_LICENSE_COUNTRY',
+        //       DestinationField: ' LDG_NAME',
+        //       Message: 'Mapped Successfully'
+        //   },
+        //   {
+        //     SNO: 'Error',
+        //           SourceField: 'DRIVER_LICENSE_COUNTRY ',
+        //           DestinationField: 'LDG_NAME',
+        //           Message: 'Data rule N to 1 mapping check. single sourceData cannot have multiple destinationData(us-haiti, us-unitedstates)'
+        // },
+
+      ];
 
 
 
-    self.pagingDataProvider = new PagingDataProviderView(new ArrayDataProvider(deptArray, {idAttribute: 'DepartmentId'}));
+      self.pagingDataProvider = new PagingDataProviderView(new ArrayDataProvider(deptArray, { idAttribute: 'DepartmentId' }));
 
 
       //At the start of your viewModel constructor

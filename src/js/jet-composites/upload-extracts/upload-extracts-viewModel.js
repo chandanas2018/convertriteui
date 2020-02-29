@@ -5,17 +5,46 @@
 
 
 'use strict';
+
+
+
 define(
   ['knockout', 'jquery', 'ojL10n!./resources/nls/upload-extracts-strings', 'ojs/ojarraydataprovider', 'ojs/ojbutton', 'ojs/ojfilepicker', 'ojs/ojmessages'],
- function (ko, $, componentStrings, ArrayDataProvider) {
+  function (ko, $, componentStrings, ArrayDataProvider) {
+
+
+    function csvJSON(lines) {
+      //var lines=csv.split("\n"); 
+
+      var result = [];
+
+
+
+      var headers = lines[0];//.split(",");
+
+
+
+      for (var i = 1; i < lines.length; i++) {
+        var obj = {};
+        var currentline = lines[i];//.split(",");
+
+        for (var j = 0; j < headers.length; j++) {
+
+          obj[headers[j]] = currentline[j];
+
+        }
+        result.push(obj);
+      }
+
+      return JSON.stringify(result); //JSON
+
+    }
+
 
     function ExampleComponentModel(context) {
-      // require(['require','../js/configuration.js']),
+
       var self = this;
 
-    
-     
-     
       self.entityList = [];
       self.entityListArray = ko.observableArray(self.entityList);
 
@@ -29,6 +58,9 @@ define(
       // console.log("<<<<",host);
    
 
+
+
+
       $.ajax({
         url: host+"/api/v1/upload/extracts",
         type: 'GET',
@@ -37,8 +69,8 @@ define(
         success: function (data, textStatus, jqXHR) {
           $("#progressup").show();
           console.log(data);
-          
-          
+
+
 
           // var tempArray = [];
 
@@ -63,7 +95,7 @@ define(
             detail: data.data[row].errorMsg,
             autoTimeout: parseInt(self.errorMessageTimeout())
           }
-          
+          $("#progressup").hide();
           self.messagesArray.push(error);
 
           // var errorMessage = xhr.status + ': ' + xhr.statusText
@@ -75,10 +107,10 @@ define(
           //                   autoTimeout: parseInt(self.errorMessageTimeout())
           //               }
           //               self.messagesArray.push(servererror);
-        
-          $("#progressup").hide();
+
+
         }
-        
+
       });
 
 
@@ -103,148 +135,135 @@ define(
 
 
       self.selectListener = function (event, current, bindingContext) {
-        // console.log(data);
-        alert(event.detail.files[0].name.split(".")[0])
+
+
+
         if (current.data.ENTITY_NAME == event.detail.files[0].name.split(".")[0]) {
 
-          if (event.detail.files[0].name.split(".")[1] == "csv") {
-            // $(".loader").show();
 
-            var files = event.detail.files;
+          if (event.detail.files[0].name.split(".")[1] == "csv") {
+         
+            if (event.detail.files[0].name == "PERSON.csv") {
+              $(".ss:nth-child(2)").find(".loader").css({ "display": "block" });
+            } else if (event.detail.files[0].name == "PERSON_NAME.csv") {
+              $(".ss:nth-child(3)").find(".loader").css({ "display": "block" });
+            } else if (event.detail.files[0].name == "PERSON_LEGISLATIVE_INFO.csv") {
+              $(".ss:nth-child(4)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "ASSIGNMENT.csv") {
+              $(".ss:nth-child(5)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "PERSON_SALARY.csv") {
+              $(".ss:nth-child(6)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "SUPERVISOR.csv") {
+              $(".ss:nth-child(7)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "WORK_TERMS.csv") {
+              $(".ss:nth-child(8)").find(".loader").css({ "display": "block" });
+            }
+            else if (event.detail.files[0].name == "WORK_RELATIONSHIP.csv") {
+              $(".ss:nth-child(9)").find(".loader").css({ "display": "block" });
+            } else
+              $(".ss:nth-child(n)").find(".loader").css({ "display": "none" });
+              
+        var files = event.detail.files;
             for (var i = 0; i < files.length; i++) {
               self.fileNames.push(files[i].name);
             }
 
-            var formdata = new FormData();
+            // var formdata = new FormData();
 
 
             var file = new File([event.detail.files], event.detail.files[0].name, {
               type: "text/plain",
             });
-
             console.log(file);
-            //  formdata.append("myFile", file,file.name);
-            formdata.append("myFile", event.detail.files[0]);
-         
-            $.ajax({
-              url: host+"/api/v1/uploadfile",
-              data: formdata,
-              type: 'POST',
-              dataType: 'json',
-              processData: false,
-              contentType: false,
-              success: function (data, textStatus, jqXHR) {
-                $(".#status").show();
 
-                console.log(data);
-                var str = 'ORA' + '-' + '00' + data.error.errorNum;
-                console.log(str);
+            //formdata.append("myFile", event.detail.files[0]);
 
-                if (data.success == true) {
+            Papa.parse(event.detail.files[0], {
+              skipEmptyLines: true,
+              complete: function (results) {
+                console.log("Finished:", results.data);
 
+                Promise.resolve(results.data).then(function (data) {
+                  // console.log(data);
+                  var json = csvJSON(data);
+                  console.log(json);
 
-                  self.entityList[current.index].UPLOAD_STATUS = "UPLOADED";
-                  self.entityListArray(self.entityList);
-                  // self.entityListArray()[current.index].UPLOAD_STATUS= "UPLOADED";
-                  var success = {
-                    severity: 'confirmation',
-                    summary: 'File Upload success',
-                    detail: "File is uploaded and stored",
-                    autoTimeout: parseInt(self.errorMessageTimeout())
-                  }
-                  $("#status").hide();
-                  self.messagesArray.push(success);
-                }
-                else {
-                  //for errorlist 
                   $.ajax({
-                    url: host+"/api/v1/oracle/errors",
+                    url: host+"api/v1/uploadfile",
+                    data: { "data": json, "filename": event.detail.files[0].name.split(".")[0] },
                     type: 'POST',
-                    dataType: "json",
-                    processData: false,
-                    contentType: false,
+                    dataType: 'json',
+                    // processData: false,
+                    // contentType: false,
                     success: function (data, textStatus, jqXHR) {
-                      $("#status").hide();
                       console.log(data);
-                      for (var row = 0; row < data.data.length; row++) {
-                        if (data.data[row].errorNum == str) {
-                          console.log('hello');
-                         
-                          var error = {
-                            severity: 'error',
-                            summary: 'Error while uploading a file',
-                            detail: data.data[row].errorMsg,
-                            autoTimeout: parseInt(self.errorMessageTimeout())
-                          }
-                          $("#status").hide();
-                          self.messagesArray.push(error);
+                      if (data.success == true) {
+                        self.entityList[current.index].UPLOAD_STATUS = "UPLOADED";
+                        self.entityListArray(self.entityList);
+                        var success = {
+                          severity: 'confirmation',
+                          summary: 'File Upload success',
+                          detail: "File is uploaded and stored",
+                          autoTimeout: parseInt(self.errorMessageTimeout())
                         }
+                        $("#uploadprogress").hide()
+                        self.messagesArray.push(success);
                       }
-                    },
-                     error: function (xhr, status, error) {
-                    // fail: function (xhr, textstatus, errorThrown) {
-                      console.log(errorThrown)
-                      $("#status").hide();
-                      var errorMessage = xhr.status + ': ' + xhr.statusText
 
+                    },
+              
+                    error: function (xhr, textstatus, errorThrown) {
+                      console.log(errorThrown)
+                      var errorMessage = xhr.status + ': ' + xhr.statusText
                       var servererror = {
                         severity: 'error',
                         summary: 'Internal server error',
                         detail: errorMessage,
                         autoTimeout: parseInt(self.errorMessageTimeout())
                       }
+                      $("#uploadprogress").hide()
                       self.messagesArray.push(servererror);
+
+
+                      //alert('Error - ' + errorMessage);
+
+
                     }
-                  })
-                }
+                  });
 
-              },
-              error: function (xhr, status, error) {
-              // fail: function (xhr, textstatus, errorThrown) {
-                console.log(errorThrown)
-                var errorMessage = xhr.status + ': ' + xhr.statusText
-                var servererror = {
-                  severity: 'error',
-                  summary: 'Internal server error',
-                  detail: errorMessage,
-                  autoTimeout: parseInt(self.errorMessageTimeout())
-                }
-                self.messagesArray.push(servererror);
-
-
-                //alert('Error - ' + errorMessage);
-
+                });
 
               }
             });
 
-
-
-
-
           } else {
 
-            var error = {
+            var fileformaterror = {
               severity: 'error',
               summary: 'Invalid file Format',
               detail: "Should upload file in csv format only.",
               autoTimeout: parseInt(self.errorMessageTimeout())
             }
-            self.messagesArray.push(error);
+            $("#uploadprogress").hide()
+            self.messagesArray.push(fileformaterror);
             //Invalid file format
           }
 
         } else {
 
 
-          var error = {
+          var filenameerror = {
             severity: 'error',
             summary: 'Invalid file name',
             detail: "Name of the uploaded file should match with the name of the entity.",
             autoTimeout: parseInt(self.errorMessageTimeout())
           }
-
-          self.messagesArray.push(error);
+          $("#uploadprogress").hide()
+          self.messagesArray.push(filenameerror);
 
           //name of the entity should match with the name of the uploaded file.
         }
