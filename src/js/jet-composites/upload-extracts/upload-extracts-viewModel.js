@@ -14,9 +14,12 @@ define(
 
 
     function csvJSON(lines) {
+     
       //var lines=csv.split("\n"); 
 
       var result = [];
+
+     
 
 
 
@@ -44,6 +47,7 @@ define(
     function ExampleComponentModel(context) {
 
       var self = this;
+      var host = sessionStorage.getItem("hostname")
 
       self.entityList = [];
       self.entityListArray = ko.observableArray(self.entityList);
@@ -62,7 +66,7 @@ define(
 
 
       $.ajax({
-        url: host+"/api/v1/upload/extracts",
+        url: host + "/api/v1/upload/extracts",
         type: 'GET',
         //dataType: 'json',
 
@@ -193,7 +197,7 @@ define(
                   console.log(json);
 
                   $.ajax({
-                    url: host+"api/v1/uploadfile",
+                    url: host + "/api/v1/uploadfile",
                     data: { "data": json, "filename": event.detail.files[0].name.split(".")[0] },
                     type: 'POST',
                     dataType: 'json',

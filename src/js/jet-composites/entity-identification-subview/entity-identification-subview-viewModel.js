@@ -39,7 +39,7 @@ define(
       self.data1 = ko.observableArray(self.data);
 
       $.ajax({
-        url: host +"/api/v1/identification/columns",
+        url: host + "/api/v1/identification/columns",
         data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -144,7 +144,7 @@ define(
         var formData = { data: tmp, unchecked: tmp2 };
 
         $.ajax({
-          url: host +"/api/v1/update/identification/columns",
+          url: host + "/api/v1/update/identification/columns",
           data: JSON.stringify(formData),
           type: 'POST',
           dataType: 'json',

@@ -10,10 +10,9 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
-
-      var host = sessionStorage.getItem("hostname");
-
+      var host = sessionStorage.getItem("hostname")
       self.dataLoaded = ko.observable('no');
+     
 
       self.selectedItem = ko.observable("Table view");
 
@@ -224,7 +223,7 @@ define(
       self.warningsCount = ko.observable();
       self.errorsCount = ko.observable();
       $.ajax({
-        url: host+"/validation",
+        url: host + "/validation",
         type: 'GET',
         // dataType: 'json',
 

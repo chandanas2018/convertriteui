@@ -146,7 +146,7 @@ define(
 
 
       $.ajax({
-        url: host+"/api/v1/source/entities",
+        url: host + "/api/v1/source/entities",
         type: 'GET',
         // dataType: 'json',
 

@@ -9,9 +9,7 @@ define(
     
     function ExampleComponentModel(context) {
         var self = this;
-
-        var host = sessionStorage.getItem("hostname");
-
+        var host = sessionStorage.getItem("hostname")
         self.checkValue = ko.observableArray();
 
         self.dircolumn = ko.pureComputed(function(){
@@ -27,7 +25,7 @@ define(
         var data23 = [];
         // var data1=[];
         $.ajax({
-          url: host+"/api/v1/exceldata",
+          url: host + "/api/v1/exceldata",
           data: { entityid: 1},
           type: 'POST',
           dataType: 'json',

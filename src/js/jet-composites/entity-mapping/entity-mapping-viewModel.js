@@ -10,7 +10,7 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
-      var host = sessionStorage.getItem("hostname");
+      var host = sessionStorage.getItem("hostname")
       self.listItems = [
 
         {
@@ -133,7 +133,7 @@ define(
 
 
       $.ajax({
-        url: host+"/api/v1/source/entities",
+        url: host + "/api/v1/source/entities",
         type: 'GET',
         // dataType: 'json',
 

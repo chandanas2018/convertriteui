@@ -12,7 +12,7 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
-      var host = sessionStorage.getItem("hostname");
+      var host = sessionStorage.getItem("hostname")
 
       self.val1 = ko.observable('');
       self.val2 = ko.observable('');
@@ -53,7 +53,7 @@ define(
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
-             
+
               console.log(data);
               var filePath = host + data.loc;
               saveAs(filePath, entityvalue + ".csv");
@@ -69,7 +69,7 @@ define(
             error: function (xhr, textStatus, errorThrown) {
 
               console.log(errorThrown);
-            
+
               var warning = {
                 severity: 'error',
                 summary: 'Error',
@@ -129,7 +129,7 @@ define(
             },
             error: function (xhr, textstatus, errorThrown) {
               console.log(errorThrown)
-             
+
               var warning = {
                 severity: 'error',
                 summary: 'Error',
@@ -220,7 +220,7 @@ define(
       }
 
       $.ajax({
-        url: host+"/api/v1/projects/list",
+        url: host + "/api/v1/projects/list",
         data: { email: 'Linda@xyz.com' },
         type: 'POST',
         dataType: 'json',
