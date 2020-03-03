@@ -18,146 +18,44 @@ define(
 
       self.display = ko.observable("all");
       self.edge = ko.observable("top");
+
+      self.threeDValue = ko.observable('off');
       var data = {
-        "2018": [
-          // {
-          //   "id": 0,
-          //   "year": "2018",
-          //   "drink": "Coke",
-          //   "value": 42
-          // },
-          // {
-          //   "id": 1,
-          //   "year": "2018",
-          //   "drink": "Fanta",
-          //   "value": 55
-          // },
-          // {
-          //   "id": 2,
-          //   "year": "2018",
-          //   "drink": "Sprite",
-          //   "value": 36
-          // },
-          // {
-          //   "id": 3,
-          //   "year": "2018",
-          //   "drink": "Dr Pepper",
-          //   "value": 22
-          // },
-          // {
-          //   "id": 4,
-          //   "year": "2018",
-          //   "drink": "Pepsi",
-          //   "value": 12
-          // }
+        "success": [
+          {
+            "id": 0,
+            "series": "Series 1",
+            "group": "Group A",
+            "value": 42
+          },
+          {
+            "id": 1,
+            "series": "Series 2",
+            "group": "Group A",
+            "value": 55
+          },
+          {
+            "id": 2,
+            "series": "Series 3",
+            "group": "Group A",
+            "value": 36
+          },
+          {
+            "id": 3,
+            "series": "Series 4",
+            "group": "Group A",
+            "value": 22
+          }
         ],
-        "2017": [
-          {
-            "id": 5,
-            "year": "2017",
-            "drink": "Coversions",
-            "value": 1
-          },
-          {
-            "id": 6,
-            "year": "2017",
-            "drink": "Warnings",
-            "value": 1
-          },
-          {
-            "id": 7,
-            "year": "2017",
-            "drink": "Errors",
-            "value": 2
-          },
-          // {
-          //   "id": 8,
-          //   "year": "2017",
-          //   "drink": "Root Beer",
-          //   "value": 34
-          // },
-          // {
-          //   "id": 9,
-          //   "year": "2017",
-          //   "drink": "Sunkist",
-          //   "value": 30
-          // }
-        ]
+             
       }
 
-      // var data=  [
-      //   {
-      //     "id": 0,
-      //     "series": "Series 1",
-      //     "group": "Group A",
-      //     "value": 42
-      //   },
-      //   {
-      //     "id": 1,
-      //     "series": "Series 1",
-      //     "group": "Group B",
-      //     "value": 34
-      //   },
-      //   {
-      //     "id": 2,
-      //     "series": "Series 2",
-      //     "group": "Group A",
-      //     "value": 55
-      //   },
-      //   {
-      //     "id": 3,
-      //     "series": "Series 2",
-      //     "group": "Group B",
-      //     "value": 30
-      //   },
-      //   {
-      //     "id": 4,
-      //     "series": "Series 3",
-      //     "group": "Group A",
-      //     "value": 36
-      //   },
-      //   {
-      //     "id": 5,
-      //     "series": "Series 3",
-      //     "group": "Group B",
-      //     "value": 50
-      //   },
-      //   {
-      //     "id": 6,
-      //     "series": "Series 4",
-      //     "group": "Group A",
-      //     "value": 22
-      //   },
-      //   {
-      //     "id": 7,
-      //     "series": "Series 4",
-      //     "group": "Group B",
-      //     "value": 46
-      //   },
-      //   {
-      //     "id": 8,
-      //     "series": "Series 5",
-      //     "group": "Group A",
-      //     "value": 22
-      //   },
-      //   {
-      //     "id": 9,
-      //     "series": "Series 5",
-      //     "group": "Group B",
-      //     "value": 46
-      //   }
-      // ]        
-
-      //         this.stackValue = ko.observable('off');
-      //         this.orientationValue = ko.observable('vertical');
-      //         this.dataProvider = new ArrayDataProvider((data), {keyAttributes: 'id'});
-
-
+     
       this.orientationValue = ko.observable('vertical');
       this.xAxisRenderedValue = ko.observable('off');
       this.barSeriesValue = ko.observableArray();
       this.barGroupsValue = ko.observableArray();
-      this.dataSet = ko.observable("2017");
+      this.dataSet = ko.observable("success");
       this.resetColors = ko.observableArray();
       // data = JSON.parse(data);
       data = data;

@@ -11,8 +11,7 @@ define(
 
       var host = sessionStorage.getItem("hostname");
       var self = this;
-      var host = sessionStorage.getItem("hostname");
-
+      var deferred = $.Deferred();
       self.checkValue = ko.observableArray();
 
       self.dircolumn = ko.pureComputed(function () {
@@ -82,23 +81,6 @@ define(
 
               }
 
-
-
-
-
-
-              // }
-              // else{
-              //   for (let i=0; i<data.data[j].destinationdata.length;i++){
-
-              //     var obj ={
-              //       sourceData: data.data[j].sourcedata[i].SOURCE_DATA_NAME,
-              //       desData: data.data[j].destinationdata[i].DEST_DATA_NAME
-              //     }
-              //     data1.push(obj);
-
-              //   }
-              // }
 
               console.log(data1);
               data23.push(data1);
