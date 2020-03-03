@@ -9,8 +9,9 @@ define(
 
     function ExampleComponentModel(context) {
 
-      var host = sessionStorage.getItem("hostname");
+     
       var self = this;
+      var host = sessionStorage.getItem("hostname");
       var deferred = $.Deferred();
       self.checkValue = ko.observableArray();
 
@@ -94,7 +95,7 @@ define(
           else {
             var error = {
               severity: 'error',
-              summary: 'No data found',
+              summary: 'Error',
               detail: "No data found in the Template",
               autoTimeout: parseInt(self.errorMessageTimeout())
             }

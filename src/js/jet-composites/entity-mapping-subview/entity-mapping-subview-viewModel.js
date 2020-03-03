@@ -61,7 +61,7 @@ define(
 
               for (let i = 0; i < tempArray.length; i++) {
                 if (tempArray[i].IS_MANDATORY == "Y") {
-                  $(".mandate").eq(i).find("div").css({ "color": "black", "background": " #f2f4f5" });
+                  $(".mandate").eq(i).find("div").css({ "color": "#696969", "background": " #f2f4f5" });
                 }
                 else {
                   $(".mandate").eq(i).find("div").css({ "color": "black", "background": "white" });
