@@ -14,12 +14,12 @@ define(
 
 
     function csvJSON(lines) {
-     
+
       //var lines=csv.split("\n"); 
 
       var result = [];
 
-     
+
 
 
 
@@ -53,17 +53,6 @@ define(
       self.entityListArray = ko.observableArray(self.entityList);
 
       self.dataProvider = new ArrayDataProvider(self.entityListArray);
-      
-      //  $.getJSON("../js/appconfig.json").then(function(x){
-      //   sessionStorage.setItem("hostname",x.host) ;
-        
-      // })
-      var host = sessionStorage.getItem("hostname");
-      // console.log("<<<<",host);
-   
-
-
-
 
       $.ajax({
         url: host + "/api/v1/upload/extracts",
@@ -146,7 +135,7 @@ define(
 
 
           if (event.detail.files[0].name.split(".")[1] == "csv") {
-         
+
             if (event.detail.files[0].name == "PERSON.csv") {
               $(".ss:nth-child(2)").find(".loader").css({ "display": "block" });
             } else if (event.detail.files[0].name == "PERSON_NAME.csv") {
@@ -170,8 +159,8 @@ define(
               $(".ss:nth-child(9)").find(".loader").css({ "display": "block" });
             } else
               $(".ss:nth-child(n)").find(".loader").css({ "display": "none" });
-              
-        var files = event.detail.files;
+
+            var files = event.detail.files;
             for (var i = 0; i < files.length; i++) {
               self.fileNames.push(files[i].name);
             }
@@ -219,7 +208,7 @@ define(
                       }
 
                     },
-              
+
                     error: function (xhr, textstatus, errorThrown) {
                       console.log(errorThrown)
                       var errorMessage = xhr.status + ': ' + xhr.statusText

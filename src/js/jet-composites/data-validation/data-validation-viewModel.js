@@ -87,12 +87,12 @@ define(
             label: "PERSON_SALARY",
             disabled: false
           }, 
-          {
-            entityid: 13,
-            id: "SUPERVISOR",
-            label: "SUPERVISOR",
-            disabled: false
-          }, 
+          // {
+          //   entityid: 13,
+          //   id: "SUPERVISOR",
+          //   label: "SUPERVISOR",
+          //   disabled: false
+          // }, 
           // {
           //   entityid: 14,
           //   id: "CONTACT_RELATIONSHIP",
