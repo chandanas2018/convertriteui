@@ -12,13 +12,13 @@ define(['knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils',
      function ControllerViewModel() {
        var self = this;
 
-       $.getJSON("/js/appconfig.json").then(function(x){
+       $.getJSON("js/appconfig.json").then(function(x){
         sessionStorage.setItem("hostname",x.host);
+        console.log(x.host);
         
       })
       var host = sessionStorage.getItem("hostname");
-      console.log("<<<<",host);
-
+    //  console.log(host)
 
 
        self.userLogin1 = ko.observable("");
