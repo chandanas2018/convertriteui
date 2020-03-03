@@ -83,23 +83,6 @@ define(
               }
 
 
-
-
-
-
-              // }
-              // else{
-              //   for (let i=0; i<data.data[j].destinationdata.length;i++){
-
-              //     var obj ={
-              //       sourceData: data.data[j].sourcedata[i].SOURCE_DATA_NAME,
-              //       desData: data.data[j].destinationdata[i].DEST_DATA_NAME
-              //     }
-              //     data1.push(obj);
-
-              //   }
-              // }
-
               console.log(data1);
               data23.push(data1);
               deferred.resolve(data23);

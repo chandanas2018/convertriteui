@@ -210,6 +210,7 @@ define(
                     },
 
                     error: function (xhr, textstatus, errorThrown) {
+                      $("#uploadprogress").hide()
                       console.log(errorThrown)
                       var errorMessage = xhr.status + ': ' + xhr.statusText
                       var servererror = {

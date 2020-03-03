@@ -133,7 +133,8 @@ define(
           document.getElementById('mappingdilogue').open();
 
           // self.closemapping = function() {
-          //   document.getElementById('mappingdilogue').close();
+          //  
+           document.getElementById('mappingdilogue').close();
           // }
         }
 
@@ -142,6 +143,7 @@ define(
         var lookups = ["BLOOD_TYPE", "TITLE", "SEX"];
         for (let i = 0; i < lookups.length; i++) {
           if (current.data.COLUMN_NAME == lookups[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(11)").find("div").css({ "color": "white", "background": " #1464a0" });
           }
         }
@@ -149,6 +151,7 @@ define(
         var location = ["LOCATION_CODE"];
         for (let i = 0; i < location.length; i++) {
           if (current.data.COLUMN_NAME == location[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(7)").find("div").css({ "color": "white", "background": " #1464a0" });
           }
         }
@@ -156,6 +159,7 @@ define(
         var grades = ["GRADE_CODE"];
         for (let i = 0; i < grades.length; i++) {
           if (current.data.COLUMN_NAME == grades[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(10)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
@@ -164,6 +168,7 @@ define(
         var departments = ["DEPARTMENT_NAME"];
         for (let i = 0; i < departments.length; i++) {
           if (current.data.COLUMN_NAME == departments[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(6)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
@@ -172,6 +177,7 @@ define(
         var jobs = ["JOB_CODE"];
         for (let i = 0; i < jobs.length; i++) {
           if (current.data.COLUMN_NAME == jobs) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(8)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
