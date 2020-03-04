@@ -11,58 +11,36 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
       var host = sessionStorage.getItem("hostname")
-      self.dataLoaded = ko.observable('');
+      self.dataLoaded = ko.observable('no');
 
 
       self.selectedItem = ko.observable("Table view");
 
       self.display = ko.observable("all");
       self.edge = ko.observable("top");
-
       self.threeDValue = ko.observable('off');
+      $.ajax({
+        url: host+'/getValidations',
+        type: 'get',
+        dataType: 'json',
+        success: function(jsondata, textStatus, jqXHR) {
+         
+     
+        var data  =  jsondata;
 
-      var data = {
-        "success": [
-          {
-            "id": 0,
-            "series": "Series 1",
-            "group": "Group A",
-            "value": 42
-          },
-          {
-            "id": 1,
-            "series": "Series 2",
-            "group": "Group A",
-            "value": 55
-          },
-          {
-            "id": 2,
-            "series": "Series 3",
-            "group": "Group A",
-            "value": 36
-          },
-          {
-            "id": 3,
-            "series": "Series 4",
-            "group": "Group A",
-            "value": 22
-          }
-        ],
+        console.log(data);
 
-      }
-
-
-      this.orientationValue = ko.observable('vertical');
-      this.xAxisRenderedValue = ko.observable('off');
-      this.barSeriesValue = ko.observableArray();
-      this.barGroupsValue = ko.observableArray();
-      this.dataSet = ko.observable("success");
-      this.resetColors = ko.observableArray();
+        self.orientationValue = ko.observable('vertical');
+      self.xAxisRenderedValue = ko.observable('off');
+      self.barSeriesValue = ko.observableArray();
+      self.barGroupsValue = ko.observableArray();
+      self.dataSet = ko.observable("success");
+      self.resetColors = ko.observableArray();
       // data = JSON.parse(data);
       data = data;
-      this.chartData = ko.observableArray(data[this.dataSet()]);
-      this.dataProvider = new ArrayDataProvider(this.chartData, { keyAttributes: 'id' });
-      this.colorHandler = new attributeGroupHandler.ColorAttributeGroupHandler();
+      self.chartData = ko.observableArray(data[self.dataSet()]);
+      self.dataProvider = new ArrayDataProvider(self.chartData, { keyAttributes: 'id' });
+      self.colorHandler = new attributeGroupHandler.ColorAttributeGroupHandler();
 
       var getLegendData = function (data, colorHandler) {
         var items = [];
@@ -76,23 +54,23 @@ define(
         return [{ items: items }];
       };
 
-      this.legendSectionsValue = ko.observableArray(getLegendData(this.chartData(), this.colorHandler));
+      self.legendSectionsValue = ko.observableArray(getLegendData(self.chartData(), self.colorHandler));
 
       /* Switch between data1 and data2 */
-      this.changeData = function () {
-        if (this.resetColors()[0] == "reset")
-          this.colorHandler = new attributeGroupHandler.ColorAttributeGroupHandler();
+      self.changeData = function () {
+        if (self.resetColors()[0] == "reset")
+          self.colorHandler = new attributeGroupHandler.ColorAttributeGroupHandler();
 
-        this.chartData(data[this.dataSet()]);
-        this.legendSectionsValue(getLegendData(this.chartData(), this.colorHandler));
-      }.bind(this);
+        self.chartData(data[self.dataSet()]);
+        self.legendSectionsValue(getLegendData(self.chartData(), self.colorHandler));
+      }.bind(self);
 
       // When the orientation is vertical, render the legend and hide the x-axis.
       // When the orientation is horizontal, do the opposite.
-      this.orientationValue.subscribe(function (newOrientation) {
+      self.orientationValue.subscribe(function (newOrientation) {
         var isVertical = (newOrientation == 'vertical');
-        this.xAxisRenderedValue(isVertical ? 'off' : 'on');
-      }.bind(this));
+        self.xAxisRenderedValue(isVertical ? 'off' : 'on');
+      }.bind(self));
 
 
 
@@ -104,7 +82,6 @@ define(
         return (typeof self.checkValue()[0] !== 'undefined' && self.checkValue()[0] != null &&
           self.checkValue()[0] === "dirColumn") ? true : false;
       }.bind(self));
-
 
       var errorsObject = [];
       var warningsObject = [];
@@ -121,6 +98,7 @@ define(
       self.successCount = ko.observable();
       self.warningsCount = ko.observable();
       self.errorsCount = ko.observable();
+
       $.ajax({
         url: host + "/validation",
         type: 'GET',
@@ -208,24 +186,6 @@ define(
         }
       });
 
-      // self.loadErrorData = function(){
-      //   for(let i=0; i<self.errorsObject2().length;i++){
-      //     var obj = {
-
-      //       SNO : self.errorsObject2()[i].SNO,
-      //       SourceField: self.errorsObject2()[i].SNO,
-      //       DestinationField: self.errorsObject2()[i].SNO,
-      //       Message:  self.errorsObject2()[i].SNO
-
-
-
-      //     }
-
-      //     deptArray.push(obj);
-      //   }
-      // }
-
-
 
       var deptArray = [
 
@@ -307,83 +267,123 @@ define(
         // },
       ];
 
-
-
       self.pagingDataProvider = new PagingDataProviderView(new ArrayDataProvider(deptArray, { idAttribute: 'DepartmentId' }));
 
-      self.downloadValidations = function () {
+
+      self.downloadValidations = function(){
         var sheetData1 = [];
-
+      
         var sheetData = [];
-        var sheetNames = [{ sheetid: 'Sheet One', header: true }];
-
-        for (let i = 0; i < deptArray.length; i++) {
-          var obj = {
-            SNO: deptArray[i].SNO,
-            sourceField: deptArray[i].SourceField,
-            destinationField: deptArray[i].DestinationField,
-            Message: deptArray[i].Message
-          }
-
-          sheetData1.push(obj);
+        var sheetNames = [{sheetid:'Sheet One',header:true}];
+      
+        for(let i=0;i<deptArray.length;i++){
+          var obj ={
+                  SNO: deptArray[i].SNO,
+                  sourceField: deptArray[i].SourceField,
+                  destinationField: deptArray[i].DestinationField,
+                  Message: deptArray[i].Message
+                }
+      
+                sheetData1.push(obj);
         }
         sheetData.push(sheetData1);
-
-        // for(let i=0; i<deptArray.length; i++){
-        //   sheetData.push([deptArray[i]]);
-        // }
-
+      
+      // for(let i=0; i<deptArray.length; i++){
+      //   sheetData.push([deptArray[i]]);
+      // }
+      
         // sheetData.push(deptArray[0]);
-        //   for (let i = 0; i < deptArray.length; i++) {
-        //     var tempArray =[];
-        //     var obj ={
-        //       SNO: deptArray[i].SNO,
-        //       sourceField: deptArray[i].SourceField,
-        //       destinationField: deptArray[i].DestinationField,
-        //       Message: deptArray[i].Message
-        //     }
-        // tempArray.push(obj);
-
-        //     sheetData.push(tempArray);
-
-        //   }
+      //   for (let i = 0; i < deptArray.length; i++) {
+      //     var tempArray =[];
+      //     var obj ={
+      //       SNO: deptArray[i].SNO,
+      //       sourceField: deptArray[i].SourceField,
+      //       destinationField: deptArray[i].DestinationField,
+      //       Message: deptArray[i].Message
+      //     }
+      // tempArray.push(obj);
+      
+      //     sheetData.push(tempArray);
+      
+      //   }
         var result = alasql('SELECT * INTO XLSX("Validations.xlsx",?) FROM ?',
           [sheetNames, sheetData]);
-
-        // var sheet_1_data = data1;
-        // var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
-        // var sheet_2_data = [{Col_One:10, Col_Two:110}, {Col_One:20, Col_Two:220}];
-        // var opts = [{sheetid:'Sheet One',header:true},{sheetid:'Sheet Two',header:false}];
-        // var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
-        //                   [opts,[sheet_1_data ,sheet_2_data]]);
-
-
+      
+                // var sheet_1_data = data1;
+          // var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
+          // var sheet_2_data = [{Col_One:10, Col_Two:110}, {Col_One:20, Col_Two:220}];
+          // var opts = [{sheetid:'Sheet One',header:true},{sheetid:'Sheet Two',header:false}];
+          // var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
+          //                   [opts,[sheet_1_data ,sheet_2_data]]);
+      
+      
         //   var opts = [{sheetid:'Sheet One',header:true}];
         //  var result = alasql('SELECT * INTO XLSX("validation.xlsx",?) FROM ?', 
         //                                       [opts,deptArray]);
-
+      
       }
 
+ //At the start of your viewModel constructor
+ var busyContext = oj.Context.getContext(context.element).getBusyContext();
+ var options = { "description": "CCA Startup - Waiting for data" };
+ self.busyResolve = busyContext.addBusyState(options);
+
+ self.composite = context.element;
+
+ //Example observable
+ self.messageText = ko.observable('Hello from Example Component');
+ self.properties = context.properties;
+ self.res = componentStrings['data-validation-subview'];
+ // Example for parsing context properties
+ // if (context.properties.name) {
+ //     parse the context properties here
+ // }
+
+ //Once all startup and async activities have finished, relocate if there are any async activities
+ self.busyResolve();
+
+        }
+      });
+      
 
 
-      //At the start of your viewModel constructor
-      var busyContext = oj.Context.getContext(context.element).getBusyContext();
-      var options = { "description": "CCA Startup - Waiting for data" };
-      self.busyResolve = busyContext.addBusyState(options);
+      
 
-      self.composite = context.element;
+      
 
-      //Example observable
-      self.messageText = ko.observable('Hello from Example Component');
-      self.properties = context.properties;
-      self.res = componentStrings['data-validation-subview'];
-      // Example for parsing context properties
-      // if (context.properties.name) {
-      //     parse the context properties here
+      
+
+
+      
+      
+      // self.loadErrorData = function(){
+      //   for(let i=0; i<self.errorsObject2().length;i++){
+      //     var obj = {
+
+      //       SNO : self.errorsObject2()[i].SNO,
+      //       SourceField: self.errorsObject2()[i].SNO,
+      //       DestinationField: self.errorsObject2()[i].SNO,
+      //       Message:  self.errorsObject2()[i].SNO
+
+
+
+      //     }
+
+      //     deptArray.push(obj);
+      //   }
       // }
 
-      //Once all startup and async activities have finished, relocate if there are any async activities
-      self.busyResolve();
+
+
+      
+
+
+      
+
+
+     
+
+     
     };
 
     //Lifecycle methods - uncomment and implement if necessary 
