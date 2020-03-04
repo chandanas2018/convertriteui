@@ -100,14 +100,7 @@ define(
         });
       }
       else {
-        var error = {
-          severity: 'error',
-          summary: 'Error',
-          detail: "No data found in the Template",
-          autoTimeout: parseInt(self.errorMessageTimeout())
-        }
         $("#dataloader").hide();
-        self.messagesArray.push(error);
       }
 
       self.file = ko.observable();
