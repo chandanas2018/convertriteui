@@ -11,8 +11,8 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
       var host = sessionStorage.getItem("hostname")
-      self.dataLoaded = ko.observable('no');
-     
+      self.dataLoaded = ko.observable('');
+
 
       self.selectedItem = ko.observable("Table view");
 
@@ -20,6 +20,7 @@ define(
       self.edge = ko.observable("top");
 
       self.threeDValue = ko.observable('off');
+
       var data = {
         "success": [
           {
@@ -47,10 +48,10 @@ define(
             "value": 22
           }
         ],
-             
+
       }
 
-     
+
       this.orientationValue = ko.observable('vertical');
       this.xAxisRenderedValue = ko.observable('off');
       this.barSeriesValue = ko.observableArray();
@@ -110,7 +111,7 @@ define(
       var successObject = [];
       var validationObject = [];
 
-     
+
 
 
       var errorsObject1 = [];
@@ -128,7 +129,7 @@ define(
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
-          if(data.success == true){
+          if (data.success == true) {
             self.dataLoaded('yes');
           }
 
@@ -170,7 +171,7 @@ define(
 
           var tempArray2 = [];
           for (let i = 0; i < data.data.warnings.length; i++) {
-          
+
 
             var obj = {
 
@@ -186,16 +187,16 @@ define(
             tempArray.push(obj);
             tempArray2.push(obj);
             deptArray.push(obj);
-         
+
             self.errorsObject2(tempArray);
 
             self.warningsObject(tempArray2);
 
             var warningCount = self.warningsObject().length;
             self.warningsCount(warningCount);
-         
+
             validationObject.push(obj);
-  
+
           }
 
 
@@ -310,14 +311,14 @@ define(
 
       self.pagingDataProvider = new PagingDataProviderView(new ArrayDataProvider(deptArray, { idAttribute: 'DepartmentId' }));
 
-self.downloadValidations = function(){
-  var sheetData1 = [];
+      self.downloadValidations = function () {
+        var sheetData1 = [];
 
-  var sheetData = [];
-  var sheetNames = [{sheetid:'Sheet One',header:true}];
+        var sheetData = [];
+        var sheetNames = [{ sheetid: 'Sheet One', header: true }];
 
-  for(let i=0;i<deptArray.length;i++){
-    var obj ={
+        for (let i = 0; i < deptArray.length; i++) {
+          var obj = {
             SNO: deptArray[i].SNO,
             sourceField: deptArray[i].SourceField,
             destinationField: deptArray[i].DestinationField,
@@ -325,45 +326,45 @@ self.downloadValidations = function(){
           }
 
           sheetData1.push(obj);
-  }
-  sheetData.push(sheetData1);
+        }
+        sheetData.push(sheetData1);
 
-// for(let i=0; i<deptArray.length; i++){
-//   sheetData.push([deptArray[i]]);
-// }
+        // for(let i=0; i<deptArray.length; i++){
+        //   sheetData.push([deptArray[i]]);
+        // }
 
-  // sheetData.push(deptArray[0]);
-//   for (let i = 0; i < deptArray.length; i++) {
-//     var tempArray =[];
-//     var obj ={
-//       SNO: deptArray[i].SNO,
-//       sourceField: deptArray[i].SourceField,
-//       destinationField: deptArray[i].DestinationField,
-//       Message: deptArray[i].Message
-//     }
-// tempArray.push(obj);
+        // sheetData.push(deptArray[0]);
+        //   for (let i = 0; i < deptArray.length; i++) {
+        //     var tempArray =[];
+        //     var obj ={
+        //       SNO: deptArray[i].SNO,
+        //       sourceField: deptArray[i].SourceField,
+        //       destinationField: deptArray[i].DestinationField,
+        //       Message: deptArray[i].Message
+        //     }
+        // tempArray.push(obj);
 
-//     sheetData.push(tempArray);
+        //     sheetData.push(tempArray);
 
-//   }
-  var result = alasql('SELECT * INTO XLSX("Validations.xlsx",?) FROM ?',
-    [sheetNames, sheetData]);
+        //   }
+        var result = alasql('SELECT * INTO XLSX("Validations.xlsx",?) FROM ?',
+          [sheetNames, sheetData]);
 
-          // var sheet_1_data = data1;
-    // var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
-    // var sheet_2_data = [{Col_One:10, Col_Two:110}, {Col_One:20, Col_Two:220}];
-    // var opts = [{sheetid:'Sheet One',header:true},{sheetid:'Sheet Two',header:false}];
-    // var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
-    //                   [opts,[sheet_1_data ,sheet_2_data]]);
+        // var sheet_1_data = data1;
+        // var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
+        // var sheet_2_data = [{Col_One:10, Col_Two:110}, {Col_One:20, Col_Two:220}];
+        // var opts = [{sheetid:'Sheet One',header:true},{sheetid:'Sheet Two',header:false}];
+        // var result = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', 
+        //                   [opts,[sheet_1_data ,sheet_2_data]]);
 
 
-  //   var opts = [{sheetid:'Sheet One',header:true}];
-  //  var result = alasql('SELECT * INTO XLSX("validation.xlsx",?) FROM ?', 
-  //                                       [opts,deptArray]);
+        //   var opts = [{sheetid:'Sheet One',header:true}];
+        //  var result = alasql('SELECT * INTO XLSX("validation.xlsx",?) FROM ?', 
+        //                                       [opts,deptArray]);
 
-}
+      }
 
-     
+
 
       //At the start of your viewModel constructor
       var busyContext = oj.Context.getContext(context.element).getBusyContext();

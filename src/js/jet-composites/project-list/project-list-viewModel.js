@@ -49,7 +49,7 @@ define(
         } else {
           $("#progressex").show();
           $.ajax({
-            url: host+'/csv',
+            url: host + '/csv',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
@@ -110,7 +110,7 @@ define(
         } else {
           $("#progressset").show();
           $.ajax({
-            url: host+'/api/EbsExtracts',
+            url: host + '/api/EbsExtracts',
             type: 'GET',
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {

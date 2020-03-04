@@ -9,10 +9,10 @@
   <div style="text-align:center;"></div>
   <p>Validating the mappings. Please wait.....</p>
 
-  <div class="loader"></div>
+  <!-- <div class="loader"></div> -->
 </oj-bind-if>
 
-
+<!-- 
 <oj-bind-if test="[[dataLoaded()=='yes']]">
   <div id="tabbarcontainer1" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]"
     style="margin-bottom:20px;">
@@ -32,9 +32,9 @@
 
       </ul>
     </oj-tab-bar>
-  </div>
+  </div> -->
 
-
+<!-- 
   <oj-bind-if test="[[selectedItem() == 'Table view']]">
 
 
@@ -70,7 +70,7 @@
 
                 <div class="oj-flex-item">
                   <div style="max-width: 175px; margin-top:10px;color:green; font-size:30px;">
-                    <!-- <span data-bind="text:warningsCount"></span><b></b>  -->
+                   
                     <b>1</b> </div>
                 </div>
 
@@ -81,7 +81,7 @@
           </div>
 
         </div>
-        <!-- </div> -->
+      
       </div>
       <div class="oj-flex-item">
         <div class="oj-flex" style="border:1px solid #e0e1e1;border-radius: 5px;margin-left: 5px">
@@ -166,15 +166,19 @@
 
 
 
-  </oj-bind-if>
+  </oj-bind-if> -->
 
+
+
+<!-- 
   <oj-bind-if test="[[selectedItem() == 'Graph view']]">
+  </oj-bind-if> -->
 
-
-    <div id='chart-container'>
+  
+ 
       <oj-chart id="pieChart" type="pie" data="[[dataProvider]]" animation-on-display="auto"
         animation-on-data-change="auto" style-defaults.three-d-effect="[[threeDValue]]" hover-behavior="dim"
-        style="max-width:500px;width:100%;height:350px;">
+        style="max-width:500px;width:100%; margin-left: 179px;height:496px; margin-top: 30px;">
 
         <template slot='itemTemplate' data-oj-as='item'>
           <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.group] ]]'
@@ -182,33 +186,9 @@
           </oj-chart-item>
         </template>
       </oj-chart>
+ 
 
-
-    </div>
-
-    <!-- <div id='chart-container'>
    
-      <br style="clear:both;" />
-      <oj-chart id="barChart" type="bar" orientation="[[orientationValue]]" data="[[dataProvider]]" y-axis.title="Count"
-        x-axis.rendered="[[xAxisRenderedValue]]" value-formats.group.tooltip-label="Product"
-        value-formats.value.tooltip-label="Quantity" animation-on-display="auto"
-        legend.sections="[[legendSectionsValue]]" style="max-width:500px;width:100%;height:250px;">
-
-        <template slot='itemTemplate' data-oj-as='item'>
-          <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.drink] ]]' series-id='[[ item.data.year ]]'
-            color='[[ colorHandler.getValue(item.data.drink) ]]'>
-          </oj-chart-item>
-        </template>
-        <template slot='seriesTemplate'>
-          <oj-chart-series display-in-legend="off">
-          </oj-chart-series>
-        </template>
-      </oj-chart>
-          <demo-chart-orientation-control id="orientationControl" type="bar" orientation="{{orientationValue}}"
-        aria-controls="barChart">
-      </demo-chart-orientation-control>
-    </div> -->
-  </oj-bind-if>
 
   <div class="oj-flex" style="margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
     <div class="oj-flex-item"></div>
@@ -223,7 +203,7 @@
     </div>
   </div>
   <br>
-  <div class="oj-panel" style="border-radius: 10px;padding: 0px;">
+  <!-- <div class="oj-panel" style="border-radius: 10px;padding: 0px;">
 
     <oj-table id='table' aria-label='Departments Table' data='[[pagingDataProvider]]'
       columns-default.sortable='disabled' columns='[{"headerText": "Validation Status", 
@@ -252,7 +232,7 @@
       <div class="oj-flex-item"></div>
     </div>
 
-  </div>
+  </div> -->
 
 
 </oj-bind-if>
