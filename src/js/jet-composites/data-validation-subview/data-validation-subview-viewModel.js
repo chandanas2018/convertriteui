@@ -11,7 +11,7 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
       var host = sessionStorage.getItem("hostname")
-      self.dataLoaded = ko.observable('');
+      self.dataLoaded = ko.observable('no');
 
 
       self.selectedItem = ko.observable("Table view");
@@ -27,6 +27,8 @@ define(
          
      
         var data  =  jsondata;
+
+        console.log(data);
 
         self.orientationValue = ko.observable('vertical');
       self.xAxisRenderedValue = ko.observable('off');
