@@ -10,8 +10,11 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
 
+      var host = sessionStorage.getItem("hostname")
+
       self.nowrap = ko.observable(false);
       self.checkValue = ko.observableArray();
+      self.val = ko.observable('');
 
       self.dircolumn = ko.pureComputed(function () {
         return (typeof self.checkValue()[0] !== 'undefined' && self.checkValue()[0] != null &&
@@ -61,15 +64,13 @@ define(
       self.previewArray = ko.observableArray(previewArray1);
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/source/columns",
+        url: host + "/api/v1/source/columns",
         type: 'POST',
         // dataType: 'json',
 
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
-
-
           var tempArray = [];
           for (let i = 0; i < data.data.length; i++) {
             for (let j = 0; j < data.data[i].DestinationColumns.length; j++) {
@@ -80,27 +81,19 @@ define(
                 destinationEntityName: data.data[i].DestinationEntity,
                 destinationColumnName: data.data[i].DestinationColumns[j]
 
-
               }
-
               // previewArray.push(obj);
               tempArray.push(obj);
 
-
-
             }
           }
-
           self.previewArray(tempArray);
-
           console.log(self.previewArray());
-
-
 
         },
         fail: function (xhr, textStatus, errorThrown) {
-
           console.log(errorThrown);
+
         }
       });
 
@@ -111,64 +104,245 @@ define(
       self.messagesArray = ko.observableArray(self.messages);
       self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
 
-      self.saveFile = function () {
+      self.datdownload = function () {
+        var entityvalue = dropdown.value;
 
-        $("#validatestatus").show();
-        $.ajax({
+        if (entityvalue == "worker") {
+          $("#validatestatus").show();
+          $.ajax({
 
-          url: "http://localhost:3333/api/v1/download/hdl",
-          type: 'GET',
-          // dataType: 'json',
+            url: host + "/api/v1/download/hdl",
+            type: 'GET',
+            // dataType: 'json',
 
-          success: function (data, textStatus, jqXHR) {
+            success: function (data, textStatus, jqXHR) {
 
-            console.log(data);
+              console.log(data);
 
-            var filePath = "http://localhost:3333" + data.loc;
+              var filePath = host + data.loc;
 
-            saveAs(filePath, "Worker.dat");
+              saveAs(filePath, "Worker.dat");
 
 
-            var success = {
-              severity: 'confirmation',
-              summary: 'Success',
-              detail: "HDL File Downloaded Successfully",
-              autoTimeout: parseInt(self.errorMessageTimeout())
+              var success = {
+                severity: 'confirmation',
+                summary: 'Success',
+                detail: "HDL File Downloaded Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+              }
+              $("#validatestatus").hide();
+              self.messagesArray.push(success);
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+              console.log(errorThrown);
+              var error = {
+                severity: 'error',
+                summary: 'Error',
+                detail: "HDL File Downloaded failed",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+
+              }
+              $("#validatestatus").hide();
+              self.messagesArray.push(error);
             }
-            $("#validatestatus").hide();
-            self.messagesArray.push(success);
+          });
 
-          },
-          error: function (xhr, textStatus, errorThrown) {
-           
-            console.log(errorThrown);
-            var error = {
-              severity: 'error',
-              summary: 'Error',
-              detail: "HDL File Downloaded failed",
-              autoTimeout: parseInt(self.errorMessageTimeout())
+        } else if (entityvalue == "supervisor") {
+          $("#validatestatus").show();
+          $.ajax({
 
+            url: host + "/api/v1/supervisior/hdl",
+            type: 'GET',
+            // dataType: 'json',
+
+            success: function (data, textStatus, jqXHR) {
+
+              console.log(data);
+
+              var filePath = host + data.loc;
+
+              saveAs(filePath, "Supervisor.dat");
+
+
+              var success = {
+                severity: 'confirmation',
+                summary: 'Success',
+                detail: "Supervisor file Downloaded Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+              }
+              $("#validatestatus").hide();
+              self.messagesArray.push(success);
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+              console.log(errorThrown);
+              var error = {
+                severity: 'error',
+                summary: 'Error',
+                detail: "Supervisor File Downloaded failed",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+
+              }
+              $("#validatestatus").hide();
+              self.messagesArray.push(error);
             }
-            $("#validatestatus").hide();
-            self.messagesArray.push(error);
+          });
+        } else if (entityvalue == "salary") {
+          $("#validatestatus").show();
+          $.ajax({
+
+            url: host +"/api/v1/generateSalaryHdl",
+            type: 'GET',
+            // dataType: 'json',
+
+            success: function (data, textStatus, jqXHR) {
+              console.log(data);
+              var filePath = host + data.loc;
+              saveAs(filePath, "Salary.dat");
+              var success = {
+                severity: 'confirmation',
+                summary: 'Success',
+                detail: "Salary File Downloaded Successfully",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+              }
+              $("#validatestatus").hide();
+              self.messagesArray.push(success);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log(errorThrown);
+              var error = {
+                severity: 'error',
+                summary: 'Error',
+                detail: "Salary File Downloaded failed",
+                autoTimeout: parseInt(self.errorMessageTimeout())
+              }
+              $("#validatestatus").hide();
+              self.messagesArray.push(error);
+            }
+          });
+        } else {
+          var warning = {
+            severity: 'error',
+            summary: 'Error',
+            detail: "Please select the Entity",
+            autoTimeout: parseInt(self.errorMessageTimeout(), 10)
           }
-        });
-
-
-        // download('hdls/test.dat', "dlText.DAT", "text/plain");
-
-
-
-
-        // var dataobj = "METADATA|Worker|PersonId|EffectiveStartDate|EffectiveEndDate|PersonNumber|BloodType|CorrespondenceLanguage|StartDate|DateOfBirth|DateOfDeath|CountryOfBirth|RegionOfBirth|TownOfBirth|ApplicantNumber|CategoryCode|ActionCode|ReasonCode|GUID|SourceSystemOwner|SourceSystemId" + "\r\n"+
-        // " MERGE|Worker||2016/08/15|4712/12/31|12304297123121||US|2016/08/15|1969/07/24||US|||||HIRE||||" +  "\r\n" +
-
-        //  "METADATA|PersonEthnicity|EthnicityId|PersonId|PersonNumber|LegislationCode|DeclarerId|DeclarerPersonNumber|Ethnicity|PrimaryFlag|GUID|SourceSystemOwner|SourceSystemId" +"\r\n"+
-        //  "MERGE|PersonEthnicity|||12304297123121|US|||1|Y|||";
-
-
-        //  download(dataobj, "dlText.DAT", "text/plain");
+          $("#validatestatus").hide();
+          self.messagesArray.push(warning);
+        }
       }
+
+
+
+      // self.supervisor = function () {
+      //   $("#validatestatus").show();
+      //   $.ajax({
+
+      //     url: host + "/api/v1/supervisior/hdl",
+      //     type: 'GET',
+      //     // dataType: 'json',
+
+      //     success: function (data, textStatus, jqXHR) {
+
+      //       console.log(data);
+
+      //       var filePath = host + data.loc;
+
+      //       saveAs(filePath, "Supervisor.dat");
+
+
+      //       var success = {
+      //         severity: 'confirmation',
+      //         summary: 'Success',
+      //         detail: "Supervisor file Downloaded Successfully",
+      //         autoTimeout: parseInt(self.errorMessageTimeout())
+      //       }
+      //       $("#validatestatus").hide();
+      //       self.messagesArray.push(success);
+
+      //     },
+      //     error: function (xhr, textStatus, errorThrown) {
+
+      //       console.log(errorThrown);
+      //       var error = {
+      //         severity: 'error',
+      //         summary: 'Error',
+      //         detail: "Supervisor File Downloaded failed",
+      //         autoTimeout: parseInt(self.errorMessageTimeout())
+
+      //       }
+      //       $("#validatestatus").hide();
+      //       self.messagesArray.push(error);
+      //     }
+      //   });
+
+
+      // }
+
+      // self.saveFile = function () {
+
+      //   $("#validatestatus").show();
+      //   $.ajax({
+
+      //     url: host + "/api/v1/download/hdl",
+      //     type: 'GET',
+      //     // dataType: 'json',
+
+      //     success: function (data, textStatus, jqXHR) {
+
+      //       console.log(data);
+
+      //       var filePath = host + data.loc;
+
+      //       saveAs(filePath, "Worker.dat");
+
+
+      //       var success = {
+      //         severity: 'confirmation',
+      //         summary: 'Success',
+      //         detail: "HDL File Downloaded Successfully",
+      //         autoTimeout: parseInt(self.errorMessageTimeout())
+      //       }
+      //       $("#validatestatus").hide();
+      //       self.messagesArray.push(success);
+
+      //     },
+      //     error: function (xhr, textStatus, errorThrown) {
+
+      //       console.log(errorThrown);
+      //       var error = {
+      //         severity: 'error',
+      //         summary: 'Error',
+      //         detail: "HDL File Downloaded failed",
+      //         autoTimeout: parseInt(self.errorMessageTimeout())
+
+      //       }
+      //       $("#validatestatus").hide();
+      //       self.messagesArray.push(error);
+      //     }
+      //   });
+
+
+
+
+
+      //   // download('hdls/test.dat', "dlText.DAT", "text/plain");
+
+
+
+
+      //   // var dataobj = "METADATA|Worker|PersonId|EffectiveStartDate|EffectiveEndDate|PersonNumber|BloodType|CorrespondenceLanguage|StartDate|DateOfBirth|DateOfDeath|CountryOfBirth|RegionOfBirth|TownOfBirth|ApplicantNumber|CategoryCode|ActionCode|ReasonCode|GUID|SourceSystemOwner|SourceSystemId" + "\r\n"+
+      //   // " MERGE|Worker||2016/08/15|4712/12/31|12304297123121||US|2016/08/15|1969/07/24||US|||||HIRE||||" +  "\r\n" +
+
+      //   //  "METADATA|PersonEthnicity|EthnicityId|PersonId|PersonNumber|LegislationCode|DeclarerId|DeclarerPersonNumber|Ethnicity|PrimaryFlag|GUID|SourceSystemOwner|SourceSystemId" +"\r\n"+
+      //   //  "MERGE|PersonEthnicity|||12304297123121|US|||1|Y|||";
+
+
+      //   //  download(dataobj, "dlText.DAT", "text/plain");
+      // }
 
 
 

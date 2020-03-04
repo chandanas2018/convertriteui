@@ -10,8 +10,9 @@ define(
 
     function ExampleComponentModel(context) {
       var self = this;
-      var host = sessionStorage.getItem('hostname');
-      self.dataLoaded = ko.observable('no');
+      var host = sessionStorage.getItem("hostname")
+      self.dataLoaded = ko.observable('');
+
 
       self.selectedItem = ko.observable("Table view");
 
@@ -85,20 +86,7 @@ define(
       var successObject = [];
       var validationObject = [];
 
-      // for(let i=0; i<errorsObject.length;i++){
-      //   var obj = {
 
-      //     SNO : errorsObject()[i].SNO,
-      //     SourceField: errorsObject()[i].SNO,
-      //     DestinationField: errorsObject()[i].SNO,
-      //     Message:  errorsObject()[i].SNO
-
-
-
-      //   }
-
-      //   deptArray.push(obj);
-      // }
 
 
       var errorsObject1 = [];
@@ -110,14 +98,14 @@ define(
       self.errorsCount = ko.observable();
 
       $.ajax({
-        url: "http://localhost:3333/validation",
+        url: host + "/validation",
         type: 'GET',
         // dataType: 'json',
 
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
-          if(data.success == true){
+          if (data.success == true) {
             self.dataLoaded('yes');
           }
 
@@ -159,7 +147,7 @@ define(
 
           var tempArray2 = [];
           for (let i = 0; i < data.data.warnings.length; i++) {
-          
+
 
             var obj = {
 
@@ -175,16 +163,16 @@ define(
             tempArray.push(obj);
             tempArray2.push(obj);
             deptArray.push(obj);
-         
+
             self.errorsObject2(tempArray);
 
             self.warningsObject(tempArray2);
 
             var warningCount = self.warningsObject().length;
             self.warningsCount(warningCount);
-         
+
             validationObject.push(obj);
-  
+
           }
 
 

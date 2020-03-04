@@ -4,15 +4,15 @@
 -->
 <!-- <p data-bind="text:messageText"></p> -->
 
-<oj-bind-if test="[[dataLoaded()=='no']]"> 
+<oj-bind-if test="[[dataLoaded()=='no']]">
 
-  <div style= "text-align:center;"></div>
+  <div style="text-align:center;"></div>
   <p>Validating the mappings. Please wait.....</p>
 
-  <div class="loader"></div>
+  <!-- <div class="loader"></div> -->
 </oj-bind-if>
 
-
+<!-- 
 <oj-bind-if test="[[dataLoaded()=='yes']]">
 <!-- <div id="tabbarcontainer1" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]"
   style="margin-bottom:20px;">
@@ -37,198 +37,172 @@
 
 <!-- <oj-bind-if test="[[selectedItem() == 'Table view']]">
 
+    <div class="oj-flex" style="width: 848px;margin-left: -10px;">
+      <div class="oj-flex-item" style="border:1px solid #e0e1e1;border-radius: 5px;">
 
 
-  <div class="oj-flex" style="width: 848px;margin-left: -10px;">
-    <div class="oj-flex-item" style="border:1px solid #e0e1e1;border-radius: 5px;">
-     
 
+        <div class="oj-flex">
 
-      <div class="oj-flex">
+          <div class="oj-panel"
+            style="width:160px; height:150px; border-radius:10px 65px 65px 10px;background-color:#ecf7eb;">
 
-        <div class="oj-panel"
-          style="width:160px; height:150px; border-radius:10px 65px 65px 10px;background-color:#ecf7eb;">
+            <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+              <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
 
-          <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
-            <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
+                <div class="oj-flex-item">
+                  <div style="max-width: 175px; margin-top:10px;color:green; font-size:20px;">
+                    Successful Conversions</div>
+                </div>
 
-              <div class="oj-flex-item">
-                <div style="max-width: 175px; margin-top:10px;color:green; font-size:20px;">
-                  Successful Conversions</div>
               </div>
-
             </div>
+
+
           </div>
 
+          <div class="oj-panel" style="width:100px; height:150px;border:none;border-radius:0px 10px 10px 0px;">
 
-        </div>
+            <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+              <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
 
-        <div class="oj-panel" style="width:100px; height:150px;border:none;border-radius:0px 10px 10px 0px;">
+                <div class="oj-flex-item">
+                  <div style="max-width: 175px; margin-top:10px;color:green; font-size:30px;">
+                   
+                    <b>1</b> </div>
+                </div>
 
-          <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
-            <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
-
-              <div class="oj-flex-item">
-                <div style="max-width: 175px; margin-top:10px;color:green; font-size:30px;">
-              <b>1</b> </div>
               </div>
-
             </div>
+
+
           </div>
 
-
         </div>
-
+      
       </div>
       
     </div>
     <div class="oj-flex-item">
       <div class="oj-flex" style="border:1px solid #e0e1e1;border-radius: 5px;margin-left: 5px">
 
-        <div class="oj-panel"
-          style="width:160px; height:150px;border-radius:10px 65px 65px 10px;background-color:#f7f5eb;">
+          <div class="oj-panel"
+            style="width:160px; height:150px;border-radius:10px 65px 65px 10px;background-color:#f7f5eb;">
 
-          <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
-            <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
+            <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+              <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
 
-              <div class="oj-flex-item">
-                <div style="max-width: 175px; margin-top:10px;color:#ffcc33; font-size:20px;">
-                  Conversion Warnings</div>
+                <div class="oj-flex-item">
+                  <div style="max-width: 175px; margin-top:10px;color:#ffcc33; font-size:20px;">
+                    Conversion Warnings</div>
+                </div>
+
               </div>
-
             </div>
+
+
           </div>
 
+          <div class="oj-panel" style="width:100px; height:150px;border:none;border-radius:0px 10px 10px 0px">
 
-        </div>
+            <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+              <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
 
-        <div class="oj-panel" style="width:100px; height:150px;border:none;border-radius:0px 10px 10px 0px">
+                <div class="oj-flex-item">
+                  <div style="max-width: 175px; margin-top:10px;color:#ffcc33; font-size:30px;">
+                    <span data-bind="text:warningsCount"></span><b></b></div>
+                </div>
 
-          <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
-            <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
-
-              <div class="oj-flex-item">
-                <div style="max-width: 175px; margin-top:10px;color:#ffcc33; font-size:30px;">
-                    <span data-bind="text:warningsCount"></span><b>1</b></div>
               </div>
-
             </div>
+
+
           </div>
-
-
-        </div>
-      </div>
-
-    </div>
-    <div class="oj-flex-item">
-
-
-      <div class="oj-flex" style="border:1px solid #e0e1e1; border-radius: 5px;margin-left: 5px">
-
-        <div class="oj-panel"
-          style="width:160px; height:150px;border-radius:10px 65px 65px 10px;background-color:#f7ebeb;">
-
-          <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
-            <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
-
-              <div class="oj-flex-item">
-                <div style="max-width: 175px; margin-top:10px;color:crimson; font-size:20px;">
-                  Conversion Errors</div>
-              </div>
-
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="oj-panel" style="width:100px; height:150px;border:none;border-radius:0px 10px 10px 0px;">
-
-          <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
-            <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
-
-              <div class="oj-flex-item">
-                <div style="max-width: 175px; margin-top:10px;color:crimson; font-size:30px;">
-                    <span data-bind="text:errorsCount"></span> <b>1</b></div>
-              </div>
-
-            </div>
-          </div>
-
-
         </div>
 
       </div>
-
-    </div>
-  </div>
+      <div class="oj-flex-item">
 
 
+        <div class="oj-flex" style="border:1px solid #e0e1e1; border-radius: 5px;margin-left: 5px">
 
-</oj-bind-if> -->
+          <div class="oj-panel"
+            style="width:160px; height:150px;border-radius:10px 65px 65px 10px;background-color:#f7ebeb;">
 
-<oj-chart id="pieChart" type="pie" data="[[dataProvider]]" animation-on-display="auto"
-    animation-on-data-change="auto" style-defaults.three-d-effect="[[threeDValue]]" hover-behavior="dim"
-    style="max-width:500px;width:100%; margin-left: 179px;height:496px; margin-top: 30px;">
+            <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+              <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
 
-    <template slot='itemTemplate' data-oj-as='item'>
-      <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.group] ]]'
-        series-id='[[item.data.series]]'>
-      </oj-chart-item>
-    </template>
-  </oj-chart>
+                <div class="oj-flex-item">
+                  <div style="max-width: 175px; margin-top:10px;color:crimson; font-size:20px;">
+                    Conversion Errors</div>
+                </div>
 
-<!-- <oj-bind-if test="[[selectedItem() == 'Graph view']]">
-  <div id='chart-container'>
-  
-
-    <br style="clear:both;" />
-    
-
-  </div>
-</oj-bind-if> -->
+              </div>
+            </div>
 
 
+          </div>
+
+          <div class="oj-panel" style="width:100px; height:150px;border:none;border-radius:0px 10px 10px 0px;">
+
+            <div class="demo-flex-display oj-flex-items-pad" style="margin-top:30px;">
+              <div class="oj-flex oj-sm-align-items-center" :class="[[{'oj-sm-flex-direction-column': dircolumn()}]]">
+
+                <div class="oj-flex-item">
+                  <div style="max-width: 175px; margin-top:10px;color:crimson; font-size:30px;">
+                    <span data-bind="text:errorsCount"></span> <b></b></div>
+                </div>
+
+              </div>
+            </div>
 
 
+          </div>
 
+        </div>
 
-<!-- <div class="oj-flex" >
-  <div class="oj-flex-item"></div>
-  <div class="oj-flex-item"></div>
-  <div class="oj-flex-item"></div>
-  <div class="oj-flex-item"></div>
-    <div class="oj-sm-flex-items-initial oj-flex-item">
-      
-        <div class="oj-panel"  
-        style="background-color: #1464a0; width:100px;text-align:center;border-radius:10px;cursor:pointer;">
-
-        <span style="color:white;font-size:small;">Download</span>
       </div>
-    
     </div>
-  
-  
-  </div> -->
+
+
+
+  </oj-bind-if> -->
+
+
+
+<!-- 
+  <oj-bind-if test="[[selectedItem() == 'Graph view']]">
+  </oj-bind-if> -->
+
+
+
+<oj-chart id="pieChart" type="pie" data="[[dataProvider]]" animation-on-display="auto" animation-on-data-change="auto"
+  style-defaults.three-d-effect="[[threeDValue]]" hover-behavior="dim"
+  style="max-width:500px;width:100%; margin-left: 179px;height:496px; margin-top: 30px;">
+
+  <template slot='itemTemplate' data-oj-as='item'>
+    <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.group] ]]' series-id='[[item.data.series]]'>
+    </oj-chart-item>
+  </template>
+</oj-chart>
+
+
 
 
 <div class="oj-flex" style="margin-top:10px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
   <div class="oj-flex-item"></div>
-
-
   <div class="oj-flex-item"> </div>
-
-
   <div class="oj-sm-flex-initial oj-flex-item" style="margin:0px;">
-
-    <div class="oj-panel" on-click= "[[downloadValidations]]" style="
+    <div class="oj-panel" on-click="[[downloadValidations]]" style="
           border-radius: 5px;
           background-color:  #1464a0;
           color:white;
           border:none; cursor:pointer; width:100px; text-align:center;
       ">Download</div>
-
   </div>
+</div>
+<br>
+<!-- <div class="oj-panel" style="border-radius: 10px;padding: 0px;">
 
 
 
@@ -255,7 +229,7 @@ padding: 0px;
            "style": "white-space:normal;word-wrap:break-word;"}]' style='width: 100%; height:100%;'>
   </oj-table> -->
 
-  <!-- <div class="oj-flex">
+<!-- <div class="oj-flex">
     <div class="oj-flex-item"></div>
     <div class="oj-flex-item"></div>
     <div class="oj-flex-item">
@@ -265,7 +239,7 @@ padding: 0px;
     <div class="oj-flex-item"></div>
   </div> -->
 
-</div>
+<!-- </div> -->
 
 
-</oj-bind-if>
+<!-- </oj-bind-if>  -->

@@ -9,7 +9,7 @@ define(
     
     function ExampleComponentModel(context) {
         var self = this;
-
+        var host = sessionStorage.getItem("hostname")
 
         self.listItems = [
           {
@@ -72,11 +72,11 @@ define(
             label: "PERSON_SALARY",
             disabled: false
           }, 
-          {
-            id: "SUPERVISOR",
-            label: "SUPERVISOR",
-            disabled: false
-          },
+          // {
+          //   id: "SUPERVISOR",
+          //   label: "SUPERVISOR",
+          //   disabled: false
+          // },
           //  {
           //   id: "CONTACT_RELATIONSHIP",
           //   label: "CONTACT_RELATIONSHIP",

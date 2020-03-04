@@ -14,9 +14,12 @@ define(
 
 
     function csvJSON(lines) {
+
       //var lines=csv.split("\n"); 
 
       var result = [];
+
+
 
 
 
@@ -44,17 +47,15 @@ define(
     function ExampleComponentModel(context) {
 
       var self = this;
+      var host = sessionStorage.getItem("hostname")
 
       self.entityList = [];
       self.entityListArray = ko.observableArray(self.entityList);
 
       self.dataProvider = new ArrayDataProvider(self.entityListArray);
 
-
-
-
       $.ajax({
-        url: "http://localhost:3333/api/v1/upload/extracts",
+        url: host + "/api/v1/upload/extracts",
         type: 'GET',
         //dataType: 'json',
 
@@ -134,7 +135,7 @@ define(
 
 
           if (event.detail.files[0].name.split(".")[1] == "csv") {
-         
+
             if (event.detail.files[0].name == "PERSON.csv") {
               $(".ss:nth-child(2)").find(".loader").css({ "display": "block" });
             } else if (event.detail.files[0].name == "PERSON_NAME.csv") {
@@ -158,8 +159,8 @@ define(
               $(".ss:nth-child(9)").find(".loader").css({ "display": "block" });
             } else
               $(".ss:nth-child(n)").find(".loader").css({ "display": "none" });
-              
-        var files = event.detail.files;
+
+            var files = event.detail.files;
             for (var i = 0; i < files.length; i++) {
               self.fileNames.push(files[i].name);
             }
@@ -185,7 +186,7 @@ define(
                   console.log(json);
 
                   $.ajax({
-                    url: "http://localhost:3333/api/v1/uploadfile",
+                    url: host + "/api/v1/uploadfile",
                     data: { "data": json, "filename": event.detail.files[0].name.split(".")[0] },
                     type: 'POST',
                     dataType: 'json',
@@ -207,8 +208,9 @@ define(
                       }
 
                     },
-              
+
                     error: function (xhr, textstatus, errorThrown) {
+                      $("#uploadprogress").hide()
                       console.log(errorThrown)
                       var errorMessage = xhr.status + ': ' + xhr.statusText
                       var servererror = {

@@ -10,7 +10,7 @@ define(
     function ExampleComponentModel(context) {
         var self = this;
 
-
+        var host = sessionStorage.getItem("hostname");
 
         self.listItems = [
           {
@@ -87,12 +87,12 @@ define(
             label: "PERSON_SALARY",
             disabled: false
           }, 
-          {
-            entityid: 13,
-            id: "SUPERVISOR",
-            label: "SUPERVISOR",
-            disabled: false
-          }, 
+          // {
+          //   entityid: 13,
+          //   id: "SUPERVISOR",
+          //   label: "SUPERVISOR",
+          //   disabled: false
+          // }, 
           // {
           //   entityid: 14,
           //   id: "CONTACT_RELATIONSHIP",
@@ -135,7 +135,7 @@ define(
   
   
         $.ajax({
-          url: "http://localhost:3333/api/v1/source/entities",
+          url: host + "/api/v1/source/entities",
           type: 'GET',
           // dataType: 'json',
   

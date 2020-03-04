@@ -28,12 +28,13 @@
       <div class="oj-flex-item" style="color:green; font-size:x-large;"> <b>Data Mapping Successful!</b></div>
 
     </div>
+
   </div>
 
 
-  <p style="text-align:center;margin:30px;">Following table lists the  data transfers from source to destination.</p>
+  <p style="text-align:center;margin:30px;">Following table lists the data transfers from source to destination.</p>
 
-<!-- 
+  <!-- 
   <div class="demo-row-classes  demo-flex-display oj-flex-items-pad" style="margin-top:50px;">
 
     <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center"
@@ -77,64 +78,83 @@
 
 
   <div class="oj-flex">
-      <div class="oj-flex-item">
-          <!-- <div class="oj-flex-item"> -->
-
-
-              <div class="oj-flex" style="margin-left:30px;">
-                
-                  <div class="oj-panel" on-click="[[loadPreview]]" style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;"> <img
-                      src="../../../css/images/loadtohcm_button_icon@2x.png" width="24"></div>
-            
-              
-                  <div class="oj-panel" on-click="[[loadPreview]]" style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">
-                    PREVIEW</div>
-         
-              </div>
-            <!-- </div> -->
+    <div class="oj-flex-item">
+      <div class="oj-flex" style="margin-left: -30px;">
+        <div class="oj-panel" on-click="[[loadPreview]]"
+          style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;"> <img
+            src="css/images/loadtohcm_button_icon@2x.png" width="24"></div>
+        <div class="oj-panel" on-click="[[loadPreview]]"
+          style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">
+          Preview</div>
       </div>
-      <div class="oj-flex-item">
-          <div class="oj-flex">
-             
-                <div class="oj-panel" style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;" on-click="[[saveFile]]">
-                  <img src="../../../css/images/download_button_icon@2x.png" width="20" height="16"></div>
-        
-             
-                <div class="oj-panel" on-click="[[saveFile]]" style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">
-                  DOWNLOAD HDL FILE</div>
-             
-            </div>
 
-      </div>
-      <div class="oj-flex-item">
-
-          <div class="oj-flex-item">
-
-
-              <div class="oj-flex" style="margin-left:30px;">
-            
-                  <div class="oj-panel" style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;"> <img
-                      src="../../../css/images/loadtohcm_button_icon@2x.png" width="24"></div>
-                
-               
-                  <div class="oj-panel" style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">LOAD
-                    INTO HCM</div>
-          
-              </div>
-            </div>
+      <!-- <div class="oj-flex-item">
+      <div class="oj-flex" style=" margin-left: 15px;">
+        <div class="oj-panel" style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;"
+          on-click="[[saveFile]]">
+          <img src="css/images/download_button_icon@2x.png" width="20" height="16"></div>
+        <div class="oj-panel" on-click="[[saveFile]]"
+          style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">
+          Download HDL File</div>
       </div>
     </div>
+    <div class="oj-flex-item">
+      <div class="oj-flex" style=" margin-left: 15px;">
+        <div class="oj-panel" style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;"
+          on-click="[[supervisor]]">
+          <img src="css/images/download_button_icon@2x.png" width="20" height="16"></div>
+        <div class="oj-panel" on-click="[[supervisor]]"
+          style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">
+          Download Supervisor</div>
+
+      </div>
+
+    </div>  -->
+
+      <div style="margin-left: 185px; margin-top: -48px;">
+        <span style="font-size: medium;">Download : </span>
+        <oj-combobox-one id="dropdown" placeholder="Select Your option" value="{{val}}"
+          style="max-width:15em ;margin-left: 1%;margin-top: 10px;">
+          <oj-option value="worker">worker</oj-option>
+          <oj-option value="supervisor">supervisor</oj-option>
+          <oj-option value="salary">salary</oj-option>
+        </oj-combobox-one>
+      </div>
+
+
+
+      <div class="oj-flex-item">
+
+        <div class="oj-flex-item" style="margin-left:33px;">
+          <div class="oj-flex" style="margin-left:20px;margin-left: 556px;margin-top: -42px;">
+
+            <div class="oj-panel" style="background-color:  #1464a0; border-radius:10px 0px 0px 10px;cursor:pointer;">
+              <img src="css/images/loadtohcm_button_icon@2x.png" width="24"></div>
+
+
+            <div class="oj-panel"
+              style="background-color:  #1464a0;color:white;border-radius:0px 10px 10px 0px;cursor:pointer;">Load
+              Into HCM</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <button id="hdl" on-click='[[datdownload]]'>Download</button>
 
 
     <oj-bind-if test="[[showPreview() == 'true']]">
 
-        <div class="oj-flex" style= "margin-top:30px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
-            <div class ="oj-flex-item"></div>
-              
-          
-              <div class="oj-flex-item"> </div>
-          
-              <!-- <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
+      <div class="oj-flex" style="margin-top:30px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
+        <div class="oj-flex-item"></div>
+
+
+        <div class="oj-flex-item"> </div>
+
+        <!-- <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
                 
                   <div class="oj-panel" on-click='[[selectAll]]' style="
                   border-radius: 5px;
@@ -154,24 +174,24 @@
             ">Deselect all</div>
             
           </div> -->
-              <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 0px 0px 0px;">
-          
-                <div class="oj-panel" on-click='[[closePreview]]' style="
+        <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 0px 0px 0px;">
+
+          <div class="oj-panel" on-click='[[closePreview]]' style="
                 border-radius: 5px;
                 background-color:  #1464a0;
                 color:white;
                 border:none; cursor:pointer; width:100px; text-align:center;
             ">Close</div>
-                
-              </div>
-            
-           
-          
-            </div>
-    <div class="oj-panel" style="border-radius: 10px;padding: 0px; ">
-   
-      <oj-table id='table' aria-label='Departments Table' data='[[pagingDataProvider]]' columns-default.sortable='disabled'
-        columns='[{"headerText": "Source Column Name", 
+
+        </div>
+
+
+
+      </div>
+      <div class="oj-panel" style="border-radius: 10px;padding: 0px; ">
+
+        <oj-table id='table' aria-label='Departments Table' data='[[pagingDataProvider]]'
+          columns-default.sortable='disabled' columns='[{"headerText": "Source Column Name", 
                "field": "SNO",
                "headerClassName": "oj-sm-only-hide",
                "className": "oj-sm-only-hide"},
@@ -182,24 +202,26 @@
                "headerClassName": "oj-sm-only-hide",
                "className": "oj-sm-only-hide"}
               ]' style='width: 100%; height:100%;'>
-      </oj-table>
-    
-      <div class="oj-flex">
-        <div class="oj-flex-item"></div>
-        <div class="oj-flex-item"></div>
-        <div class="oj-flex-item">
-          <oj-paging-control id="paging" data="[[pagingDataProvider]]" page-size="10" slot="bottom">
-          </oj-paging-control>
+        </oj-table>
+
+        <div class="oj-flex">
+          <div class="oj-flex-item"></div>
+          <div class="oj-flex-item"></div>
+          <div class="oj-flex-item">
+            <oj-paging-control id="paging" data="[[pagingDataProvider]]" page-size="10" slot="bottom">
+            </oj-paging-control>
+          </div>
+          <div class="oj-flex-item"></div>
         </div>
-        <div class="oj-flex-item"></div>
+
       </div>
-    
-    </div>
 
     </oj-bind-if>
 
 
-</div>
+  </div>
 
-<oj-messages messages="[[messagesDataprovider]]" position="{}" display="notification">
+
+
+  <oj-messages messages="[[messagesDataprovider]]" position="{}" display="notification">
   </oj-messages>

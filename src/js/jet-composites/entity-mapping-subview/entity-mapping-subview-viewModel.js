@@ -11,6 +11,7 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
 
+      var host = sessionStorage.getItem("hostname")
       self.checkValue = ko.observableArray();
 
       self.dircolumn = ko.pureComputed(function () {
@@ -34,7 +35,7 @@ define(
 
       $("#entityloader").show()
       $.ajax({
-        url: "http://localhost:3333/api/v1/source/entity/columns",
+        url: host + "/api/v1/source/entity/columns",
         data: { id: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -60,7 +61,7 @@ define(
 
               for (let i = 0; i < tempArray.length; i++) {
                 if (tempArray[i].IS_MANDATORY == "Y") {
-                  $(".mandate").eq(i).find("div").css({ "color": "black", "background": " #f2f4f5" });
+                  $(".mandate").eq(i).find("div").css({ "color": "#696969", "background": " #f2f4f5" });
                 }
                 else {
                   $(".mandate").eq(i).find("div").css({ "color": "black", "background": "white" });
@@ -86,7 +87,7 @@ define(
       $("#entityloader").show()
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/dest/entities",
+        url: host + "/api/v1/dest/entities",
         type: 'GET',
         // dataType: 'json',
 
@@ -132,7 +133,8 @@ define(
           document.getElementById('mappingdilogue').open();
 
           // self.closemapping = function() {
-          //   document.getElementById('mappingdilogue').close();
+          //  
+           document.getElementById('mappingdilogue').close();
           // }
         }
 
@@ -141,20 +143,23 @@ define(
         var lookups = ["BLOOD_TYPE", "TITLE", "SEX"];
         for (let i = 0; i < lookups.length; i++) {
           if (current.data.COLUMN_NAME == lookups[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(11)").find("div").css({ "color": "white", "background": " #1464a0" });
           }
         }
 
-        var location = ["LOCATION_CODE"];
+        var location = ["LOCATIONCODE"];
         for (let i = 0; i < location.length; i++) {
           if (current.data.COLUMN_NAME == location[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(7)").find("div").css({ "color": "white", "background": " #1464a0" });
           }
         }
 
-        var grades = ["GRADE_CODE"];
+        var grades = ["GRADECODE"];
         for (let i = 0; i < grades.length; i++) {
           if (current.data.COLUMN_NAME == grades[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(10)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
@@ -163,14 +168,16 @@ define(
         var departments = ["DEPARTMENT_NAME"];
         for (let i = 0; i < departments.length; i++) {
           if (current.data.COLUMN_NAME == departments[i]) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(6)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
         }
 
-        var jobs = ["JOB_CODE"];
+        var jobs = ["JOBCODE"];
         for (let i = 0; i < jobs.length; i++) {
           if (current.data.COLUMN_NAME == jobs) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(8)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
@@ -187,7 +194,7 @@ define(
         self.destinationColumn(undefined);
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/dest/entity/columns",
+          url: host + "/api/v1/dest/entity/columns",
           data: { id: current.data.DEST_ENTITY_ID },
           type: 'POST',
           dataType: 'json',
@@ -229,7 +236,7 @@ define(
 
 
       $.ajax({
-        url: "http://localhost:3333/api/v1/listof/mappedfields",
+        url: host + "/api/v1/listof/mappedfields",
         data: { sourceentityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
@@ -288,7 +295,7 @@ define(
           // }
         } else if (self.dataProvider().length == 0) {
           $.ajax({
-            url: "http://localhost:3333/api/v1/mappings",
+            url: host + "/api/v1/mappings",
             data:
             {
               projectid: 2,
@@ -348,7 +355,7 @@ define(
 
           if (matchFound == false) {
             $.ajax({
-              url: "http://localhost:3333/api/v1/mappings",
+              url: host + "/api/v1/mappings",
               data:
               {
                 projectid: 2,
@@ -396,7 +403,7 @@ define(
 
 
         // $.ajax({
-        //   url: "http://localhost:3333/api/v1/mappings",
+        //   url: host + "/api/v1/mappings",
         //   data:
         //   {
         //     projectid: 2,
@@ -433,17 +440,11 @@ define(
 
 
       };
-
-      self.openremoveUser = function (event) {
-        document.getElementById('removeUserbox').open();
-      };
-
-
       self.removeUser = function (event, current, bindingContext) {
         // self.dataProvider.remove(current.data);
 
         $.ajax({
-          url: "http://localhost:3333/api/v1/delete/individual/mapping",
+          url: host + "/api/v1/delete/individual/mapping",
           data: { sourceentityid: context.properties.entityId, sourcecolumnname: current.data.DISPLAY_NAME, destinationcolumnname: current.data.DESTINATION_COLUMN_NAME },
           type: 'DELETE',
           dataType: 'json',
@@ -455,7 +456,7 @@ define(
 
             if (data.success == true) {
               self.dataProvider.remove(current.data);
-              document.getElementById('removeuserbox').close();
+            
 
             }
 
@@ -464,8 +465,7 @@ define(
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
-            document.getElementById('removeuserbox').close();
-
+          
           }
         });
 
@@ -481,7 +481,7 @@ define(
 
         // self.dataProvider.removeAll();
         $.ajax({
-          url: "http://localhost:3333/api/v1/removeall/mappedfields",
+          url: host + "/api/v1/removeall/mappedfields",
           data: { sourceentityid: context.properties.entityId },
           type: 'DELETE',
           dataType: 'json',
