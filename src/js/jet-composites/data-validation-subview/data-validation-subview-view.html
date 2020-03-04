@@ -14,7 +14,7 @@
 
 
 <oj-bind-if test="[[dataLoaded()=='yes']]">
-<div id="tabbarcontainer1" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]"
+<!-- <div id="tabbarcontainer1" :style.max-width="[[(edge() === 'end' || edge() === 'start') ? '250px':'']]"
   style="margin-bottom:20px;">
   <oj-tab-bar display="[[display]]" edge="[[edge]]" selection="{{selectedItem}}">
     <ul>
@@ -32,10 +32,10 @@
 
     </ul>
   </oj-tab-bar>
-</div>
+</div> -->
 
 
-<oj-bind-if test="[[selectedItem() == 'Table view']]">
+<!-- <oj-bind-if test="[[selectedItem() == 'Table view']]">
 
 
 
@@ -80,7 +80,7 @@
         </div>
 
       </div>
-      <!-- </div> -->
+      
     </div>
     <div class="oj-flex-item">
       <div class="oj-flex" style="border:1px solid #e0e1e1;border-radius: 5px;margin-left: 5px">
@@ -165,56 +165,28 @@
 
 
 
-</oj-bind-if>
+</oj-bind-if> -->
 
-<oj-bind-if test="[[selectedItem() == 'Graph view']]">
+<oj-chart id="pieChart" type="pie" data="[[dataProvider]]" animation-on-display="auto"
+    animation-on-data-change="auto" style-defaults.three-d-effect="[[threeDValue]]" hover-behavior="dim"
+    style="max-width:500px;width:100%; margin-left: 179px;height:496px; margin-top: 30px;">
+
+    <template slot='itemTemplate' data-oj-as='item'>
+      <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.group] ]]'
+        series-id='[[item.data.series]]'>
+      </oj-chart-item>
+    </template>
+  </oj-chart>
+
+<!-- <oj-bind-if test="[[selectedItem() == 'Graph view']]">
   <div id='chart-container'>
-    <!-- <div style="float:left;padding-left: 16px;">
-              <oj-label for="radioButtonset1" style="padding-bottom:8px;">
-                 Data Set:
-              </oj-label>
-              <oj-buttonset-one id="radioButtonset1" class="oj-buttonset-width-auto" aria-label="Choose only one setting." aria-controls="barChart"
-                                value="{{dataSet}}" on-value-changed="[[changeData]]">
-                  <oj-option value="2018" id="2018">2018</oj-option>
-                  <oj-option value="2017" id="2017">2017</oj-option>
-              </oj-buttonset-one>
-          </div> -->
-    <!-- <div style="float:left;padding-left: 16px;">
-              <oj-label id="resetButton" style="padding-bottom:8px;">
-                 Reset colors:
-              </oj-label>
-              <oj-checkboxset id="checkboxSet" labelled-by="resetButton"
-                              value="{{resetColors}}">
-                <oj-option id="reset" value="reset">Reset colors between data change</oj-option>
-              </oj-checkboxset>
-          </div> -->
-
-
-
-
+  
 
     <br style="clear:both;" />
-    <oj-chart id="barChart" type="bar" orientation="[[orientationValue]]" data="[[dataProvider]]" y-axis.title="Count"
-      x-axis.rendered="[[xAxisRenderedValue]]" value-formats.group.tooltip-label="Product"
-      value-formats.value.tooltip-label="Quantity" animation-on-display="auto" legend.sections="[[legendSectionsValue]]"
-      style="max-width:500px;width:100%;height:250px;">
+    
 
-      <template slot='itemTemplate' data-oj-as='item'>
-        <oj-chart-item value='[[item.data.value]]' group-id='[[ [item.data.drink] ]]' series-id='[[ item.data.year ]]'
-          color='[[ colorHandler.getValue(item.data.drink) ]]'>
-        </oj-chart-item>
-      </template>
-      <template slot='seriesTemplate'>
-        <oj-chart-series display-in-legend="off">
-        </oj-chart-series>
-      </template>
-    </oj-chart>
-    <!-- vertical/horizontal toggle button -->
-    <demo-chart-orientation-control id="orientationControl" type="bar" orientation="{{orientationValue}}"
-      aria-controls="barChart">
-    </demo-chart-orientation-control>
   </div>
-</oj-bind-if>
+</oj-bind-if> -->
 
 
 
@@ -266,7 +238,7 @@ border-radius: 10px;
 padding: 0px;
 ">
 
-  <oj-table id='table' aria-label='Departments Table' data='[[pagingDataProvider]]' columns-default.sortable='disabled'
+  <!-- <oj-table id='table' aria-label='Departments Table' data='[[pagingDataProvider]]' columns-default.sortable='disabled'
     columns='[{"headerText": "Validation Status", 
            "field": "SNO",
            "headerClassName": "oj-sm-only-hide",
@@ -281,9 +253,9 @@ padding: 0px;
           {"headerText": "Message", 
            "field": "Message",
            "style": "white-space:normal;word-wrap:break-word;"}]' style='width: 100%; height:100%;'>
-  </oj-table>
+  </oj-table> -->
 
-  <div class="oj-flex">
+  <!-- <div class="oj-flex">
     <div class="oj-flex-item"></div>
     <div class="oj-flex-item"></div>
     <div class="oj-flex-item">
@@ -291,7 +263,7 @@ padding: 0px;
       </oj-paging-control>
     </div>
     <div class="oj-flex-item"></div>
-  </div>
+  </div> -->
 
 </div>
 
