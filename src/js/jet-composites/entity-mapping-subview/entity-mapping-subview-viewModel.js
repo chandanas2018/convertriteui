@@ -148,7 +148,7 @@ define(
           }
         }
 
-        var location = ["LOCATION_CODE"];
+        var location = ["LOCATIONCODE"];
         for (let i = 0; i < location.length; i++) {
           if (current.data.COLUMN_NAME == location[i]) {
             $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
@@ -156,7 +156,7 @@ define(
           }
         }
 
-        var grades = ["GRADE_CODE"];
+        var grades = ["GRADECODE"];
         for (let i = 0; i < grades.length; i++) {
           if (current.data.COLUMN_NAME == grades[i]) {
             $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
@@ -174,7 +174,7 @@ define(
           }
         }
 
-        var jobs = ["JOB_CODE"];
+        var jobs = ["JOBCODE"];
         for (let i = 0; i < jobs.length; i++) {
           if (current.data.COLUMN_NAME == jobs) {
             $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
