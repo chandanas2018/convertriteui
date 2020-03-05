@@ -61,7 +61,7 @@ define(
 
               for (let i = 0; i < tempArray.length; i++) {
                 if (tempArray[i].IS_MANDATORY == "Y") {
-                  $(".mandate").eq(i).find("div").css({ "color": "#696969", "background": " #f2f4f5" });
+                  $(".mandate").eq(i).find("div").css({ "color": "#B8B8B8", "font-style": "italic", "background": " #f2f4f5" });
                 }
                 else {
                   $(".mandate").eq(i).find("div").css({ "color": "black", "background": "white" });
@@ -132,13 +132,8 @@ define(
         } else {
           document.getElementById('mappingdilogue').open();
 
-          // self.closemapping = function() {
-          //  
-           document.getElementById('mappingdilogue').close();
-          // }
         }
 
-       
         //to-do refactor after demo
         var lookups = ["BLOOD_TYPE", "TITLE", "SEX"];
         for (let i = 0; i < lookups.length; i++) {
@@ -179,6 +174,15 @@ define(
           if (current.data.COLUMN_NAME == jobs) {
             $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
             $(".destinationEntity:nth-child(8)").find("div").css({ "color": "white", "background": " #1464a0" });
+
+          }
+        }
+
+        var salarybasis = ["SALARY_BASIS_NAME"];
+        for (let i = 0; i < salarybasis.length; i++) {
+          if (current.data.COLUMN_NAME == salarybasis) {
+            $(".destinationEntity:nth-child(n)").find("div").css({ "color": "black", "background": " white" });
+            $(".destinationEntity:nth-child(15)").find("div").css({ "color": "white", "background": " #1464a0" });
 
           }
         }
@@ -456,7 +460,7 @@ define(
 
             if (data.success == true) {
               self.dataProvider.remove(current.data);
-            
+
 
             }
 
@@ -465,7 +469,7 @@ define(
           fail: function (xhr, textStatus, errorThrown) {
 
             console.log(errorThrown);
-          
+
           }
         });
 
