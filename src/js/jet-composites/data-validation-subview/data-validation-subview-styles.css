@@ -6,6 +6,19 @@ data-validation-subview{
 	min-height: 50px;
 	width: 50px;
 }
+
+#validations{
+	background-color:  #1464a0 ;
+	color:white ;
+	font-size: 16px;
+	width:200px;
+	text-align: center;
+	 height:40px;
+	 border-radius: 7px;
+	 margin-left: 263px;
+
+}
+
 #tabbarcontainer1{
 	background-color:#dce6ea ;
 	border-radius: 10px;

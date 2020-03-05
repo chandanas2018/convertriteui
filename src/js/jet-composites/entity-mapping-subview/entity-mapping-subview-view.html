@@ -52,17 +52,16 @@
               style="margin: 5px; border-radius: 5px; height: 35px; padding: 7px;cursor:pointer;font-size:smaller;">
               <oj-bind-text value="[[$current.data.DISPLAY_NAME]]" style="font-size:12px;"></oj-bind-text>
             </div>
-            <oj-dialog style="display:none" id="mappingdilogue" dialog-title="Information">
-              <div slot="body">
-                This field is already mapped by the tool . So this can't be selected again.
-              </div>
-              <!-- <div slot="footer">
-                <button on-click="[[closemapping]]">ok</button>
-              </div> -->
-            </oj-dialog>
+
           </div>
         </template>
       </oj-bind-for-each>
+
+      <oj-dialog style="display:none" id="mappingdilogue" dialog-title="Information">
+        <div slot="body" style="font-style: normal;color: black;">
+          This field is already mapped by the tool . So this can't be selected again.
+        </div>
+      </oj-dialog>
 
 
       <div class="nano-pane">
