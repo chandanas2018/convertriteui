@@ -15,6 +15,7 @@ define(
 
 
       self.selectedItem = ko.observable("Table view");
+      self.stackValue = ko.observable('off');
 
       self.display = ko.observable("all");
       self.edge = ko.observable("top");
@@ -24,6 +25,18 @@ define(
         type: 'get',
         dataType: 'json',
         success: function(jsondata, textStatus, jqXHR) {
+
+        // var data = {
+        //   "success":[
+        //     {"id":4,"series":"UNMAP_LOCATIONCODE","group":"group1","value":0},
+        //     {"id":5,"series":"UNMAP_BLOOD_TYPE","group":"group2","value":0},
+        //     {"id":6,"series":"UNMAP_GRADECODE","group":"group3","value":2},
+        //     {"id":7,"series":"UNMAP_JOBCODE","group":"group","value":1}
+        //   ]
+        // }   
+  
+
+
          
      
         var data  =  jsondata;
