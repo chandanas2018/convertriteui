@@ -27,6 +27,7 @@ define(
         $("#ebsscreen").hide();
         $("#employeeextracts").hide();
         $("#mainscreen").show();
+        self.selectedItem("Upload Extracts");
       }
 
 
