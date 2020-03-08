@@ -22,7 +22,8 @@ define(
       self.threeDValue = ko.observable('off');
       $.ajax({
         url: host+'/getValidations',
-        type: 'get',
+        type: 'post',
+        data: {entityId: context.properties.entityId},
         dataType: 'json',
         success: function(jsondata, textStatus, jqXHR) {
 
