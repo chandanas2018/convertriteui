@@ -119,7 +119,7 @@ define(
       self.messages = [
 
       ];
-      self.errorMessageTimeout = ko.observable('20000');
+      self.errorMessageTimeout = ko.observable('5000');
       self.messagesArray = ko.observableArray(self.messages);
       self.messagesDataprovider = new ArrayDataProvider(self.messagesArray);
 
