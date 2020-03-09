@@ -290,38 +290,50 @@ define(
         var sheetData = [];
         var sheetNames = [{sheetid:'Sheet One',header:true}];
       
-        for(let i=0;i<deptArray.length;i++){
-          var obj ={
-                  SNO: deptArray[i].SNO,
-                  sourceField: deptArray[i].SourceField,
-                  destinationField: deptArray[i].DestinationField,
-                  Message: deptArray[i].Message
-                }
-      
-                sheetData1.push(obj);
-        }
-        sheetData.push(sheetData1);
-      
-      // for(let i=0; i<deptArray.length; i++){
-      //   sheetData.push([deptArray[i]]);
-      // }
-      
-        // sheetData.push(deptArray[0]);
-      //   for (let i = 0; i < deptArray.length; i++) {
-      //     var tempArray =[];
-      //     var obj ={
-      //       SNO: deptArray[i].SNO,
-      //       sourceField: deptArray[i].SourceField,
-      //       destinationField: deptArray[i].DestinationField,
-      //       Message: deptArray[i].Message
-      //     }
-      // tempArray.push(obj);
-      
-      //     sheetData.push(tempArray);
-      
-      //   }
-        var result = alasql('SELECT * INTO XLSX("Validations.xlsx",?) FROM ?',
-          [sheetNames, sheetData]);
+        $.ajax({
+          url: host + '/downloadValidation',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            for(let i=0;i<data.success.length;i++){
+              var obj ={
+                      ProjectName: data.success[i].PROJECT_NAME,
+                      Type: data.success[i].TYPE,
+                      SourceEntity: data.success[i].SOURCE_ENTITY,
+                      SourceField: data.success[i].SOURCE_FIELD,
+                      DestinationEntity: data.success[i].DESTINATION_ENTITY,
+                      DestinationField: data.success[i].DESTINATION_FIELD,
+                      Message: data.success[i].MESSAGE
+                    }
+          
+                    sheetData1.push(obj);
+            }
+            sheetData.push(sheetData1);
+          
+          // for(let i=0; i<deptArray.length; i++){
+          //   sheetData.push([deptArray[i]]);
+          // }
+          
+            // sheetData.push(deptArray[0]);
+          //   for (let i = 0; i < deptArray.length; i++) {
+          //     var tempArray =[];
+          //     var obj ={
+          //       SNO: deptArray[i].SNO,
+          //       sourceField: deptArray[i].SourceField,
+          //       destinationField: deptArray[i].DestinationField,
+          //       Message: deptArray[i].Message
+          //     }
+          // tempArray.push(obj);
+          
+          //     sheetData.push(tempArray);
+          
+          //   }
+            var result = alasql('SELECT * INTO XLSX("Validations.xlsx",?) FROM ?',
+              [sheetNames, sheetData]);
+          }
+        });
+        
       
                 // var sheet_1_data = data1;
           // var sheet_1_data = [{Col_One:1, Col_Two:11}, {Col_One:2, Col_Two:22}];
