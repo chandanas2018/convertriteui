@@ -149,46 +149,11 @@
     <oj-bind-if test="[[showPreview() == 'true']]">
 
       <div class="oj-flex" style="margin-top:30px;" data-bind="css: {'oj-sm-flex-wrap-nowrap': nowrap()}">
-        <div class="oj-flex-item"></div>
-
-
-        <div class="oj-flex-item"> </div>
-
-        <!-- <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
-                
-                  <div class="oj-panel" on-click='[[selectAll]]' style="
-                  border-radius: 5px;
-                  background-color:  #1464a0;
-                  color:white;
-                  border:none; cursor:pointer; width:100px; text-align:center;
-              ">Select all</div>
-              
-            </div>
-            <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 16px 0px 0px;"> 
-                
-                <div class="oj-panel" on-click='[[deSelectAll]]' style="
-                border-radius: 5px;
-                background-color:  #1464a0;
-                color:white;
-                border:none; cursor:pointer; width:100px; text-align:center;
-            ">Deselect all</div>
-            
-          </div> -->
-        <div class="oj-sm-flex-initial oj-flex-item" style="margin:-17px 0px 0px 0px;">
-
-          <div class="oj-panel" on-click='[[closePreview]]' style="
-                border-radius: 5px;
-                background-color:  #1464a0;
-                color:white;
-                border:none; cursor:pointer; width:100px; text-align:center;
-            ">Close</div>
-
-        </div>
-
-
 
       </div>
-      <div class="oj-panel" style="border-radius: 10px;padding: 0px; ">
+      <div class="oj-panel" style=" width: 100%;height: 100%; border: none;">
+       
+       
 
         <oj-table id='table' aria-label='Departments Table' data='[[pagingDataProvider]]'
           columns-default.sortable='disabled' columns='[{"headerText": "Source Column Name", 
@@ -201,8 +166,11 @@
                "field": "DestinationField",
                "headerClassName": "oj-sm-only-hide",
                "className": "oj-sm-only-hide"}
-              ]' style='width: 100%; height:100%;'>
+              ]' style='width: 100%; height:100%; border-radius: 10px;border: 1px solid white;'>
+
+             
         </oj-table>
+        <button id="closepreview" on-click='[[closePreview]]'>Close</button>
 
         <div class="oj-flex">
           <div class="oj-flex-item"></div>
