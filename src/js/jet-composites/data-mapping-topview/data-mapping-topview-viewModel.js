@@ -28,6 +28,9 @@ define(
           url: host + "/api/v1/exceldata",
           data: { entityid: 1},
           type: 'POST',
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           dataType: 'json',
   
           success: function (data, textStatus, jqXHR) {

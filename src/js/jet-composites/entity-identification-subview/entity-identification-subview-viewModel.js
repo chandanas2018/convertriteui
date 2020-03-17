@@ -43,7 +43,9 @@ define(
         data: { entityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
-       
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
 
         success: function (data, textStatus, jqXHR) {
      
@@ -149,7 +151,9 @@ define(
           type: 'POST',
           dataType: 'json',
           contentType: 'application/json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);

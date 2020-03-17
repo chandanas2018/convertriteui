@@ -67,7 +67,9 @@ define(
         url: host + "/api/v1/source/columns",
         type: 'POST',
         // dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
@@ -114,7 +116,9 @@ define(
             url: host + "/api/v1/download/hdl",
             type: 'GET',
             // dataType: 'json',
-
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
@@ -156,7 +160,9 @@ define(
             url: host + "/api/v1/supervisior/hdl",
             type: 'GET',
             // dataType: 'json',
-
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
@@ -197,7 +203,9 @@ define(
             url: host +"/api/v1/generateSalaryHdl",
             type: 'GET',
             // dataType: 'json',
-
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             success: function (data, textStatus, jqXHR) {
               console.log(data);
               var filePath = host + data.loc;

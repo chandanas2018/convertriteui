@@ -37,6 +37,9 @@ define(
       $.ajax({
         url: host + "/api/v1/source/entity/columns",
         data: { id: context.properties.entityId },
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         type: 'POST',
         dataType: 'json',
 
@@ -90,7 +93,9 @@ define(
         url: host + "/api/v1/dest/entities",
         type: 'GET',
         // dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
@@ -202,7 +207,9 @@ define(
           data: { id: current.data.DEST_ENTITY_ID },
           type: 'POST',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);
@@ -244,7 +251,9 @@ define(
         data: { sourceentityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
@@ -300,6 +309,9 @@ define(
         } else if (self.dataProvider().length == 0) {
           $.ajax({
             url: host + "/api/v1/mappings",
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             data:
             {
               projectid: 2,
@@ -360,6 +372,9 @@ define(
           if (matchFound == false) {
             $.ajax({
               url: host + "/api/v1/mappings",
+              headers: {
+                "Project_Id": localStorage.getItem('project_id')
+              },
               data:
               {
                 projectid: 2,
@@ -452,7 +467,9 @@ define(
           data: { sourceentityid: context.properties.entityId, sourcecolumnname: current.data.DISPLAY_NAME, destinationcolumnname: current.data.DESTINATION_COLUMN_NAME },
           type: 'DELETE',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);
@@ -489,7 +506,9 @@ define(
           data: { sourceentityid: context.properties.entityId },
           type: 'DELETE',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);

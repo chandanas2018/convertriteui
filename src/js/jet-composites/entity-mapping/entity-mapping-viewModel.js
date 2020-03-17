@@ -137,7 +137,9 @@ define(
         url: host + "/api/v1/source/entities",
         type: 'GET',
         // dataType: 'json',
-
+        headers: {
+              "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
 
           var tempArray = [];

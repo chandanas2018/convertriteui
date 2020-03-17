@@ -10,126 +10,14 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
       var host = sessionStorage.getItem("hostname");
-
+      self.loaded = ko.observable();
       self.listItems = [
-        {
-          entityid: 1,
-          id: "PERSON",
-          label: "PERSON",
-          disabled: false
-        },
-        {
-
-          entityid: 2,
-          id: "PERSON_NAME",
-          label: "PERSON_NAME",
-          disabled: false
-        },
-        // {
-
-        //   entityid: 3,
-        //   id: "PERSON_NID",
-        //   label: "PERSON_NID",
-        //   disabled: false
-        // },
-        // {
-        //   entityid: 4,
-        //   id: "DOCUMENTS_OF_RECORD_VO",
-        //   label: "DOCUMENTS_OF_RECORD_VO",
-        //   disabled: false
-        // },
-        // {
-        //   entityid: 5,
-        //   id: "CITIZENSHIP_VO",
-        //   label: "CITIZENSHIP_VO",
-        //   disabled: false
-        // },
-        {
-          entityid: 6,
-          id: "PERSON_LEGISLATIVE_INFO",
-          label: "PERSON_LEGISLATIVE_INFO",
-          disabled: false
-        },
-        // {
-        //   entityid: 7,
-        //   id: "PERSON_ADDRESS",
-        //   label: "PERSON_ADDRESS",
-        //   disabled: false
-        // },
-        // {
-        //   entityid: 8,
-        //   id: "PERSON_PHONE",
-        //   label: "PERSON_PHONE",
-        //   disabled: false
-        // },
-        //  {
-        //   entityid: 9,
-        //   id: "PERSON_EMAIL",
-        //   label: "PERSON_EMAIL",
-        //   disabled: false
-        // }, 
-        {
-          entityid: 10,
-          id: "ASSIGNMENT",
-          label: "ASSIGNMENT",
-          disabled: false
-        },
-        // {
-        //   entityid: 11,
-        //   id: "ASSIGNMENT_EFF",
-        //   label: "ASSIGNMENT_EFF",
-        //   disabled: false
-        // },
-        {
-          entityid: 12,
-          id: "PERSON_SALARY",
-          label: "PERSON_SALARY",
-          disabled: false
-        }, 
-        // {
-        //   entityid: 13,
-        //   id: "SUPERVISOR",
-        //   label: "SUPERVISOR",
-        //   disabled: false
-        // },
-        // {
-        //   entityid: 14,
-        //   id: "CONTACT_RELATIONSHIP",
-        //   label: "CONTACT_RELATIONSHIP",
-        //   disabled: false
-        // }, 
-        // {
-        //   entityid: 15,
-        //   id: "ELEMENT_ENTRIES",
-        //   label: "ELEMENT_ENTRIES",
-        //   disabled: false
-        // }, 
-        // {
-        //   entityid: 16,
-        //   id: "ELEMENT_ENTRIES_VALUES",
-        //   label: "ELEMENT_ENTRIES_VALUES",
-        //   disabled: false
-        // },
-        {
-          entityid: 17,
-          id: "WORK_TERMS",
-          label: "WORK_TERMS",
-          disabled: false
-        },
-        {
-          entityid: 18,
-          id: "WORK_RELATIONSHIP",
-          label: "WORK_RELATIONSHIP",
-          disabled: false
-        },
+        3,4,5,7,8,9,11,13,14,15,16
       ];
 
 
-      self.itemsArray = ko.observableArray(self.listItems);
-
-      self.dataProvider = new ArrayDataProvider(self.itemsArray);
-
-
+      
+    
       if (typeof (Storage) == "undefined") {
         self.selectedItem = ko.observable('PERSON');
       } else {
@@ -144,22 +32,31 @@ define(
 
       }
 
-
-
       $.ajax({
         url: host + "/api/v1/source/entities",
         type: 'GET',
         // dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
+          //self.loaded("one");
 
           console.log(data);
-          for (let i = 0; i < data.data.length; i++) {
             var tempArray = [];
             for (let i = 0; i < data.data.length; i++) {
-              tempArray.push(data.data[i]);
+              if(self.listItems.indexOf(data.data[i].ENTITY_ID) == -1) {
+                tempArray.push({
+                  entityid: data.data[i].ENTITY_ID,
+                  id: data.data[i].ENTITY_NAME,
+                  label: data.data[i].ENTITY_NAME,
+                  disabled: false
+                });
+              }
             }
-          }
+            self.itemsArray = ko.observableArray(tempArray);
+            self.dataProvider = new ArrayDataProvider(self.itemsArray);
+            self.loaded("one");
         },
         fail: function (xhr, textStatus, errorThrown) {
 

@@ -24,6 +24,9 @@ define(
         url: host+'/getValidations',
         type: 'post',
         data: {entityId: context.properties.entityId},
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         dataType: 'json',
         success: function(jsondata, textStatus, jqXHR) {
 
@@ -117,7 +120,9 @@ define(
         url: host + "/validation",
         type: 'GET',
         // dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
@@ -294,6 +299,9 @@ define(
           url: host + '/downloadValidation',
           type: 'GET',
           dataType: 'json',
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function(data) {
             console.log(data);
             for(let i=0;i<data.success.length;i++){
