@@ -34,7 +34,9 @@ define(
           data: { entityid: context.properties.entityId, columnname: localStorage.getItem('column_name') },
           type: 'POST',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
             console.log(data);
             for (let j = 0; j < data.data.length; j++) {
@@ -176,7 +178,9 @@ define(
             data: { entityid: context.properties.entityId, columnname: localStorage.getItem('column_name') },
             type: 'POST',
             dataType: 'json',
-
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             success: function (data, textStatus, jqXHR) {
               console.log(data);
               for (let j = 0; j < data.data.length; j++) {
@@ -398,7 +402,9 @@ define(
                   data: { entityid: context.properties.entityId, mappings: jsonFilterData },
                   type: 'POST',
                   dataType: 'json',
-
+                  headers: {
+                    "Project_Id": localStorage.getItem('project_id')
+                  },
                   success: function (data, textStatus, jqXHR) {
 
                     console.log(data);
@@ -462,7 +468,9 @@ define(
         data: { sourceentityid: context.properties.entityId },
         type: 'POST',
         dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
@@ -505,7 +513,9 @@ define(
           data: { sourceentityid: context.properties.entityId },
           type: 'POST',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);
@@ -564,7 +574,9 @@ define(
           data: { data: current.data },
           type: 'POST',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);
@@ -686,7 +698,9 @@ define(
               destinationdataid: self.destinationDataId(),
               remainingdata: self.mappingData(),
             },
-
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             type: 'POST',
             dataType: 'json',
 
@@ -746,6 +760,9 @@ define(
             },
             type: 'POST',
             dataType: 'json',
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             success: function (data, textStatus, jqXHR) {
 
               console.log(data);
@@ -781,7 +798,9 @@ define(
           data: { sourceentityid: context.properties.entityId, sourcedataname: current.data.sourceDataName, destinationdataname: current.data.destinationDataName },
           type: 'DELETE',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);
@@ -821,7 +840,9 @@ define(
           data: { sourceentityid: context.properties.entityId },
           type: 'DELETE',
           dataType: 'json',
-
+          headers: {
+            "Project_Id": localStorage.getItem('project_id')
+          },
           success: function (data, textStatus, jqXHR) {
 
             console.log(data);

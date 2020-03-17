@@ -58,7 +58,9 @@ define(
         url: host + "/api/v1/upload/extracts",
         type: 'GET',
         //dataType: 'json',
-
+        headers: {
+          "Project_Id": localStorage.getItem('project_id')
+        },
         success: function (data, textStatus, jqXHR) {
           $("#progressup").show();
           console.log(data);
@@ -189,6 +191,9 @@ define(
                     url: host + "/api/v1/uploadfile",
                     data: { "data": json, "filename": event.detail.files[0].name.split(".")[0] },
                     type: 'POST',
+                    headers: {
+                      "Project_Id": localStorage.getItem('project_id')
+                    },
                     dataType: 'json',
                     // processData: false,
                     // contentType: false,

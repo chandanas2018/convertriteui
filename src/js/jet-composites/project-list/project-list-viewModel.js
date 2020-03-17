@@ -13,7 +13,7 @@ define(
     function ExampleComponentModel(context) {
       var self = this;
       var host = sessionStorage.getItem("hostname")
-
+      self.projectData = [];
       self.val1 = ko.observable('');
       self.val2 = ko.observable('');
       self.val3 = ko.observable('');
@@ -52,6 +52,9 @@ define(
           $.ajax({
             url: host + '/csv',
             type: 'GET',
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
 
@@ -113,6 +116,9 @@ define(
           $.ajax({
             url: host + '/api/EbsExtracts',
             type: 'GET',
+            headers: {
+              "Project_Id": localStorage.getItem('project_id')
+            },
             data: { entity: entityvalue },
             success: function (data, textStatus, jqXHR) {
               // $("#progressset").show();
@@ -171,8 +177,13 @@ define(
       }
 
       self.backempextracts = function () {
-        $("#mainscreen").hide();
-        $("#employeeextracts").show();
+        if(localStorage.getItem('project_name') == 'FBDI Data Migration') {
+
+        }
+        else {
+          $("#mainscreen").hide();
+          $("#employeeextracts").show();
+        }
       }
 
 
@@ -198,10 +209,11 @@ define(
       };
 
 
-      self.loaded = ko.observable("one");
+      self.loaded = ko.observable('');
+      self.nowrap = ko.observable(true);
 
-      self.nowrap = ko.observable(false);
-
+      self.dataProvider = ko.observableArray([]);
+      self.projectId = ko.observable();
 
 
       self.close = function (event) {
@@ -209,9 +221,28 @@ define(
         if (self.projectName() == undefined || self.projectDescription() == undefined) {
 
         } else {
-
-          self.dataProvider.push({ name: self.projectName, description: self.projectDescription, status: "Upload Extracts" })
-          document.getElementById('modalDialog1').close();
+          $.ajax({
+            url: host + "/api/v1/projects/create",
+            data: { projectname: self.projectName, description: self.projectDescription, email: "Linda@xyz.com" },
+            type: 'POST',
+            dataType: 'json',
+            success: function(data) {
+              if(data.success) {
+                self.projectData.push({ 
+                  "id": data.data.PROJECT_ID, 
+                  "name": data.data.PROJECT_NAME, 
+                  "description": data.data.PROJECT_DESCRIPTION, 
+                  "status": "Upload Extracts" 
+                });
+                self.dataProvider(self.projectData);
+                document.getElementById('modalDialog1').close();
+              }
+              else {
+                alert('project not created.');
+                document.getElementById('modalDialog1').close();
+              }
+            }
+          });
         }
 
       }
@@ -231,6 +262,21 @@ define(
         success: function (data, textStatus, jqXHR) {
 
           console.log(data);
+          
+          self.loaded("one");
+          self.nowrap(false);
+
+          if(data.data.length > 0){
+            data.data.forEach(element => {
+              self.projectData.push({
+                "id": element.PROJECT_ID,
+                "name": element.PROJECT_NAME,
+                "description": element.PROJECT_DESCRIPTION,
+                "status": "Upload Extracts"
+              })
+            });
+          }
+          self.dataProvider(self.projectData);
 
         },
         fail: function (xhr, textStatus, errorThrown) {
@@ -239,22 +285,31 @@ define(
         }
       });
 
-      self.dataProvider = ko.observableArray([
-        { name: "HR Data Migration", description: "We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
-        { name: "Payroll Data Migration", description: "Data migration projects typically require a lot of additional tools and project support platforms to function smoothly", status: "Upload Extracts" },
-        // { name: "HBL Group Data Conversion", description:"We needed to convert employee compensation data from the legacy HR database.The old data was stored in much detail-by pay check and compensation type.", status: "Upload Extracts" },
-
-      ]);
-      self.projectName = ko.observable();
+     
 
 
 
       self.openProject = function (event, current, bindingContext) {
         self.loaded("two");
-        $("#ebsscreen").show();
-        $(".nxtbtn").show();
-        $("#mainscreen").hide();
+        if(current.data.name == 'FBDI Data Migration') {
+          $("#ebsscreen").hide();
+          $(".nxtbtn").hide();
+          $("#mainscreen").show();
+          $("#tabbarcontainer li").show();
+          $("#tabbarcontainer li:eq(2)").hide();
+          $("#tabbarcontainer li:eq(3)").hide();
+        }
+        else {
+          $("#ebsscreen").show();
+          $(".nxtbtn").show();
+          $("#mainscreen").hide();
+          $("#tabbarcontainer li").show();
+        }
         self.projectName(current.data.name);
+        self.projectId(current.data.id);
+        localStorage.setItem('project_id', current.data.id);
+        localStorage.setItem('project_name', current.data.name);
+        console.log(current.data.id);
       };
 
       self.nxtbtn = function () {

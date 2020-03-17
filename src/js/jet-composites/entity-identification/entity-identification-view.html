@@ -3,7 +3,7 @@
   The Universal Permissive License (UPL), Version 1.0
 -->
 <!-- <p data-bind="text:messageText"></p> -->
-
+<oj-bind-if test="[[loaded()=='one']]">
 <div class="oj-panel">
   <div class = "oj-flex demo-edge-start">
   <oj-navigation-list class="oj-contrast-background oj-contrast-marker" selection="{{selectedItem}}"   on-click = "[[getData]]" style="
@@ -218,3 +218,4 @@
   
     </div>
   </div>
+</oj-bind-if>
