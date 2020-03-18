@@ -14,6 +14,7 @@ define(
       var self = this;
       var host = sessionStorage.getItem("hostname")
       self.projectData = [];
+      self.selectedItem = ko.observable('Project List');
       self.val1 = ko.observable('');
       self.val2 = ko.observable('');
       self.val3 = ko.observable('');
@@ -309,6 +310,7 @@ define(
         self.projectId(current.data.id);
         localStorage.setItem('project_id', current.data.id);
         localStorage.setItem('project_name', current.data.name);
+        self.selectedItem("Upload Extracts");
         console.log(current.data.id);
       };
 
@@ -378,7 +380,7 @@ define(
       //     return true;
       // }.bind(self);
 
-      self.selectedItem = ko.observable("Upload Extracts");
+      //self.selectedItem = ko.observable("Upload Extracts");
       self.display = ko.observable("all");
       self.edge = ko.observable("top");
       self.displaym = ko.observable('false');
