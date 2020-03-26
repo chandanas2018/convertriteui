@@ -19,7 +19,11 @@ define(
       
     
       if (typeof (Storage) == "undefined") {
-        self.selectedItem = ko.observable('PERSON');
+         var project_id = localStorage.getItem('project_id');
+         if(project_id == 2){
+          self.selectedItem = ko.observable('PERSON');
+         }
+        
       } else {
         self.selectedItem = ko.observable(sessionStorage.getItem("user"));
       }

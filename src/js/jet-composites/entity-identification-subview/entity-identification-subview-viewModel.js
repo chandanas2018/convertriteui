@@ -37,7 +37,7 @@ define(
      
       $("#progress").show();
       self.data1 = ko.observableArray(self.data);
-
+      console.log('Context:' , context.properties.entityId )
       $.ajax({
         url: host + "/api/v1/identification/columns",
         data: { entityid: context.properties.entityId },
